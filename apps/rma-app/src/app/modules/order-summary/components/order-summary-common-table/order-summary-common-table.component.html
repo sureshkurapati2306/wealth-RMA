@@ -1,0 +1,41 @@
+<div *ngIf="(orderSummaryData$ | async), let orderSummary">
+    <div class="switch-container switchOut" id="switchOut" *ngFor="let dataSrc of orderSummary.subscriberDtoList ; let lastItem = last;">
+        <div class="switch">
+            <div class="header color-code" [ngStyle]="{'border-left' : '0.25rem solid' + dataSrc.colorCode}">
+                {{ dataSrc.className }}
+            </div>
+            <mat-expansion-panel [expanded]="true" class="wealth">
+                <mat-expansion-panel-header [expandedHeight]="'100%'">
+                    <mat-panel-description class="expansion-panel fund-type-header">
+                        <div class="header"> {{dataSrc.fundName}} </div>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p class="sub-title">{{ dataSrc.riskRating }} | {{ dataSrc.fundIndicator }}</p>
+                <div class="info" *ngIf="orderSummary?.customerApprovalStatus !== 'A'">
+                    <a><p class="fund-doc">View Fund Details</p></a>
+                </div>
+                <div class="info" *ngIf="orderSummary?.customerApprovalStatus !== 'A'">
+                    <p class="salesInfo"> NAV Price <Span>(As of {{dataSrc.navUpdatedDate | date:'dd MMMM y'}})</Span></p>
+                    <p class="amount"><sup class="salesDetails">MYR</sup>{{dataSrc.navPrice | number: '1.6-6'}}</p>
+                </div>
+                <div class="info1">
+                    <p class="salesInfo"> Salescharge ({{dataSrc.salesChargeRate | number : '1.2-2'}}%) </p>
+                    <p class="amount"><sup class="salesDetails">MYR</sup>{{dataSrc.salesChargeAmount}}</p>
+                </div>
+                <div class="info">
+                    <p class="amount"><strong>Amount</strong></p>
+                    <p class="totalAmount"><sup class="salesDetails">MYR</sup>{{dataSrc.investmentAmount}}</p>
+                </div>
+            </mat-expansion-panel>
+        </div>
+        <mat-divider  *ngIf="!lastItem"></mat-divider>
+    </div>
+    <div class="reminder" *ngIf="dataSrc?.reminder">
+        <mat-card-subtitle class="header">
+            Sales Charge Justification
+        </mat-card-subtitle>
+        <p>Customer requested for a lower sales charge because she constantly invests the same amount in this fund
+            monthly.</p>
+    </div>
+    <mat-divider class="divide" *ngIf="!dataSrc?.divider"></mat-divider>
+</div>

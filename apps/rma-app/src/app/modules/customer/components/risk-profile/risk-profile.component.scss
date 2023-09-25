@@ -1,0 +1,129 @@
+.align-center {
+    align-items: center;
+}
+.box-shadow {
+    border-radius: 16px;
+    box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+    padding: 1rem 1.5rem 0rem;
+}
+.riskprofile {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+    cursor: default;
+}
+.mat-button {
+    padding: 0px;
+    margin-bottom: 17px;
+    padding-top: 1px;
+    padding-right: 6px;
+}
+div .mat-card {
+    padding: 0px;
+}
+.risk-profile {
+    background: none;
+    box-shadow: none;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 16px;
+    color: #333739;
+}
+.modes-1{
+    font-weight: 600;
+    font-size: 16px;
+    color: #575a5c;
+    margin-bottom: 0;
+}
+.button {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 154%;
+    text-align: right;
+    color: #ff0000;
+}
+.modes {
+    display: flex;
+    box-shadow: none;
+    background: none;
+    padding: 1.5rem 0;
+    justify-content: space-between;
+    margin-left: 5.25rem;
+}
+.profile-mode {
+    display: flex;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #575a5c;
+    box-shadow: none;
+    background: none !important;
+}
+.icon {
+    color: #ff0000;
+    width: fit-content;
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+.label {
+    padding-left: 0px;
+    font-weight: 600;
+    padding-top: 2px;
+    font-size: 14px;
+    line-height: 154%;
+    color: #7b7d7e;
+    flex-wrap: wrap;
+    width: 48%;
+    border-left: none !important;
+}
+.onclick{
+    background: none;
+    border: none;
+    cursor: pointer
+}
+
+.expired-profile {
+    height: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 2px 8px;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    border-radius: 1rem;
+    margin-left: 1rem;
+}
+
+.block-user {
+    margin: 0 9%;
+    .error-message {
+        margin-top: 2.625rem;
+        .icon {
+            margin: 0;
+            padding: 0.5rem;
+
+            .mat-icon {
+                color: #ff7547;
+                font-size: 1.5rem;
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        .message {
+            color: var(--danger);
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-left: 1rem;
+
+            p {
+                &:last-child {
+                    margin-bottom: 1.5rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+<div class="card5 card ">
+    <mat-card>
+        <ng-container *ngIf="(getNonDefaultAccount$ | async) as defaultAccount">
+        <mat-card-title *ngIf="(getNonDefaultAccount$ | async).nonDefaultSettlement !== 1">Sales Charge Adhoc Discount Approval</mat-card-title>
+        <mat-card-title *ngIf="(getNonDefaultAccount$ | async).nonDefaultSettlement === 1">Sales Charge Adhoc Discount/ Non-Default Settlement Approval</mat-card-title>
+    </ng-container>
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+            <ng-container *ngIf="(getNonDefaultAccount$ | async) as defaultAccount">
+            <mat-card-subtitle *ngIf="(getNonDefaultAccount$ | async).nonDefaultSettlement !== 1" class="bold n-100">Select the Authorised Person for the adhoc discount approval:</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="(getNonDefaultAccount$ | async).nonDefaultSettlement === 1" class="bold n-100">Select the Authorised Person for the adhoc discount and (if applicable) the non-default settlement approval:</mat-card-subtitle>
+        </ng-container>
+            <div class="investment">
+                <div class="dropdowns">
+                    <div class="investment-dropdown sales-branch-dropdown" *ngIf="approvers$ | async as approvers">
+                        <div class="label bold">Regional director</div>
+                        <mat-form-field appearance="outline" floatLabel="never" class="mint-office-auto-complete-dropdown">
+                            <input #setFocus matInput [matAutocomplete]="automobile" (click)="setFocus.select()" placeholder="Select RD" [formControl]="searchValue" />
+
+                            <div class="mat-select-arrow-wrapper" [ngClass]="{'arrow-up': automobile.isOpen}" matSuffix></div>
+
+                            <mat-autocomplete class="mint-office-auto-complete-panel mobile-autocomplete sales-branch regional-dropdown" #automobile="matAutocomplete" panelClass="typeahead-panel" (optionSelected)="getSelectedOption($event)">
+                                <ng-container *ngIf="approvers.length > 0; else noDataFound">
+                                    <mat-option #salesOption class="dff" *ngFor="let approver of approvers"
+                                        [value]="approver">
+                                        {{ approver.approverName }}
+                                    </mat-option>
+                                </ng-container>
+                                <ng-template #noDataFound>
+                                    <mat-option>
+                                        <div class="noDataFound">
+                                            No result(s) found
+                                        </div>
+                                    </mat-option>
+                                </ng-template>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

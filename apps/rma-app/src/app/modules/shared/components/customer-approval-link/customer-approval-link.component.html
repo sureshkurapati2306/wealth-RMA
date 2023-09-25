@@ -1,0 +1,66 @@
+<div class="approval-link">
+  <mat-card-subtitle class="title">Customer Approval Link</mat-card-subtitle>
+  <div class="link-msg">
+    Get the customer to scan the QR code or copy and share the link to obtain customer’s approval via their mobile phone.
+  </div>
+  <div class="approval-qrcode" *ngIf="customerApprovalLinkData">
+      <div class="qrcode" *ngIf="customerApprovalLinkData?.approvalLinkStatus === 'A'">
+          <qrcode [qrdata]="customerApprovalLinkData?.approvalLinkUrl" [width]="124"></qrcode>
+      </div>
+
+      <div class="QR-Code-bg" *ngIf="customerApprovalLinkData?.approvalLinkStatus === 'I'">
+        <span class="title">
+          QR Code
+        Expired
+        </span>
+
+        <span class="link-title">
+          Please reactivate link
+        </span>
+      </div>
+      <div class="qrcode-link">
+          <mat-card-subtitle class="qrcode-title">Approval Link</mat-card-subtitle>
+          <div class="qr-link">
+            <a mat-button href="{{customerApprovalLinkData?.approvalLinkUrl}}" target="_blank" [ngClass]="(customerApprovalLinkData)?.approvalLinkStatus === 'I' ? 'urlLink disabled' : 'urlLink'">
+              <span [ngClass]="(customerApprovalLinkData)?.approvalLinkStatus === 'I' ? 'qr-link--address disabled' : 'qr-link--address'">{{customerApprovalLinkData?.approvalLinkUrl}}</span>
+            </a>
+            <button [ngClass]="customerApprovalLinkData?.approvalLinkStatus === 'I' ? 'disabled' : 'copyButton'" (click)="customerApprovalLinkData.approvalLinkStatus === 'A' ? copyText(customerApprovalLinkData?.approvalLinkUrl): null" mat-icon-button aria-label="Example icon button with a menu icon">
+              <mat-icon [ngClass]="customerApprovalLinkData?.approvalLinkStatus === 'I' ? 'disabled' : 'copyButton'" [ngClass]="{'copyLink': linkCopied}">content_copy</mat-icon>
+            </button>
+            <a *ngIf="!linkCopied" (click)="customerApprovalLinkData?.approvalLinkStatus === 'I' ? activateApprovalLink() : null" [ngClass]="customerApprovalLinkData?.approvalLinkStatus === 'A' ? 'link-copy disabled' : 'activateButton'">{{customerApprovalLinkData?.approvalLinkStatus === 'A' ? 'Copy link' : 'Activate'}}</a>
+            <a *ngIf="linkCopied" class="copyLink">Link Copied!</a>
+          </div>
+
+          <div [formGroup]="mobileValueForm" class="width mobile">
+            <p class="sub-container">Application approvals are linked to the customer’s default mobile number:</p>
+            <p class="sub-container-1 p select">
+                <mat-form-field floatLabel="never" class="formField">
+                    <mat-select #mySelect formControlName="mobileValue" (selectionChange)="mobileNumberConfirmation($event.value, customerApprovalLinkData.cif)" panelClass="custom-select-panel"
+                        class="select-panel rpq-mobile">
+                        <mat-option
+                            *ngFor="let option of numbers"
+                            [value]="option">
+                            {{ option }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+        </div>
+      </div>
+
+  </div>
+  <div class="reminder">
+      <mat-card-subtitle class="header">
+        Notes
+      </mat-card-subtitle>
+      <div class="reminder-points">
+          <ul style="list-style-type:disc;">
+            <li>Link expires after 24 hours, hence RM need to copy and send a new link to customer after expiration.</li>
+            <li>Link will be invalid once customer has approved to avoid conflicting submissions.</li>
+        </ul>
+      </div>
+  </div>
+</div>
+
+
+

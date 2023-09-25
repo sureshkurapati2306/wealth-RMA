@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>
+   <span [class]="dialogData.icon"></span>
+   {{ dialogData.title }}
+</h1>
+<div mat-dialog-content>
+   <div [innerHtml]="dialogData.description"></div>
+</div>
+
+<div class="btns-div">
+   <div class="leave" *ngIf="dialogData.dialogLeaveButtonText">
+      <button mat-flat-button class="btn-custom btn-lg btn-white cancel-btn" (click)="leave()">
+         <strong>{{dialogData.dialogLeaveButtonText}}</strong>
+      </button>
+   </div>
+   <div mat-dialog-actions class="fw">
+      <button *ngIf="dialogData.btnCancelLable" mat-flat-button mat-dialog-close
+         class="btn-custom btn-red-outline btn-xs" (click)="cancel()">{{ dialogData.btnCancelLable }}
+      </button>
+      <button mat-flat-button (click)="confirm()" class="btn-custom btn-red btn-xs">{{ dialogData.btnOkLabel }}</button>
+   </div>
+</div>

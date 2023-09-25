@@ -1,0 +1,31 @@
+.chip-custom {
+  .mat-chip-list-wrapper {
+    margin: 0 -0.5rem;
+
+    .mat-standard-chip {
+      padding: 0.5rem 1.40625rem;
+      background: var(--n0);
+      border: 0.0625rem solid #707374;
+      margin: 0 0.5rem 1rem 0.5rem;
+      font-size: 0.875rem;
+      min-width: 4.375rem;
+      color: #707374;
+      justify-content: center;
+      border-radius: 1rem;
+      cursor: pointer;
+
+      @media (min-width: 48rem) {
+        margin-bottom:0;
+      }
+      .mat-chip-ripple {
+        display: none;
+      }
+      &.mat-chip-selected {
+        border-color: var(--scarlet);
+        background-color: var(--scarlet);
+        color: var(--n0);
+        cursor: default;
+      }
+    }
+  }
+}

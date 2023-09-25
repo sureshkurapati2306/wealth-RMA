@@ -1,0 +1,39 @@
+.dashboard-content {
+  @media (min-width: 37.5rem) {
+    display: flex;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  > * {
+    @media (min-width: 37.5rem) {
+      padding: 0 1rem;
+    }
+  }
+  .dashboard-portfolio {
+    @media (min-width: 37.5rem) {
+      width: 33.3333%;
+      flex-shrink: 0;
+    }
+  }
+  .dashboard-tab {
+    @media (min-width: 37.5rem) {
+      flex: auto;
+    }
+
+    .dashboard-paginator {
+      text-align: center;
+
+      .custom-paginator {
+        padding-bottom: 0;
+
+        ul {
+        justify-content: space-between;
+
+          @media (min-width: 37.5rem) {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

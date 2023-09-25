@@ -1,0 +1,76 @@
+.mat-dialog-title {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  margin-bottom: 1.0625rem;
+  position: relative;
+
+  >span {
+    position: absolute;
+    left: -1.75rem;
+    top: 0;
+    color: #ff7547;
+    font-size: 1rem;
+  }
+}
+
+.mat-dialog-content {
+  margin: 0;
+  padding: 0;
+
+  p {
+    margin-bottom: 1.25rem;
+  }
+}
+
+.mat-dialog-actions {
+  padding-top: 0.75rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  justify-content: flex-end;
+  min-height: 0;
+}
+
+.content-main-div {
+  margin-left: 3vh;
+  font-weight: 500;
+  margin-top: 1vh;
+}
+
+.content-divs {
+  margin-bottom: 3vh;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.btns-div {
+  display: flex;
+  margin-top: 5vh;
+
+  .leave {
+    margin-left: 0;
+    margin-right: auto;
+
+    .cancel-btn {
+      padding: 0;
+      min-width: auto;
+      border: none;
+      background-color: white;
+      color: #ec1d23;
+      font-weight: bold;
+      font-size: 12px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.33;
+    }
+  }
+
+  .fw {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0;
+
+    button:first-child {
+      margin-right: 8px;
+    }
+  }
+}

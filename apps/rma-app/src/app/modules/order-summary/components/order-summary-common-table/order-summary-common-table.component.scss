@@ -1,0 +1,302 @@
+.switch-container {
+    padding: 24px 84px 0px 84px;
+    .switch {
+        .header {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 154%;
+            color: #7b7d7e;
+            margin-bottom: 5px;
+        }
+        .color-code {
+            padding-left: 0.5rem;
+        }
+        .fund-type {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 154%;
+            color: #575a5c;
+            padding-left: 8px;
+            margin-top: 4px;
+        }
+
+        .mat-expansion-panel {
+            box-shadow: none !important;
+            .mat-expansion-panel-header {
+                padding: 0px 5px 0 0;
+            }
+        }
+        .fund-type-header {
+            display: flex;
+            align-items: flex-start;
+            .header {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 154%;
+                color: #333739;
+            }
+            .pills {
+                align-items: center;
+                padding: 2px 8px;
+                width: 29px;
+                height: 22px;
+                font-weight: 600;
+                font-size: 12px;
+                color: #ffffff;
+                background: #ff6666;
+                border-radius: 16px;
+                margin-left: 4px;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .switch-container {
+        .mat-expansion-indicator::after {
+            margin-bottom: 6px;
+        }
+        .mat-expansion-panel-header-description {
+            margin-right: 0px !important;
+        }
+
+        .mat-expansion-panel-content {
+            .mat-expansion-panel-body {
+                padding: 0px 0px !important;
+                .sub-title {
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 10px;
+                    line-height: 160%;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                    color: #7b7d7e;
+                    padding-top: 5px;
+                }
+            }
+        }
+    }
+}
+
+.divide {
+    margin-left: 84px;
+    margin-right: 84px;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.info1 {
+    margin-top: -15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.mt-18 {
+    margin-top: 18px;
+}
+.Total {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
+    color: #7b7d7e;
+}
+.salesInfo {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #7b7d7e;
+}
+.fund-doc {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 154%;
+    text-decoration-line: underline;
+    color: #ff0000;
+}
+.totalAmount {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 146%;
+    .currency {
+        vertical-align: middle;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 160%;
+        color: #333739;
+    }
+    .currencyTop {
+        vertical-align: super !important;
+    }
+    sup {
+        top: -6px;
+        font-size: 10px;
+    }
+}
+.amount {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    color: #7b7d7e;
+    .salesDetails {
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 160%;
+        color: #7b7d7e;
+    }
+    .mat-icon {
+        font-size: 19px !important;
+        color: #ff0000;
+    }
+}
+
+.card3 {
+    .mat-card {
+        background-color: #333739;
+
+        .result-container {
+            max-width: 854px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 24px 18px;
+            position: relative;
+        }
+
+        .mat-divider-horizontal {
+            width: calc(100% - 20px);
+            left: 10px;
+            right: 10px;
+        }
+
+        .result {
+            padding-bottom: 18px;
+        }
+
+        .total {
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .salesDetails {
+                font-size: 32px;
+                line-height: 46px;
+            }
+        }
+
+        .sales {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .salesInfo {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .salesDetails {
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+    }
+}
+
+.fund-card {
+    padding: 0 24px;
+}
+
+.reminder {
+    border: 1px solid #f0f0f0;
+    padding: 18px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    margin-bottom: 16px;
+    margin-left: 84px;
+    margin-right: 84px;
+    .header {
+        margin-bottom: 0px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 150%;
+    }
+    p {
+        margin-bottom: 0px;
+    }
+}
+.red {
+    color: #c40d0d;
+    font-size: 12px;
+}
+
+.disable-ripple:hover {
+    background: white !important;
+    cursor: default !important;
+}
+.mat-expansion-panel-header {
+    align-items: baseline;
+}
+.expansion-panel {
+    flex-direction: column;
+    margin-top: 13px;
+}
+.email {
+    text-transform: lowercase !important;
+}
+.customer-main {
+    font-weight: 700;
+    font-size: 16px;
+    padding-bottom: 1rem;
+}
+.details-container {
+    padding-left: 9%;
+    margin: 0rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.08em;
+    color: #575a5c;
+}
+
+.select {
+    display: flex;
+    padding-bottom: 0rem;
+}
+.select-panel {
+    font-weight: 700;
+    width: 12.5rem;
+}
+
+.detail {
+    margin-top: 0.5rem;
+}
+
+.data {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+sup {
+    margin-right: 4px;
+}

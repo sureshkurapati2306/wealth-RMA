@@ -1,0 +1,26 @@
+.custom-form-field {
+    display: inline-block;
+    width: 100%;
+    .label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--n80);
+        letter-spacing: 0.96px;
+        text-transform: uppercase;
+    }
+
+    .mat-form-field {
+        .mat-form-field-infix {
+            margin-top: 0.25rem;
+            .mat-select {
+                line-height: 1.2;
+            }
+        }
+
+        &.mat-form-field-invalid {
+            .mat-form-field-subscript-wrapper {
+                top: 100%;
+            }
+        }
+    }
+}

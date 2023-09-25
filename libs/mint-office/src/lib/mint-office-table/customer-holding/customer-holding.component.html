@@ -1,0 +1,141 @@
+<div class="margin">
+    <p class="product-type-title">Select product type:</p>
+
+    <div class="button-group">
+        <button mat-button (click)="setProductType(productTypeOtion.UT)" [ngClass]="{'active': (f.productType.value === productTypeOtion.UT)}" class="product-type">Unit Trust</button>
+        <button mat-button (click)="setProductType(productTypeOtion.ASNB)" [ngClass]="{'active': (f.productType.value === productTypeOtion.ASNB)}" class="product-type">ASNB</button>
+    </div>
+
+    <div class="d-flux" [formGroup]="customerHoldingFilter">
+        <div class="select">
+            <p class="label">Investment Account</p>
+            <mat-form-field floatLabel="never" appearance="outline">
+                <mat-select #mySelect value="all" formControlName="utAccountNo"
+                    panelClass="dropdown-panel custom-select-panel" (selectionChange)="loadData()">
+                    <mat-option class="account" value="640826135254">640826135254</mat-option>
+                    <mat-option class="dff" *ngFor="let option of [640826135255,640826135256,640826135257]"
+                        [value]="option">
+                        {{ option }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="warning">
+            <span class="message">Investment(s) shown below exclude foreign currency funds and EPF investment scheme.</span>
+        </div>
+    </div>
+</div>
+<div class="customer-table" >
+    <mat-table [dataSource]="datasource" matSort matSortActive="name"  matSortDirection="asc" (matSortChange)="sortData($event)" aria-describedby="dashboard-table">
+        <ng-container matColumnDef="name">
+            <mat-header-cell mat-sort-header *matHeaderCellDef scope="name" class="space">FUND NAME</mat-header-cell>
+            <ng-container>
+                <mat-cell *matCellDef="let element" class="th-fund-data">
+                    <div class="check-box trend">
+                        <mat-radio-button [disabled]="element.fundStatus === this.fundStatus.inActive" (click)="$event.stopPropagation();" (change)="selectFund(element)">
+                        </mat-radio-button>
+                        <div class="fundName">
+                            {{element.fundName}}
+                            <div class="tab" *ngIf="element.fundStatus === 'C'">
+                               Inactive
+                            </div>
+                            <div class="tab" *ngIf="element.fundStatus === 'D'">
+                                Closed
+                            </div>
+                        </div>
+                    </div>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="investcost">
+            <mat-header-cell *matHeaderCellDef scope="investcost" class="space">INVEST COST (MYR)</mat-header-cell>
+            <ng-container>
+                <mat-cell *matCellDef="let element">
+                    <div class="trend invest">{{element.holdingCost | number: '1.2-2' }}</div>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="unitsheld">
+            <mat-header-cell *matHeaderCellDef scope="unitsheld" class="space">UNITS HELD</mat-header-cell>
+            <ng-container>
+                <mat-cell *matCellDef="let element">
+                    <div class="wrapper">
+                        <div class="trend invest">{{element.holdingUnit | number: '1.2-2' }}</div>
+                        <div *ngIf="!!element.pledgeUnit && element.pledgeUnit !== 0"  class="trend pledge-wrapper">
+                                <span class="pledge-label">
+                                    Pledged units:
+                                </span>
+                                <p class="pledge-units">
+                                    {{element.pledgeUnit | number: '1.2-2' }}
+                                </p>
+                        </div>
+                    </div>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="nav">
+            <mat-header-cell class="nav-myr" mat-sort-header *matHeaderCellDef scope="nav" class="space">
+                NAV (MYR)<span class="text-red">&nbsp; *</span>
+            </mat-header-cell>
+            <ng-container>
+                <mat-cell *matCellDef="let element">
+                    <div class="trend">{{element.navPrice | number: '1.6-6'}}</div>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="market">
+            <mat-header-cell *matHeaderCellDef scope="market" class="space">MARKET VALUE (MYR)</mat-header-cell>
+            <ng-container>
+                <mat-cell *matCellDef="let element">
+                    <div class="trend">{{element.marketValue | number: '1.2-2' }} </div>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="roi" class="trending">
+            <mat-header-cell mat-sort-header *matHeaderCellDef scope="roi" class="space roi-space">ROI</mat-header-cell>
+            <ng-container>
+                <mat-cell *matCellDef="let element">
+                    <div class="trend invest">
+                        <mat-icon *ngIf="element.roi < 0" class="trending-down">trending_down</mat-icon>
+                        <mat-icon *ngIf="element.roi > 0" class="trending-up">trending_up</mat-icon>
+                        <span class="roi-trend">{{(element.roi > 0 ? element.roi :(element.roi * -1) )| number:
+                            '1.2-2'}}%</span>
+                    </div>
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <ng-container *ngIf="{length: length$ | async} as data">
+            <ng-container *ngIf="datasource && datasource.data.length !==0">
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="redirectToFundDetails(row)">
+                </tr>
+            </ng-container>
+        </ng-container>
+    </mat-table>
+    <ng-container *ngIf="{length: length$ | async} as data">
+        <div *ngIf="data.length === 0">
+            <p class="noinvestments">No Investments Made</p>
+        </div>
+        <div *ngIf="datasource && data.length !==0" class="c-flux">
+            <button mat-button class="line-height"><span class="text-red">* &nbsp;</span>Indicative NAV price</button>
+            <span class="action" *ngIf="!!customer$ && !!customerProfile$">
+                <button (click)="goToTransactionPage('Subscribe')"  mat-button [disabled]="!isTransactionPossible('S')" color="warn" class="button"
+                    [ngStyle]="{'border': !selectedFunds ? 'solid 1px #C6C7C8': 'solid 1px #ff0000' }">Subscribe</button>
+                <button (click)="goToTransactionPage('Switch')"  mat-button [disabled]="!isTransactionPossible('W')" color="warn" class="button"
+                    [ngStyle]="{'border': !selectedFunds ? 'solid 1px #C6C7C8': 'solid 1px #ff0000' }">Switch</button>
+                <button (click)="goToTransactionPage('Redeem')"  mat-button [disabled]="!isTransactionPossible('R')" color="warn" class="button"
+                    [ngStyle]="{'border': !selectedFunds ? 'solid 1px #C6C7C8': 'solid 1px #ff0000' }">Redeem</button>
+            </span>
+        </div>
+        <mat-paginator *ngIf="datasource && data.length !==0" class="mat-paginator" [length]="data.length" [pageSize]="pageSize"  (page)="paginate()"
+            showFirstLastButtons hidePageSize >
+        </mat-paginator>
+    </ng-container>
+
+</div>

@@ -1,0 +1,87 @@
+<div class="dashboard">
+    <h2 class="title">Hi {{(rmDetails$ | async)?.name || ''}},</h2>
+
+    <div class="d-flex topBar">
+        <div class="searchBox new-acc-tran">
+            <cimb-office-customer-search-bar></cimb-office-customer-search-bar>
+        </div>
+
+        <div class="newAccount card box-shadow" >
+            <p class="goto">Go to:</p>
+            <p class="NaNt" routerLink="./new-account-search-customer">New Account</p>
+            <p class="NaNt" routerLink="./new-account-search-customer">/</p>
+            <p class="spaceright NaNt"  routerLink="./new-account-search-customer">New Transaction</p>
+        </div>
+    </div>
+    <div class="stats">
+        <mat-card class="card box-shadow">
+            <div class="header d-flex">
+                <div class="header_left">
+                    <h2>Total Subscription Transactions - {{year.value}}</h2>
+                </div>
+                <div class="header_right d-flex">
+                    <p class="fancyText view-full-details">View Full Details</p>
+                </div>
+            </div>
+
+            <div class="stats_chart d-flex">
+                <div class="amount">
+                    <mat-form-field class="dropdown-form-field" floatLabel="never" appearance="outline">
+                        <mat-select #mySelect value="all" class="placeholder" [formControl]="year"
+                            panelClass="dropdown-panel custom-select-panel">
+                            <mat-option *ngFor="let transaction of transactionYears" value="{{transaction}}"
+                                (click)="getTransactionsYear()">{{transaction}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <h2 class="number">
+                        <span class="curruncy" *ngIf="(yearToDate$ | async)?.totalAmount">{{ (yearToDate$ |
+                            async)?.currency }}</span>
+                        <span *ngIf="(yearToDate$ | async)?.totalAmount">{{ (yearToDate$ | async)?.totalAmount | number
+                            : '1.2-2' }}</span>
+                        <span *ngIf="!(yearToDate$ | async)?.totalAmount">MYR 0</span>
+                    </h2>
+                    <p>Last updated on {{ ((yearToDate$ | async)?.lastUpdateAt ? (yearToDate$ | async)?.lastUpdateAt :
+                        currentDate) | date:currentYear == (yearToDate$ | async)?.year ? 'd MMMM y, h:mm a' : 'd MMM y'
+                        }}</p>
+                </div>
+                <div class="chart">
+                    <cimb-office-chart [transaction]="yearToDate$ | async"></cimb-office-chart>
+                </div>
+            </div>
+            <mat-divider inset *ngIf="(monthToDate$ | async)?.length"></mat-divider>
+            <div class="stats_card d-flex">
+                <mat-card class="trust bg-blue box-shadow" *ngFor="let product of monthToDate$ | async">
+                    <div class="header d-flex margin">
+                        <p class="unittrust p">{{ product.productType}}</p>
+                        <div class="header_right d-flex" *ngIf="product.totalAmount">
+                            <p class="p">M.o.M</p>
+                            <mat-icon class="arrow_drop_up" *ngIf="product.mom > 0"> arrow_drop_up</mat-icon>
+                            <mat-icon class="arrow_drop_down" *ngIf="product.mom < 0"> arrow_drop_down</mat-icon>
+                            <p *ngIf="product.mom">{{ product.mom }}%</p>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <h2 class="number">
+                            <span class="curruncy" *ngIf="product.totalAmount">{{ product.currency }}</span>
+                            <span *ngIf="product.totalAmount"> {{ product.totalAmount | number : '1.2-2' }}</span>
+                            <span *ngIf="!product.totalAmount">{{ 'MYR 0 ' }}</span>
+                            <span class="current_date" *ngIf="product.totalAmount"> in {{ currentDate | date:'MMMM y'
+                                }}</span>
+                        </h2>
+                    </div>
+                </mat-card>
+            </div>
+        </mat-card>
+    </div>
+    <div class="applicationStatus">
+        <mat-card class="card box-shadow">
+            <cimb-office-application-status-table
+                [showHeader]="true"
+                [showProductTypeHeading]="false"
+                [getRmDetailsResponse$]="getRmResponse$"
+                (goToTransaction)="goToTransactionPage($event)"
+            ></cimb-office-application-status-table>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>
+    <span [class]="dialogData.icon"></span>
+    {{ dialogData.title }}
+ </h1>
+ <div mat-dialog-content [innerHtml]="dialogData.description" class="content"></div>
+ <div mat-dialog-actions class="fw">
+    <button
+       mat-flat-button mat-dialog-close
+       class="btn-custom btn-red btn-xs"
+    >{{ dialogData.btnOkLabel }}</button>
+ </div>

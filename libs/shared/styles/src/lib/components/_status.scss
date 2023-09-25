@@ -1,0 +1,27 @@
+.status {
+  display: inline-block;
+  padding: .3125rem .84375rem;
+  border-radius: .8125rem;
+  font-size: .75rem;
+  line-height: 1rem;
+  letter-spacing: .01875rem;
+  font-weight: var(--medium);
+  text-transform: capitalize;
+
+  &.upcoming {
+    color: #E5693F;
+    background: #FFE3DA;
+  }
+  &.ongoing {
+    color: #3879C7;
+    background: #D7E4F3;
+  }
+  &.completed {
+    color: #63C76A;
+    background: #DFF3E1;
+  }
+  &.fail {
+    color: var(--c90);
+    background: var(--c20);
+  }
+}

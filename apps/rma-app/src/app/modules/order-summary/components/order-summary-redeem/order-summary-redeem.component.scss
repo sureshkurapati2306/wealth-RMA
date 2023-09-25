@@ -1,0 +1,175 @@
+@media only screen and (max-width: 900px){
+    .details-container, .personal-name{
+        padding-left: 0rem;
+    }
+}
+.box-shadow {
+    border-radius: 1rem;
+    margin-top: 20px;
+    box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+}
+::ng-deep .mat-expansion-indicator::after {
+    margin-bottom: 6px;
+}
+.mat-expansion-panel-header-description{
+    margin-right: 0px !important;
+}
+::ng-deep .mat-expansion-panel-content{
+    .mat-expansion-panel-body {
+        padding: 0px 0px !important;
+        .sub-title{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 10px;
+            line-height: 160%;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #7B7D7E;
+            padding-top: 5px;
+        }
+    }
+}
+.divide{
+    margin-left: 108px;
+    margin-right: 108px;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .mt-18{
+    margin-top: 18px;
+  }
+.Total{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
+    color: #7B7D7E;
+}
+  .salesInfo {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #7B7D7E;
+  }
+  .totalAmount{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 146%;
+    .currency{
+        vertical-align: middle;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 160%;
+        color: #333739;
+    }
+  }
+  .amount {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    color: #7B7D7E;
+    .currency{
+        vertical-align: super;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 160%;
+        color: #7B7D7E;
+    }
+  }
+
+  
+.card3 {
+    .mat-card {
+      background-color: #333739;
+      .result-container {
+        max-width: 854px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 24px 40px 18px;
+        position: relative;
+      }
+      .mat-divider-horizontal {
+        width: calc(100% - 80px);
+        left: 40px;
+        right: 10px;
+      }
+  
+      .result {
+        padding-bottom: 18px;
+      }
+  
+      .total {
+        padding-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+  
+        .salesDetails {
+          font-size: 32px;
+          line-height: 46px;
+        }
+      }
+  
+      .sales {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 4px;
+      }
+  
+      .salesInfo {
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+  
+      .salesDetails {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 700;
+        color: #ffffff;
+      }
+      .salesAmount{
+        font-size: 32px;
+        line-height: 1.45;
+        font-weight: bold;
+        color: #ffffff;
+        .totalCurrency{
+            vertical-align: super;
+            font-weight: 600;
+            font-size: 10px;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+      }
+    }
+  }
+  
+  .fund-card {
+    padding: 0 24px;
+  }
+
+
+.disable-ripple:hover {
+    background: white !important;
+    cursor: default !important;
+}
+.mat-expansion-panel-header {
+    align-items: baseline;
+}
+.expansion-panel {
+    flex-direction: column;
+    margin-top: 13px;
+}
+.email{
+    text-transform: lowercase !important;
+}
+.customer-main {
+    font-weight: 700;
+    font-size: 16px;
+    padding-bottom: 1rem;
+}

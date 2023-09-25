@@ -1,0 +1,24 @@
+.breadscrumbs {
+    padding: 0 1.75rem;
+    margin-bottom: 0.75rem;
+    p {
+        font-size: 0.625rem;
+        line-height: 1.4;
+        letter-spacing: 0.26px;
+        color: var(--c60);
+        margin-bottom: 0;
+    }
+
+    .grey85-text {
+        color: var(--c60);
+    }
+
+    .black33-text {
+        color: var(--n100);
+        font-weight: 600;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+}

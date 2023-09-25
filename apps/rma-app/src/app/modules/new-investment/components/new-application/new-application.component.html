@@ -1,0 +1,560 @@
+<mat-card class="new-account">
+    <cimb-office-breadcrumb [breadcrumbs]="breadcrumbs"></cimb-office-breadcrumb>
+
+    <cimb-office-page-title (clickEvent)="onClickName()" pageTitle="New Investment Account"
+        [showCustomerDetails]="customerDetails"></cimb-office-page-title>
+</mat-card>
+<div class="margin" *ngIf="customerProfileData$ | async; let customer">
+    <form [formGroup]="newApplicationFormGroup">
+        <mat-card>
+            <p class="para">Customer Profile</p>
+            <mat-divider inset></mat-divider>
+
+            <p class="customerType">CUSTOMER TYPE</p>
+            <div class="width bottoms cust_type" *ngIf="customerTypeResponse$ | async; let customerType">
+                <mat-label>CLIENT GROUP</mat-label>
+                <mat-form-field [ngClass]="customer?.category === 'ETP' ? 'dropdown-form-field disabled etp-input-disable' : 'dropdown-form-field'" floatLabel="always" appearance="outline">
+                    <mat-select value="all" [disableOptionCentering]="true" class="placeholder"
+                        formControlName="customerType" panelClass="dropdown-panel custom-select-panel">
+                        <mat-option *ngFor="let item of customerType" [value]="item.customerTypeCode">
+                            {{item.customerTypeName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <mat-divider inset></mat-divider>
+            <div>
+                <p class="customerType">PERSONAL DETAILS</p>
+                <ng-container formGroupName="personalDetails">
+                    <div class="display">
+                        <div class="width" *ngIf="titleSalutations$ | async; let titleSalutations">
+                            <mat-label>TITLE / SALUTATION</mat-label>
+                            <mat-form-field [ngClass]="customer?.category === 'ETP' ? 'dropdown-form-field disabled etp-input-disable' : 'dropdown-form-field'" floatLabel="always" appearance="outline">
+                                <mat-select value="all" placeholder="Select Title / Salutation"
+                                    [disableOptionCentering]="true" class="placeholder" formControlName="title"
+                                    panelClass="dropdown-panel custom-select-panel">
+                                    <mat-option *ngFor="let item of titleSalutations" [value]="item.salutationCode">
+                                        {{item.salutationLongName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="width">
+                            <mat-label>FULL NAME</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never" class="input-grey">
+                                <input matInput [value]="customer.name ? customer.name : ''" type="text" disabled />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="display">
+                        <div class="width customerId">
+                            <mat-label>CUSTOMER ID</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never" class="input-grey">
+                                <input matInput [value]="customer.idNo + ' ' + customer.idType"
+                                    type="text" disabled />
+                            </mat-form-field>
+                        </div>
+                        <div class="width">
+                            <mat-label>DATE OF BIRTH</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never" class="input-grey">
+                                <input matInput [value]="customer?.birthDate" type="text" disabled />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <mat-divider inset></mat-divider>
+            <div>
+                <p class="customerType">CONTACT INFORMATION</p>
+                <div class="note">
+                    NOTE:
+                    <ol>
+                        <li class="dotted-list">
+                            DIRECT CUSTOMER TO ANY BRANCH/ ATM IF THEY WISH TO CHANGE THEIR MOBILE
+                            NUMBER.
+                        </li>
+                        <li class="dotted-list">
+                            If customer’s mobile number(s) are no longer in use, please raise ciu to
+                            update the number(s) as per bau process.
+                        </li>
+                    </ol>
+                </div>
+                <ng-container formGroupName="contactInformation">
+                    <div class="display">
+                        <div class="width mob">
+                            <mat-label>MOBILE PHONE NUMBER</mat-label>
+                            <mat-form-field class="dropdown-form-field" [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''" floatLabel="always" appearance="outline">
+                                <mat-select value="all" placeholder="+60 12 3456789" [disableOptionCentering]="true"
+                                    class="placeholder" formControlName="mobileNumber"
+                                    panelClass="dropdown-panel custom-select-panel">
+                                    <mat-option *ngFor="let item of customer.mobileNumbers" [value]="item">
+                                        {{item}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="width sales-branch-dropdown mat-email-test">
+                            <mat-label>EMAIL</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown new-account-error"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                floatLabel="always"
+                                >
+                                <input type="text" class="input" matAutocompletePosition="below"
+                                    placeholder="Email Address" matInput formControlName="emailId"
+                                    [matAutocomplete]="autoemail" />
+
+                                <div class="mat-select-arrow-wrapper" *ngIf="!this.contactForm.get('emailId')?.errors?.email"
+                                    [ngClass]="{ 'arrow-up': autoemail.isOpen }" matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    #autoemail="matAutocomplete">
+                                    <ng-container class="option-text">
+                                        <mat-option #emailOption class="dff" *ngFor="let option of filteredEmailIds$ | async"
+                                            [value]="option">
+                                            {{ option }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                                <mat-error *ngIf="!!this.contactForm.get('emailId')?.errors?.email">
+                                    Invalid email address format
+                                </mat-error>
+                                <mat-icon class="error_icon" *ngIf="!!this.contactForm.get('emailId')?.errors?.email" matSuffix>
+                                    error_outline
+                                </mat-icon>
+                            </mat-form-field>
+                            <div *ngIf="!this.contactForm.get('emailId')?.errors && customer.category !== 'ETP'" class="add-note">
+                                Add new email address by typing in the field
+                            </div>
+                        </div>
+                    </div>
+                    <div class="display">
+                        <div class="width sales-branch-dropdown">
+                            <mat-label>HOUSE PHONE NUMBER (OPTIONAL)</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown new-account-error"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input type="text" class="input" matAutocompletePosition="below"
+                              
+                                    placeholder="eg. 60 3 8888 1818" matInput formControlName="housePhone"
+                                    [matAutocomplete]="autoHome" />
+                                <div *ngIf="!this.contactForm.get('housePhone')?.errors"
+                                    class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': autoHome.isOpen }"
+                                    matSuffix></div>
+
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    #autoHome="matAutocomplete">
+                                    <ng-container class="option-text">
+                                        <mat-option #homeOption class="dff" *ngFor="let option of filteredHousePhone$ | async"
+                                            [value]="option">
+                                            {{ option }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                                <mat-icon class="error_icon" *ngIf="
+                                        this.contactForm.get('housePhone')?.errors &&
+                                        this.contactForm.get('housePhone').touched
+                                    " matSuffix>
+                                    error_outline
+                                </mat-icon>
+
+                                <mat-error> Invalid phone number format </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="width sales-branch-dropdown">
+                            <mat-label>OFFICE PHONE NUMBER (OPTIONAL)</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown new-account-error"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input type="text" class="input" matAutocompletePosition="below"
+                                    placeholder="eg. 60 3 8888 1818" matInput formControlName="officePhone"
+                                    [matAutocomplete]="autoOffice" />
+                                <div *ngIf="!this.contactForm.get('officePhone')?.errors"
+                                    class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': autoOffice.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    #autoOffice="matAutocomplete">
+                                    <ng-container class="option-text">
+                                        <mat-option #officeOption class="dff" *ngFor="let option of filteredOfficePhone$ | async"
+                                            [value]="option">
+                                            {{ option }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                                <mat-icon class="error_icon" *ngIf="
+                                        this.contactForm.get('officePhone')?.errors &&
+                                        this.contactForm.get('officePhone').touched
+                                    " matSuffix>
+                                    error_outline
+                                </mat-icon>
+                                <mat-error>
+                                    Invalid phone number format
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <mat-divider inset></mat-divider>
+            <div>
+                <p class="customerType">OTHER PERSONAL DETAILS</p>
+                <ng-container formGroupName="otherPersonalDetails">
+                    <div class="display">
+                        <div class="width sales-branch-dropdown genderlist" *ngIf="filteredGenders$ | async as genders">
+                            <mat-label>GENDER</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input type="text" (blur)="clearSearch(genders, 'gender')" class="input" matAutocompletePosition="below"
+                                    placeholder="Select Gender" matInput formControlName="genderText"
+                                    [matAutocomplete]="automobile" />
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': automobile.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    (optionSelected)="onGenderChange($event)" #automobile="matAutocomplete">
+                                    <ng-container class="option-text" *ngIf="genders.length > 0">
+                                        <mat-option #genderOption class="dff" *ngFor="let option of genders"
+                                            [value]="option">
+                                            {{ option.genderLongName }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="width sales-branch-dropdown nationality"
+                            *ngIf="filteredNationalities$ | async; let nationalities">
+                            <mat-label>NATIONALITY</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input #inputNationality type="text" (blur)="clearSearch(nationalities, 'nationality')" class="input" matAutocompletePosition="below"
+                                    placeholder="Select Country" matInput formControlName="nationalityText"
+                                    [matAutocomplete]="automobile" />
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': automobile.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    (optionSelected)="onNationalityChange($event)" #automobile="matAutocomplete">
+                                    <ng-container class="option-text" *ngIf="nationalities.length > 0">
+                                        <mat-option #genderOption class="dff nationality" *ngFor="let option of nationalities"
+                                            [value]="option">
+                                            {{ option.countryLongName }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="display">
+                        <div class="width sales-branch-dropdown citizenlist" *ngIf="filteredCitizen$ | async; let citizens">
+                            <mat-label>CITIZEN</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input type="text" (blur)="clearSearch(citizens, 'citizen')" class="input" matAutocompletePosition="below"
+                                    placeholder="Select CitizenShip" matInput formControlName="citizenText"
+                                    [matAutocomplete]="automobile" />
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': automobile.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    (optionSelected)="onCitizenChange($event)" #automobile="matAutocomplete">
+                                    <ng-container class="option-text" *ngIf="citizens.length > 0">
+                                        <mat-option #genderOption class="dff" *ngFor="let option of citizens"
+                                            [value]="option">
+                                            {{ option.citizenLongName }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="width sales-branch-dropdown racelist" *ngIf="filteredRaces$ | async; let races">
+                            <mat-label>RACE</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input type="text" (blur)="clearSearch(races, 'race')" class="input" matAutocompletePosition="below"
+                                    placeholder="Select CitizenShip" matInput formControlName="raceText"
+                                    [matAutocomplete]="automobile" />
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': automobile.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    (optionSelected)="onRaceChange($event)" #automobile="matAutocomplete">
+                                    <ng-container class="option-text" *ngIf="races.length > 0">
+                                        <mat-option #genderOption class="dff" *ngFor="let option of races"
+                                            [value]="option">
+                                            {{ option.raceLongName }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="display">
+                        <div class="width sales-branch-dropdown religionlist" *ngIf="filteredReligion$ | async; let religions">
+                            <mat-label>RELIGION</mat-label>
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input type="text" (blur)="clearSearch(religions, 'religion')" class="input" matAutocompletePosition="below"
+                                    placeholder="Select Religion" matInput formControlName="religionText"
+                                    [matAutocomplete]="automobile" />
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': automobile.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete panelClass="typeahead-panel"
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    (optionSelected)="onReligionChange($event)" #automobile="matAutocomplete">
+                                    <ng-container class="option-text" *ngIf="religions.length > 0">
+                                        <mat-option #genderOption class="dff" *ngFor="let option of religions"
+                                            [value]="option">
+                                            {{ option.religionLongName }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="width sales-branch-dropdown maritalist" *ngIf="filteredMarital$ | async; let maritalstatuses">
+                            <mat-label>MARITAL STATUS</mat-label>
+
+                            <mat-form-field appearance="outline" floatLabel="never"
+                                class="mint-office-auto-complete-dropdown"
+                                [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''"
+                                >
+                                <input matInput (blur)="clearSearch(maritalstatuses, 'marital')" [matAutocomplete]="automobile" matAutocompletePosition="below"
+                                    placeholder="Select Marital Status" formControlName="maritalText" />
+
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': automobile.isOpen }"
+                                    matSuffix></div>
+                                <mat-autocomplete
+                                    class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                    #automobile="matAutocomplete" panelClass="typeahead-panel"
+                                    (optionSelected)="onMaritalChange($event)">
+                                    <ng-container class="option-text" *ngIf="maritalstatuses.length > 0"
+                                        class="optionContainer">
+                                        <mat-option class="dff" #genderOption class="dff"
+                                            *ngFor="let option of maritalstatuses" [value]="option">
+                                            {{ option.maritalLongName }}
+                                            <mat-divider></mat-divider>
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <mat-divider inset></mat-divider>
+            <div>
+                <p class="customerType">MAILING ADDRESS</p>
+                <div class="matRadio">
+                    <label class="cust-type address">SELECT AN ADDRESS:</label>
+
+                    <div class="radioWithSelect">
+                        <mat-radio-group class="radioGroup" formGroupName="mailingAddress"
+                            aria-labelledby="example-radio-group-label">
+                            <mat-radio-button [ngClass]="customer.category === 'ETP' ? 'radio hide-radio' : 'radio'" (change)="radioAddressChange($event)" *ngFor="let item of addresses; let i = index"
+                                [value]="item.address">
+                                <span class="address-type">
+                                    {{ transformData(item.address, 'address') }}
+                                </span>
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <div class="select-content addresstype" formGroupName="addressTypeForm">
+                            <div *ngFor="let item of addresses; let i = index" class="width width-156">
+                                <mat-form-field [ngClass]="
+                                newApplicationFormGroup.get('addressText').value !==
+                                        item.address
+                                            ? 'dropdown-form-field disabled etp-input-disable'
+                                            : 'dropdown-form-field'
+                                    " floatLabel="always" appearance="outline">
+                                    <mat-select (selectionChange)="onSelectTypeChange($event)"
+                                        [disableOptionCentering]="true" class="placeholder"
+                                        formControlName="addressType{{ i }}" placeholder="Select Type"
+                                        panelClass="dropdown-panel custom-select-panel">
+                                        <mat-option *ngFor="let type of addressTypeList$ | async" [value]="type.addressTypeCode">
+                                            {{ type.addressTypeName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-container class="new-address"
+                    *ngIf="this.newApplicationFormGroup.get('addressText').value === 'New Address'"
+                    formGroupName="newAddress">
+                    <div *ngIf="newCountries$ | async; let nationalities" class="width sales-branch-dropdown pb-40 countrylist">
+                        <mat-label>COUNTRY</mat-label>
+                        <mat-form-field appearance="outline" floatLabel="never"
+                            class="mint-office-auto-complete-dropdown">
+                            <input #newCountry type="text" (blur)="clearSearch(nationalities, 'country')" class="input" matAutocompletePosition="below"
+                                formControlName="newCountryText" placeholder="Select Country" matInput
+                                (paste)="$event.preventDefault();"
+                                [matAutocomplete]="autocountry"/>
+                            <div *ngIf="!this.newAddressForm.get('newCountryText')?.errors?.pattern"
+                                class="mat-select-arrow-wrapper" [ngClass]="{ 'arrow-up': autocountry.isOpen }"
+                                matSuffix></div>
+                            <mat-autocomplete (optionSelected)="onCountryChange($event)" panelClass="typeahead-panel"
+                                class="mint-office-auto-complete-panel mobile-autocomplete sales-branch"
+                                #autocountry="matAutocomplete">
+                                <ng-container class="option-text" *ngIf="nationalities.length > 0">
+                                    <mat-option #countryOption class="dff" *ngFor="let option of nationalities"
+                                        [value]="option">
+                                        {{ option.countryLongName }}
+                                        <mat-divider></mat-divider>
+                                    </mat-option>
+                                </ng-container>
+                            </mat-autocomplete>
+                            <mat-icon class="error_icon" *ngIf="!!this.newAddressForm.get('newCountryText')?.errors?.pattern && this.newAddressForm.get('newCountryText')?.touched" matSuffix>
+                                error_outline
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="width full-width pb-40">
+                        <mat-label>ADDRESS LINE 1</mat-label>
+                        <mat-form-field class="new-account-error" appearance="outline" floatLabel="never">
+                            <input matInput placeholder="Line 1" type="text" formControlName="address1" />
+                            <mat-error *ngIf="!!this.newAddressForm.get('address1')?.errors?.maxlength">Maximum allowed length is 40</mat-error>
+                            <mat-icon class="error_icon line"
+                                *ngIf="!!this.newAddressForm.get('address1')?.errors?.maxlength && this.newAddressForm.get('address1')?.touched" matSuffix>
+                                error_outline
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="width full-width pb-40">
+                        <mat-label>ADDRESS LINE 2 (OPTIONAL)</mat-label>
+                        <mat-form-field class="new-account-error" appearance="outline" floatLabel="never">
+                            <input matInput placeholder="Line 2" type="text" formControlName="address2" />
+                            <mat-error *ngIf="!!this.newAddressForm.get('address2')?.errors?.maxlength">Maximum allowed length is 40</mat-error>
+                            <mat-icon class="error_icon line"
+                                *ngIf="!!this.newAddressForm.get('address2')?.errors?.maxlength && this.newAddressForm.get('address2')?.touched" matSuffix>
+                                error_outline
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="width full-width pb-40">
+                        <mat-label>ADDRESS LINE 3 (OPTIONAL)</mat-label>
+                        <mat-form-field class="new-account-error" appearance="outline" floatLabel="never">
+                            <input matInput placeholder="Line 3" type="text" formControlName="address3" />
+                            <mat-error *ngIf="!!this.newAddressForm.get('address3')?.errors?.maxlength && this.newAddressForm.get('address2')?.touched">Maximum allowed length is 40</mat-error>
+                            <mat-icon class="error_icon line"
+                                *ngIf="!!this.newAddressForm.get('address3')?.errors?.maxlength && this.newAddressForm.get('address3')?.touched" matSuffix>
+                                error_outline
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="width full-width pb-40">
+                        <mat-label>ADDRESS LINE 4 (OPTIONAL)</mat-label>
+                        <mat-form-field class="new-account-error" appearance="outline" floatLabel="never">
+                            <input matInput placeholder="Line 4" type="text" formControlName="address4" />
+                            <mat-error *ngIf="!!this.newAddressForm.get('address4')?.errors?.maxlength">Maximum allowed length is 40</mat-error>
+                            <mat-icon class="error_icon line"
+                                *ngIf="!!this.newAddressForm.get('address4')?.errors?.maxlength && this.newAddressForm.get('address4')?.touched" matSuffix>
+                                error_outline
+                            </mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="display pb-40">
+                        <div class="width">
+                            <mat-label>POST CODE</mat-label>
+                            <mat-form-field class="new-account-error" appearance="outline" floatLabel="never">
+                                <input matInput type="text" placeholder="Post Code" formControlName="postcode" />
+                                <mat-error *ngIf="!!this.newAddressForm.get('postcode')?.errors?.maxlength">Maximum
+                                    allowed length is 10</mat-error>
+                                <mat-icon class="error_icon line"
+                                    *ngIf="!!this.newAddressForm.get('postcode')?.errors?.maxlength && this.newAddressForm.get('postcode')?.touched" matSuffix>
+                                    error_outline
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="width">
+                            <mat-label>STATE</mat-label>
+                            <mat-form-field class="dropdown-form-field new-account-error" floatLabel="always"
+                                appearance="outline">
+                                <mat-select value="all" placeholder="Select State" [disableOptionCentering]="true"
+                                    formControlName="state" class="placeholder"
+                                    panelClass="dropdown-panel custom-select-panel">
+                                    <mat-option *ngFor="let state of statesList$ | async" [value]="state.stateLongName">{{ state.stateLongName }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <mat-divider inset></mat-divider>
+            <div>
+                <p class="customerType">EMPLOYMENT DETAILS</p>
+                <ng-container formGroupName="employmentDetails">
+                    <div class="display paddingBottom">
+                        <div class="width" *ngIf="industryList$ | async; let industries">
+                            <mat-label>INDUSTRY</mat-label>
+                            <mat-form-field class="dropdown-form-field" [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''" floatLabel="always" appearance="outline">
+                                <mat-select [disableOptionCentering]="true" class="placeholder"
+                                    placeholder="Select Industry" formControlName="industry"
+                                    panelClass="dropdown-panel custom-select-panel">
+                                    <mat-option *ngFor="let item of industries" [value]="item.employmentCode">
+                                        {{ item.employmentShortName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="width" *ngIf="professionList$ | async; let professions">
+                            <mat-label>PROFESSION</mat-label>
+                            <mat-form-field class="dropdown-form-field" [ngClass]="customer?.category === 'ETP' ? 'disabled etp-input-disable' : ''" floatLabel="always" appearance="outline">
+                                <mat-select [disableOptionCentering]="true" class="placeholder"
+                                    placeholder="Select Profession" formControlName="profession"
+                                    panelClass="dropdown-panel custom-select-panel">
+                                    <mat-option *ngFor="let item of professions" [value]="item.occupationCode">
+                                        {{ item.occupationLongName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </mat-card>
+
+        <div class="newaccount" id="subscription">
+            <button mat-button class="primary1" (click)="onCancel()">Cancel</button>
+            <button mat-button #proceed
+                (click)="customer?.category === 'NTP' ? onSubmit() : routeToTransactionPage()" [disabled]="newApplicationFormGroup.invalid && customer?.category === 'NTP'"
+                [ngClass]="newApplicationFormGroup.valid || customer.category === 'ETP' ? 'primary2' : 'primary3'">
+                Proceed to Subscription
+            </button>
+        </div>
+    </form>
+</div>

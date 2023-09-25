@@ -1,0 +1,81 @@
+.datetimepicker-icon {
+  font-size: 1.5rem;
+
+  .mat-icon-button {
+    margin-left: .75rem;
+    margin-top: -0.3125rem;
+    vertical-align: top !important;
+
+    .mat-button-wrapper {
+      display: inline-block;
+      font-size: 1rem;
+      vertical-align: middle;
+      line-height: 2.25rem;
+
+      svg {
+        display: none;
+      }
+      &:before {
+        content: '\e846';
+        font-family: 'wealth', serif;
+        color: var(--n100);
+        font-size: 1rem;
+        line-height: 1rem;
+      }
+    }
+  }
+}
+.mat-calendar-body-cell-content {
+  &.mat-calendar-body-selected {
+    border: 0 none;
+    background: var(--scarlet);
+    box-shadow: none;
+  }
+}
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical), .cdk-keyboard-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical), .cdk-program-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+  background: var(--r60);
+  color: var(--n0);
+}
+.mat-datepicker-content {
+  .actions {
+    .mat-button {
+      font-weight: var(--bold);
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      background: var(--r100);
+      color: var(--n0);
+      height: 2rem;
+      font-size: .75rem;
+      line-height: 2rem;
+      border-radius: .25rem;
+  
+      &:hover {
+        background: var(--r60);
+      }
+    } 
+    .mat-icon {
+      width: auto;
+      height: auto;
+      display: block;
+    }
+  }
+}
+.mat-date-range-input {
+  .mat-date-range-input-container {
+    font-size: 1rem;
+  }
+  .mat-date-range-input-inner {
+    height: auto;
+  }
+}
+.mat-form-field-flex {
+  align-items: flex-end !important;
+}
+.block-filter-input {
+  .mat-form-field-label-wrapper {
+    .mat-form-field-label {
+      overflow: visible;
+      margin: 0;
+    }
+  }
+}

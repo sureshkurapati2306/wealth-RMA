@@ -1,0 +1,55 @@
+.card5 {
+    .mat-card {
+        .mat-card-subtitle {
+            font-weight: 600;
+        }
+
+        .dropdowns {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.card7,
+.card8 {
+    .mat-card {
+        overflow: hidden;
+
+
+      .mat-expansion-panel-header {
+        min-height: 68px;
+
+        .mat-expansion-panel-header-title {
+            font-size: 1rem;
+            .boldText {
+                font-weight: 700;
+                margin-right: 5px;
+            }
+        }
+      }
+
+      .referral {
+        padding-top: 24px;
+        display: grid;
+        grid-template-columns: 180px auto 260px;
+        grid-gap: 24px;
+        margin-bottom: 6px;
+
+        .mat-expansion-panel-header-title {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            color: #333739;
+
+
+        }
+    }
+
+    .text-area-remark {
+        padding-top: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+}}
+
+
+

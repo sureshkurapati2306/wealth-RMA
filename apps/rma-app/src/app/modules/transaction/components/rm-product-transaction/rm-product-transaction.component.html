@@ -1,0 +1,166 @@
+<div class="card1 card">
+    <form [formGroup]="productTransactionForm">
+        <mat-card>
+            <mat-card-title>Product & Transaction Type</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content class="product-type">
+                <mat-card-subtitle>Select Product Type</mat-card-subtitle>
+                <div class="transaction-type-buttons">
+                    <mat-radio-group formControlName="productType" aria-label="Select an option">
+                        <mat-radio-button [checked]="productTransactionForm.controls.productType.value === 'UT'"
+                            (change)="radioChange($event,'product')" mat-button class="secondary-btn" value="UT">Unit
+                            Trust
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-content class="transaction-type">
+                <mat-card-subtitle>Select Transaction Type:</mat-card-subtitle>
+                <div #totalAmount class="transaction-type-buttons">
+                    <mat-radio-group formControlName="transactionType" aria-label="Select an option">
+                        <mat-radio-button (change)="radioChange($event, '')"
+                            [disabled]="isRadioDisable && productTransactionForm.controls.transactionType.value !== 'S'"
+                            mat-button class="secondary-btn" value="S"
+                            [checked]="productTransactionForm.controls.transactionType.value === 'S'">Subscribe
+                        </mat-radio-button>
+                        <mat-radio-button (change)="radioChange($event, '')"
+                            [disabled]="isRadioDisable && productTransactionForm.controls.transactionType.value !== 'W'"
+                            class="secondary-btn" value="W"
+                            [checked]="productTransactionForm.controls.transactionType.value === 'W'">Switch</mat-radio-button>
+                        <mat-radio-button (change)="radioChange($event, '')"
+                            [disabled]="isRadioDisable && productTransactionForm.controls.transactionType.value !== 'R'"
+                            class="secondary-btn" value="R"
+                            [checked]="productTransactionForm.controls.transactionType.value === 'R'">Redeem</mat-radio-button>
+                    </mat-radio-group>
+
+                    <div id="newSubscribe" class="tabcontent">
+                        <div class="transction-Container"
+                            *ngIf="transactionService.transactionType !=='Redeem' && transactionService.transactionType !=='Switch'">
+
+                            <div class="info">
+                                <div class="label">Total transaction amount (MYR)</div>
+                                <mat-form-field appearance="outline" floatLabel="never">
+                                    <input #amount matInput placeholder="Enter Amount"
+                                        formControlName="dTotalTransactionAmount" cimbAmountDirective>
+                                    <mat-icon class="error"
+                                        *ngIf="productTransactionForm.controls.dTotalTransactionAmount.errors && productTransactionForm.controls.dTotalTransactionAmount.touched && productTransactionForm.controls.dTotalTransactionAmount.dirty"
+                                        matSuffix>error_outline</mat-icon>
+                                    <mat-icon class="error"
+                                        *ngIf="productTransactionForm.controls.dTotalTransactionAmount.errors && productTransactionForm.controls.dTotalTransactionAmount.errors['error']"
+                                        matSuffix>error_outline</mat-icon>
+                                </mat-form-field>
+
+
+                                <ng-container
+                                    *ngIf="productTransactionForm.controls.dTotalTransactionAmount.errors && productTransactionForm.controls.dTotalTransactionAmount.touched && productTransactionForm.controls.dTotalTransactionAmount.dirty">
+                                    <p class="text"
+                                        *ngIf="productTransactionForm.controls.dTotalTransactionAmount.errors['min']">
+                                        Amount exceeded your total investment amount</p>
+                                    <p class="text"
+                                        *ngIf="productTransactionForm.controls.dTotalTransactionAmount.errors['max']">
+                                        Amount is lower than your total investment amount</p>
+                                </ng-container>
+                                <ng-container
+                                    *ngIf="productTransactionForm.controls.dTotalTransactionAmount.errors && productTransactionForm.controls.dTotalTransactionAmount.errors['error']">
+                                    <p class="text">
+                                        Enter the total transaction amount</p>
+                                </ng-container>
+                            </div>
+
+                            <div class="warning">
+                                <span class="massage">Changing this value resets the sales charge entered for each
+                                    fund.</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-content class="customer-account">
+                <mat-card-subtitle>Select Customer’s Accounts:</mat-card-subtitle>
+                <div class="investment">
+                    <div class="dropdowns">
+                        <div class="investment-dropdown custom-form-field" *ngIf="(customerProfile$ | async)">
+                            <div class="label">Investment Account</div>
+                            <mat-form-field appearance="outline" floatLabel="never">
+                                <mat-select formControlName="investAccountNo"
+                                    panelClass="custom-select-panel transaction investment-account"
+                                    [placeholder]="!isNewAccount ? 'Select Account' : 'New Account'" class="select-panel investment-account">
+                                    <mat-select-trigger>
+                                        {{ productTransactionForm.controls['investAccountNo'].value?.accountNumber }}
+                                        <span class="tag">
+                                            {{ productTransactionForm.controls['investAccountNo'].value?.jointIndicator
+                                            === 'P' ? 'Individual' : 'Joint-Or' }}
+                                        </span>
+                                    </mat-select-trigger>
+
+                                    <mat-option *ngFor="let account of (customerProfile$ | async)?.investmentAccount"
+                                        [value]="account" class="height">
+                                        <p>
+                                            {{account.accountNumber}}
+                                            <span class="tag">
+                                                {{ account.jointIndicator === 'P' ? 'Individual' : 'Joint-Or' }}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            Holder Type: {{account.holderType}}
+                                        </p>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="investment-dropdown custom-form-field">
+                            <div class="label">settlement account</div>
+                            <mat-form-field appearance="outline"
+                                floatLabel="never" *ngIf="(customerProfile$ | async)">
+                                <mat-select formControlName="settlementAccountNo"
+                                    placeholder="Select Account" class="select-panel settlement-account "
+                                    panelClass="custom-select-panel transaction settlement-account">
+                                    <mat-select-trigger>
+                                        {{ productTransactionForm.controls['settlementAccountNo'].value?.accountNumber
+                                        }}
+                                        <span class="tag">
+                                            {{
+                                            productTransactionForm.controls['settlementAccountNo'].value?.jointIndicator
+                                            === 'P' ? 'Individual' : 'Joint-Or' }}
+                                        </span>
+                                    </mat-select-trigger>
+                                    <ng-container *ngFor="let account of (customerProfile$ | async)?.settlementAccount">
+
+                                        <mat-option *ngIf="account.accountStatus !== 'Dormant'"
+                                            class="dff expanded height1" [value]="account">
+
+                                            <p>
+                                                {{account.accountNumber}} - MYR
+                                                <span class="tag">
+                                                    {{account.jointIndicator === 'P' ? 'Individual' : 'Joint-Or'}}
+                                                </span>
+                                            </p>
+
+                                            <p>
+                                                Holder Type: {{account.holderType}}
+                                            </p>
+
+                                            <p class="accountbalance">
+                                                Balance: MYR {{account.accountBalance | number:'3.2-3'}}
+                                            </p>
+
+                                        </mat-option>
+                                    </ng-container>
+                                </mat-select>
+                                <mat-icon class="error_icon" *ngIf="productTransactionForm.get('settlementAccountNo').errors && productTransactionForm.get('settlementAccountNo')?.errors['insufficientBal']" matSuffix>error_outline</mat-icon>
+                                <mat-error class="error_insufficient" *ngIf="productTransactionForm.get('settlementAccountNo').errors && productTransactionForm.get('settlementAccountNo')?.errors['insufficientBal']" >Insufficient funds. Please select another account (if available)</mat-error>
+                            </mat-form-field>
+                            <div *ngIf="(getNonDefaultAccount$ | async) as defaultAccount">
+                                <p class="nondefaultAccounnt_error" *ngIf="productTransactionForm?.get('settlementAccountNo')?.errors === null && defaultAccount?.nonDefaultSettlement && defaultAccount?.nonDefaultSettlement === 1 &&  productTransactionForm.get('settlementAccountNo').dirty && productTransactionForm.get('investAccountNo').dirty" >Non-default settlement. Requires RD approval</p>
+                            </div>
+                        </div>
+                    </div>
+                    <cimb-office-search-funds (informParent)="parentFunds($event)"
+                        (inSufficientFunds)="inSufficientFunds($event)"></cimb-office-search-funds>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

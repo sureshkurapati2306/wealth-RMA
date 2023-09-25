@@ -1,0 +1,145 @@
+<mat-expansion-panel [expanded]="true" class="box-shadow customer-detail">
+
+    <mat-expansion-panel-header [expandedHeight]="'100%'" class="disable-ripple">
+
+        <mat-panel-description class="expansion-panel" (click)="$event.stopPropagation();">
+            <div class="transaction">
+                <div class="customer-container customer">
+                    <h3 class="customer-main">New Account</h3>
+                    <mat-divider></mat-divider>
+                    <div class="personal-info">
+                        <h5 class="details-container">personal details</h5>
+                        <div class="personal-name padding" id="name">
+                            <div class="personalname" id="title">
+                                <p class="sub-container">title/ salutation</p>
+                                <p class="sub-container-1 p">ms</p>
+                            </div>
+                            <div class="personalname width" id="Fullname">
+                                <p class="sub-container">full name</p>
+                                <p class="sub-container-1 p">Natalie Scheconname</p>
+                            </div>
+                        </div>
+                        <div class="personal-name padding">
+                            <div class="personalname" id="customerId">
+                                <p class="sub-container">customer ID</p>
+                                <p class="sub-container-1 p">800101-78-9012 (NRIC)</p>
+                            </div>
+                            <div class="personalname width" id="dateOfBirth">
+                                <p class="sub-container">date of birth</p>
+                                <p class="sub-container-1 p">01 January 1980</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="container customer">
+                    <h5 class="details-container">contact information</h5>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">email address</p>
+                            <p class="sub-container-1 p email">nataliesche@email.com</p>
+                        </div>
+                        <div class="width mobile">
+                            <p class="sub-container">mobile phone number</p>
+                            <p class="sub-container-1 p select">
+                                6012 345-6789
+                            </p>
+                        </div>
+                    </div>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">House Phone Number (Optional)</p>
+                            <p class="sub-container-1 p">-</p>
+                        </div>
+                        <div class="personalname width">
+                            <p class="sub-container">Office Phone Number (Optional)</p>
+                            <p class="sub-container-1 p">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="personal" id="personal">
+                <h5 class="details-container">other personal details</h5>
+                <div class="personal-name" id="nationality">
+                    <div class="personalname" id="place">
+                        <p class="sub-container">nationality</p>
+                        <p class="sub-container-1 p">malaysian</p>
+                    </div>
+                    <div class="personalname width" id="citizen">
+                        <p class="sub-container">citizen</p>
+                        <p class="sub-container-1 p">malaysian</p>
+                    </div>
+                </div>
+                <div class="personal-name padding">
+                    <div class="personalname" id="gender">
+                        <p class="sub-container">gender</p>
+                        <p class="sub-container-1 p">female</p>
+                    </div>
+                    <div class="personalname width" id="race">
+                        <p class="sub-container">race</p>
+                        <p class="sub-container-1 p">bumiputra</p>
+                    </div>
+                </div>
+                <div class="personal-name padding">
+                    <div class="personalname" id="religion">
+                        <p class="sub-container">religion</p>
+                        <p class="sub-container-1 p">others</p>
+                    </div>
+                    <div class="personalname width" id="marital">
+                        <p class="sub-container">marital status</p>
+                        <p class="sub-container-1 p">single</p>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="mailing">
+                <h5 class="details-container">Mailing Address</h5>
+                <div class="personal-name padding">
+                    <div class="personalname">
+                        <p class="sub-container">Mailing Address</p>
+                        <ul class="sub-container-1 p">
+                            <li>
+                                <p>8, jalan u8/10,</p>
+                                <p>petaling jaya, 47400 selangor</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <mat-divider id="divider"></mat-divider>
+            <div class="employment" id="employment">
+                <h5 class="details-container">employment details</h5>
+                <div class="personal-name padding">
+                    <div class="personalname">
+                        <p class="sub-container">industry</p>
+                        <ul class="sub-container-1 p">
+                            <li>
+                                <p>accommodation/ food service -</p>
+                                <p>hotels/ resort hotels</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="personalname width">
+                        <p class="sub-container">profession</p>
+                        <p class="sub-container-1 p">administraion professionals</p>
+                    </div>
+                </div>
+            </div>
+            <mat-divider id="divider"></mat-divider>
+            <div class="account" id="account">
+                <h5 class="details-container">default settlement account</h5>
+                <div class="personal-name padding">
+                    <div class="personalname">
+                        <p class="sub-container">Settlement Account</p>
+                        <ul class="sub-container-1 p">
+                            <li>
+                                <p>CIMB Current Account 16285729231 (Individual)</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+</mat-expansion-panel>

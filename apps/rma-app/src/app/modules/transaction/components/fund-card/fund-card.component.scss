@@ -1,0 +1,740 @@
+@mixin deviationStatus {
+    .warning {
+        align-items: center;
+        display: flex;
+        span {
+            color: var(--danger);
+            font-size: 1.5rem;
+            &.icon {
+                margin: 0 0.5rem;
+            }
+
+            &.deviation-title {
+                font-size: 0.875rem;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+@mixin link {
+    a.link {
+        padding-left: 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.54;
+        color: var(--r100);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.hrMargin{
+    margin: 0rem 1rem;
+    color: var(--n20);
+}
+
+.min{
+    display: inline !important;
+}
+
+.fundCard {
+    ::ng-deep {
+        .mat-expansion-panel {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            border-bottom-left-radius: 0rem;
+            border-bottom-right-radius: 0rem;
+
+            margin-bottom: 0 !important;
+        }
+
+        .mat-expansion-panel-body {
+            padding-bottom: 0.1rem !important;
+        }
+
+        .mat-expansion-panel-header {
+            height: 4rem !important;
+        }
+
+        .mat-expansion-indicator::after {
+            margin-top: -6px;
+        }
+        button.mat-focus-indicator.mat-stroked-button.mat-button-base.mat-accent {
+            color: var(--n50);
+            border: 0;
+        }
+
+        .investment-dropdown.sales-branch-dropdown {
+            .inactiveFund{
+                color: var(--n40);
+                font-weight:400;
+                font-size: 16px
+            }
+            &.switchin-fund {
+                .mat-select-arrow-wrapper {
+                    display: flex;
+                    flex-direction: row-reverse;
+
+                    .tag {
+                        border: 1px solid var(--n80);
+                        border-radius: 1.5rem;
+                        padding: 0.2rem 1rem !important;
+                        margin-right: 0.5rem;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        &.inactiveFund {
+            .inputBg, .bgSwich {
+                .exitFee {
+                    div label, div p {
+                        color: var(--n20);
+                    }
+
+                    div.adminFee {
+                        label, p {
+                            color: var(--n80);
+                        }
+                    }
+                }
+                .mat-checkbox-label, p.riskCategory, a.link {
+                    color: var(--n20) !important;
+                    pointer-events: none;
+                }
+            }
+            .investment-dropdown.sales-branch-dropdown {
+                input {
+                    color: var(--n20);
+                    font-weight: 400;
+                }
+
+                &.switchin-fund {
+                    .mat-select-arrow-wrapper {
+                        display: flex;
+                        flex-direction: row-reverse;
+
+                        .tag {
+                            border: 1px solid var(--n80);
+                            border-radius: 1.5rem;
+                            padding: 0.2rem 1rem !important;
+                        }
+                    }
+                }
+            }
+
+            .feesNdAmt {
+                .non_padding_label, p, mat-icon {
+                    color: var(--n20);
+                }
+            }
+
+            .redeemAllCheckBoxDiv {
+                .mat-checkbox-disabled:not(.mat-checkbox-checked) .mat-checkbox-frame {
+                    border-color: var(--n20);
+                }
+
+                .mat-checkbox-label .redeemAllLabel {
+                    color: var(--n20) !important;
+                }
+            }
+
+            p.minimumUnit {
+                color: var(--n20);
+            }
+
+            .mat-select-arrow-wrapper {
+                &::before {
+                    color: var(--n20);
+                }
+            }
+        }
+    }
+
+    .error {
+        color: var(--danger) !important;
+        position: relative;
+
+        &.amount {
+            top: -10px;
+        }
+
+        &.minimumUnit {
+            strong {
+                font-weight: 400 !important;
+            }
+        }
+    }
+
+    .text{
+        margin-left: 0.5rem !important;
+        color:  var(--danger) !important;
+    }
+
+    .info.warning {
+    margin-left: 0.5rem !important;
+       color: var(--n60) !important;
+       .bold {
+            font-weight: 800;
+       }
+    }
+
+    .mat-expansion-panel-header-title {
+        div.flex {
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            .wrapper {
+                padding: 0.75rem 0;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                .title {
+                    padding-left: 1rem;
+                    .boldText {
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: var(-n100);
+                        vertical-align: middle;
+
+                        span {
+                            div {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+                .subtitle {
+                    padding-left: 1rem;
+                    margin-top: 0.25rem;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    line-height: 1.5;
+                    letter-spacing: 0.96px;
+                    color: var(--n60);
+                }
+
+                .outline {
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    line-height: 1.5;
+                    padding: 0.125rem 0.5rem;
+                    margin-left: 0.5rem;
+                    border-radius: 1rem;
+                    border: 1px solid;
+                    color: #2096d9;
+
+                    &.warn {
+                        color: var(--r60);
+                        border-color: var(--r60);
+                    }
+
+                    &.blue {
+                        color: var(--information);
+                        border-color: var(--information);
+                    }
+
+                    &.disabled {
+                        color: var(--n60) !important;
+                        border-color: var(--n60) !important;
+                    }
+
+                }
+                @include deviationStatus();
+
+
+            }
+
+            .action {
+                .mat-icon {
+                    color: var(--n50);
+                }
+            }
+        }
+    }
+
+    .text-area-remark {
+        .fund-details {
+            padding: 1.5rem 1rem 2rem;
+            .fund-status {
+                width: 25%;
+                // margin-left: 2rem;
+                p.category {
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    color: var(--n80);
+                    line-height: 1.5rem;
+                    padding-left: 0.5rem;
+                }
+
+                @include link()
+            }
+
+            .stats {
+                width: 75%;
+
+                .col {
+                    width: 33.3333%;
+                    .title {
+                        font-size: 0.875rem;
+                        line-height: 1.54;
+                        color: var(--n60);
+                        margin-bottom: 0.25rem;
+                    }
+
+                    .value {
+                        font-size: 1.125rem;
+                        line-height: 1.5;
+                        color: var(--n100);
+                        font-weight: bold;
+                        margin-bottom: 0;
+
+                        .curruncy {
+                            font-size: 0.625rem;
+                            vertical-align: text-top;
+                            padding-right: 0.25rem;
+                            letter-spacing: 0.4px;
+                            line-height: 1.6;
+                        }
+                    }
+
+                    div {
+                        &:nth-child(2) {
+                            margin-top: 2.625rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .form-group {
+            // padding: 2rem 0;
+
+            p.minimumUnit {
+                margin-left: 0.75rem !important;
+                color: var(--n60);
+            }
+
+            .subscription-amount {
+                // width: 25%;
+                // margin-right: 2rem;
+
+                .mat-form-field {
+                    width: 100% !important;
+                }
+
+            }
+            .sales-charge-promotion {
+                width: 40%;
+                margin-right: 2rem;
+
+                .mat-select {
+                    line-height: 1 !important;
+                }
+            }
+
+            .risk-category {
+                .mat-select {
+                    line-height: 1 !important;
+                }
+            }
+
+            .rate {
+                width: 5rem;
+                margin-right: 2rem;
+            }
+
+            .slaes-charge {
+                width: 20%;
+            }
+        }
+        .rate {
+            width: 3.75rem;
+            margin-right: 2rem;
+        }
+
+        .slaes-charge {
+            width: 20%;
+        }
+    }
+}
+
+.trending-up{
+    color: var(--s100);
+    width: 16.7px;
+    height: 10px;
+    margin-right: 5.7px;
+
+    &.warn {
+        color: var(--r100);
+    }
+}
+
+.sup {
+    .curruncy {
+        font-size: 0.625rem;
+        vertical-align: text-top;
+        padding-right: 0.25rem;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+    }
+}
+
+.unitsSubTitle {
+    font-size: 14px;
+    margin-left: 3px;
+    color: #7b7d7e;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.54;
+    letter-spacing: normal;
+    text-align: left;
+}
+
+::ng-deep {
+    .fundCard {
+        .inputBg {
+        .inactiveFund {
+            .form-group {
+                .label {
+                    color: var(--n20);
+                }
+            }
+        }
+
+        .form-group {
+            .switch-out {
+                mat-form-field {
+                    width: 14rem !important;
+                }
+            }
+
+        }
+    }
+    }
+}
+
+.ruturnMyr{
+    color: #7b7d7e !important;
+    font-size: 14px !important;
+}
+
+.minUnits {
+    font-weight: 700;
+    color: #312f2fbd;
+}
+
+.exitFeeValue {
+    margin-left: 9px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.46;
+}
+
+.indicativeCaption {
+    margin: 1px 0px 0px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.54;
+    letter-spacing: normal;
+    text-align: left;
+    color: #7b7d7e;
+    width: 172px;
+    height: 44px;
+}
+
+::ng-deep{
+    .non_padding_label{
+        display: flex;
+        position: relative;
+        font-size: 0.75rem;
+        .mat-icon{
+            font-size: 16.7px;
+            color: #7b7d7e;
+            font-weight: 600;
+            margin-left: 8.7px;
+            width: 0px;
+            height: 0px;
+        }
+    }
+}
+
+.redeemAllDiv {
+    background-color: var(--n5h);
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+}
+
+.bgSwitch {
+    background: #f6f6f6;
+}
+
+.switchingFee {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2.25rem;
+    background: #f6f6f6;
+    color: #575a5c;
+    .example-margin {
+        margin-top: 2.25rem !important;
+    }
+}
+
+.exitFee {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem !important;
+
+    &.switchIn {
+        justify-content: flex-start;
+        div.p-6 {
+            padding-right: 6rem;
+        }
+    }
+    label {
+        color: #575a5c;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    p {
+        font-size: 18px;
+        color: #333739;
+        font-weight: bold;
+    }
+}
+
+::ng-deep {
+    .example-margin {
+        color: var(--n80);
+        font-size: 0.875rem;
+
+        .mat-checkbox-layout {
+            margin: 0;
+        }
+        .mat-checkbox-label {
+            font-size: 0.875rem !important;
+            color: var(--n80) !important;
+        }
+    }
+}
+
+.switchInCategory {
+    .riskCategory {
+        color: #575a5c;
+        font-size: 14px !important;
+        .marginDash {
+            margin-left: 12px !important;
+            font-weight: bold !important;
+
+            &.danger {
+                color: var(--danger);
+            }
+        }
+
+        .deviation {
+            margin-left: 1.25rem;
+            display: inline-block;
+            vertical-align: bottom;
+
+            @include deviationStatus();
+
+            .warning {
+                .deviation-title {
+                    font-size: inherit !important;
+                }
+                .icon-danger-1.icon {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+    }
+
+    @include link();
+}
+
+.accent {
+    color: #a7a9ac;
+    cursor: pointer;
+}
+
+.switchAll {
+    color: #575a5c;
+    font-size: 14px;
+    margin-left: 8px !important;
+}
+
+#background {
+    background: #f0f0f0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+.titleHead {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #575a5c;
+    padding: 1.5rem 0rem 1rem;
+    margin: 0px !important;
+}
+.form-group p {
+    margin: 0px !important;
+}
+.text-right {
+    text-align: right !important;
+}
+
+.tnxTypePanel {
+    width: 100%;
+    padding: 0 1.5rem;
+}
+
+.non_padding_label {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 3px;
+    color: var(--n80);
+    font-weight: 600 !important;
+    border-left: none;
+}
+
+
+.bottom-radiuses {
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+}
+
+.redeemAllCheckBoxDiv {
+    margin-left: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.description {
+    background: var(--n5h);
+    margin-left: -1.5rem;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-right: -1.5rem;
+
+    p.note {
+        margin: 1.5rem 0 !important;
+    }
+}
+
+.justificationTxtArea {
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.redeemAllLabel {
+    width: 84px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #575a5c;
+}
+
+.units>mat-form-field>input::placeholder {
+    color: #c6c7c8;
+    width: 64px;
+    height: 24px;
+    flex-grow: 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+}
+
+.switchOutUnits {
+    font-style: normal;
+    letter-spacing: 0.96px;
+    line-height: 1.5;
+}
+
+
+.w-25 {
+    width: 25% !important;
+}
+
+.w-75 {
+    width: 75% !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.bg-n5h {
+    background-color: var(--n5h);
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.pr-16 {
+    padding-right: 1rem !important;
+}
+
+.pt-2 {
+    padding-top: 2rem !important;
+}
+
+.pt-4 {
+    padding-top: 4rem !important;
+}
+
+.card-botton-border-radius {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.pb-1 {
+    padding-bottom: 1rem !important;
+}
+
+.pb-2 {
+    padding-bottom: 2rem !important;
+}
+
+.pb-1-2 {
+    padding-bottom: 1.5rem !important;
+}
+
+.mr-2 {
+    margin-right: 2rem !important;
+}
+
+.pt-1 {
+    padding-top: 1rem !important;
+}
+
+.justify-space-between {
+    justify-content: space-between !important;
+}
+
+.align-item-center {
+    align-items: center !important;
+}
+
+.rateError{
+    padding: 14px 2px !important
+}

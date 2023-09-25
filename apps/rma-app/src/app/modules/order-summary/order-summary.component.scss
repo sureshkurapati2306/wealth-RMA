@@ -1,0 +1,264 @@
+.page-top-summary-container{
+    max-width: 1137px;
+    margin-left: 0;
+    margin-right: auto;
+    padding-right: 60px;
+    width: 100%;
+    padding-bottom: 55px;
+
+    .black33-text{
+        color: #333739;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .page-details-right{
+        max-width: 215px;
+        width: 100%;
+    }
+    .progress-status{
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .step{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .stepIndex{
+                width: 31px;
+                height: 31px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                border: 1px solid #C6C7C8;
+                color: #C6C7C8;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+                font-size: 12px;
+                line-height: 18px;
+                font-weight: 700;
+            }
+            .step1{
+              background-color: black !important;
+              mat-icon{
+                position: absolute;
+                left: 8%;
+                right: 12%;
+                top: 10%;
+                bottom: 20.83%;
+              }
+            }
+            .step-text{
+                font-size: 14px;
+                line-height: 21px;
+                color: #7b7d7e;
+                font-weight: 700;
+            }
+            &.active{
+                .stepIndex{
+                    border: 1px solid #FF0000;
+                    color: #FF0000;
+                }
+                .step-text{
+                    color: #7b7d7e;
+                }
+            }
+        }
+        .dot-line{
+            position: absolute;
+            border-top: 1px solid #333739;
+            top: 16px;
+            left: 33px;
+            width: calc(100% - 60px);
+           }
+    }
+
+    .page-details{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1 1 auto;
+        &--left{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+        }
+    }
+}
+
+.product-container {
+    max-width: 1034px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+  
+    .card {
+      .mat-card {
+        box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+        margin-bottom: 24px;
+        border-radius: 16px;
+        padding: 0;
+  
+        .mat-card-title {
+          margin: 0;
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 700;
+          color: #333739;
+          padding: 16px 24px;
+        }
+  
+        .mat-card-content {
+          padding: 24px 24px;
+          margin-bottom: 0;
+        }
+  
+        .mat-divider-horizontal {
+          position: absolute;
+          width: calc(100% - 32px);
+          left: 16px;
+          right: 16px;
+          border-top-color: #d5d6d7;
+        }
+  
+        .mat-card-subtitle {
+          font-size: 14px;
+          line-height: 21px;
+          color: #333739;
+          font-weight: 400;
+          margin-bottom: 24px;
+        }
+  
+        .primary-btn,
+        .secondary-btn {
+          padding: 4.5px 16px;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 21px;
+          border-radius: 16px;
+          min-width: 130px;
+          margin-bottom: 18px;
+          min-height: 32px;
+          margin-right: 16px;
+  
+          &.red-primary {
+            background-color: #FF0000;
+            color: #ffffff;
+            border: 1px solid #FF0000;
+          }
+        }
+  
+        .secondary-btn {
+          border: 1px solid #D5D6D7;
+          color: #333739;
+          font-size: 10px;
+          line-height: 16px;
+          font-weight: 600;
+  
+          ::ng-deep.mat-radio-label {
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+  
+            .mat-radio-label-content {
+              padding-left: 0;
+              line-height: 21px;
+            }
+          }
+  
+          ::ng-deep.mat-radio-container {
+            display: none;
+          }
+  
+          &.mat-radio-checked {
+            background-color: #FF0000;
+            border: 1px solid #FF0000;
+  
+            .mat-radio-container {
+              display: none;
+            }
+  
+            ::ng-deep.mat-radio-label {
+              font-size: 14px;
+              color: #ffffff;
+              font-weight: 700;
+            }
+          }
+        }
+  
+        .transaction-type-buttons {
+          display: flex;
+          flex-wrap: wrap;
+        }
+      }
+  
+      .customer-account {
+        background-color: #F6F6F6;
+      }
+  
+      .dropdowns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 24px;
+        margin-bottom: 30px;
+      }
+  
+      .label {
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 3px;
+        color: #575A5C;
+        font-weight: 600;
+        border-left: none;
+        padding-left: 8px;
+      }
+    }
+  
+    .button-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 66px 0 60px;
+  
+      .action-btn {
+        min-height: 48px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 150%;
+        min-width: 192px;
+  
+        &.red-secondary-btn {
+          color: #FF0000;
+          border: 1px solid #FF0000;
+          background-color: transparent;
+        }
+  
+        &.black-secondary-btn {
+          color: #575a5c;
+          border: 1px solid #575a5c;
+          background-color: transparent;
+        }
+  
+        &.graybg-btn {
+          color: #ffffff;
+          border: 1px solid #d5d6d7;
+          background-color: #d5d6d7;
+        }
+      }
+  
+      .left-btns {
+        margin: 0;
+      }
+
+      .left-order-btns {
+        margin: 0 auto;
+      }
+    }
+  }

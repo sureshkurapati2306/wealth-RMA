@@ -1,0 +1,95 @@
+.customerSearch {
+    .mat-autocomplete-panel {
+        max-height: 150px;
+        border-radius: 8px !important;
+        line-height: 0px;
+    }
+    .mat-form-field-appearance-outline {
+        .mat-form-field-infix {
+            padding: 2rem 0 1.5rem 0 !important;
+        }
+
+        .mat-form-field-flex {
+            padding: 0 1.75em 0 1.75em;
+        }
+
+        .mat-form-field-wrapper {
+            border-radius: 16px;
+            box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+            background: white;
+            margin: 0;
+        }
+
+
+
+        .mat-form-field-outline-start {
+            border: 0;
+            border-radius: 0;
+        }
+
+        .mat-form-field-outline-end {
+            border: 0;
+            border-radius: 0;
+        }
+
+        .mat-form-field-suffix {
+            top: -1.4em !important;
+            color: #7b7d7e;
+            display: flex;
+            align-items: center;
+            .clearBtn {
+                height: 1.5rem !important;
+                margin-right: 1.5rem;
+                font-size: 10px;
+                font-weight: 600;
+                cursor: pointer;
+                margin-bottom: 0;
+                line-height: 1.5;
+            }
+            p {
+                margin-bottom: 0;
+                color: #f44336;
+            }
+        }
+    }
+
+}
+
+.dashboard {
+
+    .mat-option {
+        &.searchPage {
+            padding: 0 1.5rem;
+        }
+        padding: 0 1.5rem;
+        .mat-option-text {
+            .optionLayout {
+                justify-content: space-between;
+
+                &.f-10 {
+                    font-size: 0.75rem;
+                    color: var(--n80);
+                }
+
+                &:hover {
+                    &.f-10 {
+                        color: var(--n0);
+                    }
+                }
+            }
+            .d-flex {
+                display: flex;
+                justify-content: space-between;
+            }
+            .noDataFound {
+                text-align: center;
+            }
+        }
+    }
+
+    &.mat-autocomplete-panel {
+        max-height: 150px !important;
+        border-radius: 8px !important;
+    }
+}
+

@@ -1,0 +1,38 @@
+<div class="flex investment">
+
+    <div class="col-6">
+        <div class="account">
+            <p class="title">Investment Account</p>
+            <p class="value">UT: 0003456789</p>
+        </div>
+
+        <div class="held">
+            <p class="title">Units Held</p>
+            <p class="value">{{ fundDetails.unitsHeld | number: '1.2-2' }}</p>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="total-invested">
+            <p class="title">Total Invested</p>
+            <p class="value"><span class="curruncy">MYR</span>{{ +fundDetails.totalInvested | number: '1.2-2' }}</p>
+        </div>
+
+        <div class="current-value">
+            <p class="title">Current Investment Value</p>
+            <p class="value"><span class="curruncy">MYR</span>{{ +fundDetails.totalInvested | number: '1.2-2' }}</p>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="returns">
+            <p class="title">Returns</p>
+            <div class="flex">
+                <mat-icon>trending_up</mat-icon>
+                <p class="value">{{ fundDetails.returns + '%' }}</p>
+            </div>
+            <p class="notes">+MYR 740.65</p>
+        </div>
+    </div>
+
+</div>

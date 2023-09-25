@@ -1,0 +1,114 @@
+//input with suffix
+.mat-form-field {
+    &.mat-form-bordered {
+        border: 1px solid var(--n60);
+        border-radius: 8px;
+        padding: 0 0.75rem;
+        background: var(--n0);
+        font-size: 1rem;
+        line-height: 3rem;
+        color: var(--n100);
+        width: 100%;
+        height: 3rem;
+
+        &.mat-focused {
+            .mat-form-field-label-wrapper,
+            .mat-form-field-label {
+                display: none;
+            }
+            .mat-form-field-infix {
+                width: 4.625rem;
+                flex: unset;
+            }
+        }
+
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+
+            .mat-form-field-flex {
+                align-items: center;
+                height: 3rem;
+                line-height: 3rem;
+
+                .mat-form-field-prefix {
+                    height: 3rem;
+                    position: relative;
+                    z-index: 3;
+                    line-height: 3rem;
+                }
+            }
+
+            .mat-form-field-prefix {
+                span {
+                    color: var(--n100);
+                }
+            }
+            .mat-form-field-infix {
+                padding: 0;
+                width: 6.25rem;
+                flex: unset;
+                position: static;
+
+                @media (min-width: 62rem) {
+                    width: 4.4375rem;
+                }
+
+                .mat-form-field-label-wrapper {
+                    padding-top: 0;
+                    top: 0;
+
+                    .mat-form-field-label {
+                        top: 0;
+                        color: var(--n40);
+                    }
+                }
+
+                .mat-input-element {
+                    border: none;
+                    background: none;
+                    padding: 0;
+                    height: 3rem;
+                    line-height: 3rem;
+                    caret-color: var(--information);
+                }
+                .mat-error {
+                    position: absolute;
+                    left: 0.125rem;
+                    top: auto;
+                    bottom: -1.4375rem;
+                    width: 100%;
+                    white-space: nowrap;
+
+                    &.max-error {
+                        @media (min-width: 62rem) {
+                            white-space: normal;
+                            bottom: -2.75rem;
+                            width: 16.25rem;
+                        }
+                    }
+                }
+            }
+
+            .mat-form-field-underline {
+                display: none;
+            }
+            .mat-form-field-subscript-wrapper {
+                margin-top: 1.25rem;
+
+                .mat-hint {
+                    font-size: 0.875rem;
+                    line-height: 1.375rem;
+                    color: var(--n80);
+                }
+            }
+        }
+    }
+
+    &.mat-form-field-can-float {
+        &.mat-form-field-should-float {
+            .mat-form-field-label {
+                transform: translateY(-9px) scale(0.75) perspective(100px) translateZ(0.001px);
+            }
+        }
+    }
+}

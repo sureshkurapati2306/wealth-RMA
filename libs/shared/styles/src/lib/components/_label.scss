@@ -1,0 +1,77 @@
+.label {
+  padding-left: 0.5rem;
+  border-left: 4px solid transparent;
+
+  &.label-cash {
+    border-color: var(--cg70);
+  }
+  &.label-fixed-income {
+    border-color: var(--azb70);
+  }
+  &.label-local-equity {
+    border-color: var(--jg70);
+  }
+  &.label-regional-equity {
+    border-color: var(--ei70);
+  }
+  &.label-global-equity {
+    border-color: var(--f70);
+  }
+  &.label-alternatives {
+    border-color: var(--jl70);
+  }
+}
+.custom-label {
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+  line-height: 1.125rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: var(--n80);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.label-text {
+  display: inline-block;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  padding: 0 .75rem;
+  border-radius: .5rem;
+  background: var(--s100);
+  font-size: .625rem;
+  font-weight: var(--medium);
+  color: var(--n0);
+  letter-spacing: 0.04rem;
+  vertical-align: middle;
+
+  @media (min-width: 60rem) {
+    height: 1.875rem;
+    line-height: 1.875rem;
+    padding: 0 .8125rem;
+    font-size: 1rem;
+    font-weight: var(--bold);
+    letter-spacing: 0;
+  }
+}
+.label-text-danger {
+  display: inline-block;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  padding: 0 .75rem;
+  border-radius: .5rem;
+  background: var(--danger);
+  font-size: .625rem;
+  font-weight: var(--medium);
+  color: var(--n0);
+  letter-spacing: 0.04rem;
+  vertical-align: middle;
+
+  @media (min-width: 60rem) {
+    height: 1.875rem;
+    line-height: 1.875rem;
+    padding: 0 .8125rem;
+    font-size: 1rem;
+    font-weight: var(--bold);
+    letter-spacing: 0;
+  }
+}

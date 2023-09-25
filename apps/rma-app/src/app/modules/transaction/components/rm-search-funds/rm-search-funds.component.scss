@@ -1,0 +1,234 @@
+.search {
+  margin-bottom: 22px;
+
+  .disabled{
+    color: #D5D6D7;
+  }
+
+  .mat-icon {
+    color: #7B7D7E;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+
+    .active {
+      color: #FF0000;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .clear-text {
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 160%;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
+
+  }
+}
+
+::ng-deep {
+    .searched {
+        .mat-form-field-appearance-outline .mat-form-field-outline {
+            background-color: white;
+        }
+    }
+}
+
+::ng-deep .custom-search-funds.mint-office-auto-complete-panel {
+
+  &.mat-autocomplete-panel {
+    max-height: 18.5rem;
+  }
+
+  .mat-option-text {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mat-option {
+    position: relative;
+    overflow: visible;
+
+    &.mat-selected {
+
+        &:not(.mat-option-multiple):not(.mat-option-disabled) {
+            background: var(--n0) !important;
+            color: var(--n100) !important;
+        }
+
+        &:hover, &:not(.mat-option-multiple):not(.mat-option-disabled):hover {
+            background: var(--scarlet) !important;
+            color: var(--n0) !important;
+        }
+    }
+
+
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 0 8px;
+      flex: 1 1 auto;
+
+      .tag {
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        font-weight: 600;
+        padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        border-radius: 1rem;
+        border-width: 1px;
+        border-style: solid;
+        margin: 0.125rem 0.5rem 0.125rem 0;
+
+        &.open-ended,
+        &.close-ended,
+        &.FH {
+          color: #7B7D7E;
+          border-color: #7B7D7E;
+        }
+
+        &.FF {
+          color: #FF6666;
+          border-color: #FF6666;
+        }
+
+        &.CH {
+          color: #2096D9;
+          border-color: #2096D9;
+        }
+      }
+    }
+
+    .add-fund {
+      font-weight: 700;
+      font-size: 10px;
+      line-height: 160%;
+      text-align: right;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+      color: #047804;
+
+      .warn {
+        color: var(--r100);
+      }
+    }
+
+    &:hover:not(.mat-option-disabled) {
+
+      .tags {
+        .tag {
+          border-color: var(--n0);
+          color: var(--n0);
+        }
+      }
+
+      .add-fund {
+        color: var(--n0);;
+        .warn {
+            color: var(--n0);
+          }
+      }
+    }
+
+    &:not(:first-child)::before {
+      height: 0.0625rem;
+      content: "";
+      position: absolute;
+      top: -0.0625rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      overflow: visible;
+      background: #D5D6D7;
+    }
+  }
+}
+
+.card2 {
+  .mat-card {
+    overflow: hidden;
+    background-color: #F0F0F0;
+
+    .card-header {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mat-card-title {
+      font-size: 16px;
+      padding: 0;
+      font-weight: 600;
+      color: #575a5c;
+      line-height: 1.5;
+      letter-spacing: 1.28px;
+      text-transform: uppercase;
+    }
+
+    .secondary-btn {
+      &.charge-btn {
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        min-width: 240px;
+        margin: 0;
+        min-height: 40px;
+        color: #7B7D7E;
+        border: 1px solid #d5d6d7;
+
+        img {
+          width: 20px;
+          height: 20px;
+          display: inline-flex;
+          margin-right: 10px;
+        }
+
+        &.disabled {
+          color: #D5D6D7;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .card-body {
+      min-height: 332px;
+
+      &.no-funds {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .no-funds-content {
+        padding: 8px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 1 1 auto;
+
+        img {
+          width: 236px;
+          margin-bottom: 24px;
+        }
+
+        p {
+          color: #a7a9ac;
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}

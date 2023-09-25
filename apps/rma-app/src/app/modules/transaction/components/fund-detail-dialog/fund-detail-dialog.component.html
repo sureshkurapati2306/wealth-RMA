@@ -1,0 +1,36 @@
+
+ <div mat-dialog-content class="dialog-content" *ngIf="fundDetails">
+    <div class="fund-title">
+        <h1>
+            {{ fundDetails.fundName }}
+            <div class="subHeading">
+                {{ fundDetails.assetClass| uppercase }}
+            </div>
+         </h1>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="investment-details" *ngIf="data.investmentEnable">
+        <h2 class="heading">Customer’s Investments</h2>
+        <div class="investment-section">
+            <cimb-office-fund-investment-detail [fundDetails]="fundDetails"></cimb-office-fund-investment-detail>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="fund-performance">
+        <h2 class="heading">Fund Performance</h2>
+        <cimb-office-past-performance [fundDetails]="fundDetails"></cimb-office-past-performance>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="document">
+        <h2 class="heading">About Fund & Fund Document</h2>
+
+        <cimb-office-fund-document [fundDetails]="fundDetails"></cimb-office-fund-document>
+        <cimb-office-fund-detail-disclaimer></cimb-office-fund-detail-disclaimer>
+    </div>
+ </div>
+
+ <div class="closeIcon">
+    <button (click)="dialogRef.close()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon>close</mat-icon>
+      </button>
+ </div>

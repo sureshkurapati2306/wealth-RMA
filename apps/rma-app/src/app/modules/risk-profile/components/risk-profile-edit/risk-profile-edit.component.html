@@ -1,0 +1,16 @@
+<mat-card class="custom-card ">
+    <mat-card-title>Risk Profiling Questionnaire</mat-card-title>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+        <cimb-office-create-risk-profile 
+            [riskProfileQuestionnaire]="riskProfileQuestionnaire$ | async" 
+            (riskProfileFormChange)="riskProfileFormData($event)">
+        </cimb-office-create-risk-profile>
+    </mat-card-content>
+</mat-card>
+
+<div class="action-buttons flex">
+    <button mat-stroked-button color="accent" class="cancel" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="warn" class="success" [disabled]="!enableUpdateBtn" (click)="createRPQTnx()">Update Risk Profile</button>
+</div>

@@ -1,0 +1,176 @@
+input {
+  &.custom-input {
+    height: 3rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    border: 0.06 rem solid var(--n60);
+    max-width: 100%;
+    color: var(--n100);
+    font-size: 1rem;
+    box-sizing: border-box;
+    background: var(--n0);
+    margin-top: 0;
+
+    &:focus {
+      border-color: var(--information);
+    }
+
+    &.error {
+      border-color: var(--danger) !important;
+    }
+
+    &.fw {
+      width: 100%;
+    }
+
+    &::placeholder {
+      color: var(--n40);
+      opacity: 1;
+    }
+  }
+}
+
+.mat-checkbox-frame {
+  border-color: var(--n50);
+}
+
+.option-text {
+  &.error {
+    p {
+      display: none;
+    }
+  }
+}
+
+.mat-icon {
+  &.mat-icon-error {
+    width: auto;
+    height: auto;
+    display: none;
+    font-size: 1rem;
+    color: #FF7547;
+  }
+}
+
+.field_error .mat-icon-error,
+.mat-form-field-invalid .mat-icon-error {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: .3125rem;
+}
+
+mat-label {
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  color: var(--n80);
+  padding-left: 0.5rem;
+}
+
+.mat-form-field-flex {
+  min-height: 3rem !important;
+}
+
+.mat-input-element {
+  &::placeholder {
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.62);
+  }
+}
+
+.cdk-overlay-pane {
+  transform: translateX(-10px) !important;
+}
+
+.mat-form-field-appearance-outline {
+  .mat-form-field-suffix {
+    top: -0.5rem !important;
+  }
+
+  .mat-form-field-outline {
+    color: var(--n60) !important;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .mat-select-placeholder {
+      color: #D5D6D7 !important;
+    }
+
+    .mat-select {
+      .mat-select-value {
+        min-height: 1.375rem;
+      }
+
+      .mat-select-arrow-wrapper {
+        &::before {
+          color: #D5D6D7 !important;
+        }
+      }
+    }
+
+    .mat-form-field-outline {
+      color: #D5D6D7 !important;
+    }
+
+    &.mint-office-auto-complete-dropdown {
+      &.etp-input-disable {
+        .mat-select-arrow-wrapper {
+          &::before {
+            color: #D5D6D7 !important;
+          }
+        }
+      }
+    }
+
+    &.etp-input-disable {
+      .mat-select {
+        .mat-select-value {
+          .mat-select-value-text {
+            color: #D5D6D7 !important;
+          }
+        }
+      }
+
+      .mat-input-element {
+        color: #D5D6D7 !important;
+
+        &::placeholder {
+          color: #D5D6D7 !important;
+        }
+      }
+    }
+  }
+
+  &.input-grey {
+    &.mat-form-field-disabled {
+      .mat-form-field-outline {
+        color: #D5D6D7 !important;
+        background-color: #F6F6F6;
+        border-radius: 0.5rem;
+      }
+    }
+  }
+
+  .mat-form-field-infix {
+    padding: 1rem 0 0.8rem 0 !important;
+  }
+
+  .mat-form-field-outline-thick {
+
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-end,
+    .mat-form-field-outline-gap {
+      border-width: 0.06 rem !important;
+    }
+  }
+
+  &.mat-form-field-invalid {
+    .mat-form-field-outline-thick {
+      color: var(--danger) !important;
+    }
+  }
+}

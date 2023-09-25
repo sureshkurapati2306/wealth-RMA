@@ -1,0 +1,53 @@
+<mat-expansion-panel [expanded]="true" class="box-shadow">
+
+    <mat-expansion-panel-header [expandedHeight]="'100%'" class="disable-ripple">
+
+        <mat-panel-description class="expansion-panel" (click)="$event.stopPropagation();">
+            <div class="w-100">
+
+                <h3 class="customer-main">Subscribe</h3>
+                <mat-divider></mat-divider>
+                <cimb-office-order-summary-common-table></cimb-office-order-summary-common-table>
+
+                <div class="card3 card" *ngIf="(orderSummaryData$ | async), let orderSummary">
+                    <mat-card>
+                        <div class="result-container">
+                            <div class="result">
+                                <div class="sales">
+                                    <div class="salesInfo">
+                                        Total Investment Amount
+                                    </div>
+                                    <span class="salesDetails">
+                                        MYR {{orderSummary.totalInvestmentAmount | number : '1.2-2'
+                                        }}
+                                    </span>
+                                </div>
+                                <div class="sales">
+                                    <div class="salesInfo">
+                                        Total Sales Charges
+                                    </div>
+                                    <span class="salesDetails">
+                                        MYR {{orderSummary.totalSalesCharge}}
+                                    </span>
+                                </div>
+
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="total">
+                                <div class="salesInfo">
+                                    Total Indicative Amount
+                                </div>
+                                <span class="salesAmount">
+                                    <span class="totalCurrency"><sup>MYR</sup></span> {{orderSummary.totalIndicativeAmount | number
+                                    : '1.2-2'}}
+                                </span>
+                            </div>
+                        </div>
+                    </mat-card>
+
+                </div>
+            </div>
+
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+</mat-expansion-panel>

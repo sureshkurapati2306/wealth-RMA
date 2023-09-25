@@ -1,0 +1,52 @@
+<div class="stats flex">
+    <div>
+        <p class="title">Asset Class</p>
+        <p class="value">{{ fundDetails.assetClass }}</p>
+    </div>
+
+    <div>
+        <p class="title">Risk Category</p>
+        <p class="value">{{ getRiskCategory(fundDetails.riskRating) }}</p>
+    </div>
+
+    <div *ngIf="isSalesChanrgeVisible">
+        <p class="title">Sales Charge</p>
+        <p class="value">1.75%</p>
+    </div>
+
+    <div>
+        <p class="title">Shariah Compliant</p>
+        <p class="value">{{ fundDetails.fundIndicator === 'I' ? 'YES' : 'NO' }}</p>
+    </div>
+
+    <div class="flex nav">
+        <div>
+            <p class="title">
+                NAV Price
+                <span class="help">
+                    <mat-icon
+                        matTooltip="Net Asset Value (NAV) price tells you how much one unit of a fund is worth as of the stated date."
+                        #tooltip="matTooltip" matTooltipPosition="above" (click)="tooltip.toggle()">help_outline
+                    </mat-icon>
+                </span>
+            </p>
+            <p class="value"><span class="curruncy">MYR</span>{{ +fundDetails.nav | number: '1.6-6'}}</p>
+            <p class="notes">(As of {{ fundDetails.navDate | date:'MMM d y' }})</p>
+        </div>
+    </div>
+</div>
+<div class="downloads">
+    <div class="item" *ngFor="let document of fundDocuments$ | async">
+        <div class="card flex" (click)="downloadDocument(document)">
+            <div class="name flex">
+                <mat-icon (click)="$event.stopPropagation()">description</mat-icon>
+                <p>{{ document.documentName }}</p>
+            </div>
+            <div class="button">
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" >
+                    <mat-icon>download_for_offline</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

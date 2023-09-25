@@ -1,0 +1,56 @@
+<div class="page-top-summary-container" *ngIf="(orderSummaryData$ | async), let orderSummary">
+    <div class="breadscrumbs">
+        <cimb-office-breadcrumb [breadcrumbs]="breadcrumbs"></cimb-office-breadcrumb>
+    </div>
+
+    <div class="page-details">
+
+        <div class="page-details--left">
+            <div class="page-title" id="tile">
+                <cimb-office-page-title pageTitle='Summary' [showCustomerDetails]="customerDetails"></cimb-office-page-title>
+            </div>
+        </div>
+        <div class="page-details-right">
+            <div class="progress-status">
+                <div class="summary step">
+                    <div class="step1 stepIndex"><mat-icon>check</mat-icon></div>
+                    <div style="font-weight: 400;" class="step-text">Transaction</div>
+                </div>
+                <div class="dot-line"></div>
+                <div class="summary step active" *ngIf="orderSummary.approvalStatus !== 'RA' || orderSummary.customerApprovalStatus !== 'A' ">
+                    <div class="step2 stepIndex">2
+                    </div>
+                    <div style="font-weight: 400;" class="step-text">Summary</div>
+                </div>
+                <div class="summary step" *ngIf="orderSummary.approvalStatus === 'RA' && orderSummary.customerApprovalStatus === 'A' ">
+                    <div class="step1 stepIndex"><mat-icon>check</mat-icon></div>
+                    <div style="font-weight: 400;" class="step-text">Summary</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-container" *ngIf="(orderSummaryData$ | async), let orderSummary">
+   <div>
+    <cimb-office-transaction-summary [trxId]="trxId"></cimb-office-transaction-summary>
+   </div>
+
+   <div *ngIf="orderSummary?.transactionType === 'W'">
+    <cimb-office-order-summary-switch></cimb-office-order-summary-switch>
+   </div>
+
+   <div *ngIf="orderSummary?.transactionType === 'S'">
+    <cimb-office-order-summary-subscribe></cimb-office-order-summary-subscribe>
+   </div>
+
+   <div *ngIf="orderSummary?.transactionType === 'R'">
+    <cimb-office-order-summary-redeem></cimb-office-order-summary-redeem>
+   </div>
+
+    <div class="button-actions">
+        <div [ngClass]="!!orderSummary?.applicationId ? 'left-order-btns' : 'left-btns'">
+            <button routerLink="/home" mat-button class="mat-focus-indicator warn action-btn save red-secondary-btn mat-button mat-button-base">Back to Dashboard</button>
+        </div>
+    </div>
+  </div>

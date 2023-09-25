@@ -1,0 +1,13 @@
+<div class="content-details">
+    <div class="investment-understanding" *ngIf="customerApprovalLinkQuestionarie && customerApprovalLinkQuestionarie.length > 0">
+        <ng-container *ngFor="let item of customerApprovalLinkQuestionarie">
+            <p class="font-14 investment-experience" [innerHTML]="item.questionDesc"></p>
+
+            <h3 class="fix-income">{{ item.optionsDesc }}</h3>
+            <div *ngIf="item?.additional === 'P' && getImageId(item.optionsDesc)">
+                <img [src]="'assets/images/rpq-chart-'+ getImageId(item.optionsDesc) +'.svg'" alt="rpq-chart">
+                <p class="font-12 disclaimer">Disclaimer: Please note that this chart is for illustrative purposes only. Actual returns and losses may vary.</p>
+            </div>
+        </ng-container>
+    </div>
+</div>

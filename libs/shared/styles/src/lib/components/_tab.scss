@@ -1,0 +1,591 @@
+.custom-tab {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  max-width: none !important;
+
+  @media (min-width: 48rem) {
+    overflow: visible;
+  }
+  @media (min-width: 60rem) {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+  }
+  .mat-ink-bar {
+    display: none;
+  }
+  .mat-tab-header {
+    border: 0 none;
+  }
+  .mat-tab-labels {
+    overflow: hidden;
+
+    .mat-tab-label {
+      position: relative;
+      opacity: 1;
+      border: 0 none;
+      color: var(--n100);
+      min-width: 0;
+      padding: 0 1.9375rem;
+      margin-left: -1.875rem;
+      background: var(--n20);
+
+      .mat-tab-label-content {
+        padding-left: .625rem;
+        padding-right: .625rem;
+        background: var(--n20);
+        font-size: 0.875rem;
+        font-weight: var(--bold);
+        display: block;
+        line-height: 3rem;
+
+        @media (min-width: 23.4375rem) {
+          padding-left: 1.09375rem;
+          padding-right: 1.09375rem;
+        }
+
+        @media (min-width: 48rem) {
+          padding-left: 1.90625rem;
+          padding-right: 1.90625rem;
+        }
+      }
+      &:first-child {
+        padding-left: 0;
+        margin-left: 0;
+        border-top-left-radius: 1rem;
+
+        &:before {
+          display: none;
+        }
+        .mat-tab-label-content {
+          padding-left: 1.5625rem;
+
+          @media (min-width: 23.4375rem) {
+            padding-left: 2.09375rem;
+          }
+          @media (min-width: 48rem) {
+            padding-left: 2.90625rem;
+          }
+        }
+      }
+      &:before {
+        width: 1.9375rem;
+        height: 3rem;
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-repeat: no-repeat;
+        background-image: url('../art/tab-left.svg');
+      }
+      &:after {
+        width: 1.9375rem;
+        height: 3rem;
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-repeat: no-repeat;
+        background-image: url('../art/tab-right-bottom.svg');
+      }
+      &:last-child {
+        border-top-right-radius: 1rem;
+        padding-right: 0;
+        margin-right: 0;
+
+        .mat-tab-label-content {
+          padding-right: 1.25rem;
+
+          @media (min-width: 23.4375rem) {
+            padding-left: 2.09375rem;
+          }
+
+          @media (min-width: 48rem) {
+            padding-right: 2.90625rem;
+          }
+        }
+      }
+      &-active {
+        z-index: 1000;
+
+        .mat-tab-label-content {
+          background: var(--n0);
+        }
+        &:before {
+          background-image: url('../art/tab-active-left.svg');
+        }
+        &:after {
+          background-image: url('../art/tab-active-right.svg');
+        }
+        &:first-child {
+          &:after {
+            background-image: url('../art/tab-active-right.svg');
+          }
+        }
+      }
+    }
+  }
+  .mat-tab-body-wrapper {
+    background: var(--n0);
+    border-radius: 0 0 1rem 1rem;
+
+    @media (max-width: 37.5rem) {
+      overflow: visible;
+    }
+    @media (min-width: 48rem) {
+      border-top-right-radius: 1rem;
+      box-shadow: 0 0.125rem 0.25rem -0.125rem rgba(24, 39, 75, 0.12),
+        0 0.25rem 0.25rem -0.125rem rgba(24, 39, 75, 0.08);
+    }
+    .mat-tab-body-content {
+      padding: 1.5rem 1rem 1rem 1rem;
+
+      @media (min-width: 37.5rem) {
+        padding: 1.5rem 1rem;
+      }
+    }
+    .tab-header {
+      padding-bottom: 1.5rem;
+      border-bottom: 0.0625rem solid var(--n20);
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-between;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      align-items: center;
+
+      @media (min-width: 37.5rem) {
+        align-items: center;
+      }
+      p {
+        margin-bottom: 0.25rem;
+
+        &.limitTextHeight {
+          height: 2.75rem;
+          overflow: hidden;
+        }
+
+        a {
+            font-size: 0.75rem;
+            line-height: 1.125rem;
+            color: var(--r100);
+            cursor: pointer;
+            text-decoration: underline !important;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+
+            @media (min-width: 48rem) {
+                font-size: 0.875rem;
+                line-height: 1.375rem;
+                text-decoration: underline !important;
+            }
+            @media (min-width: 37.5rem) {
+                font-size: 0.875rem;
+                line-height: 1.375rem;
+              }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+      }
+      &-right {
+        &.floating-button {
+          .mat-flat-button {
+            &.btn-add {
+              display: none;
+
+              @media (min-width: 37.5rem) {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+    .tab-content {
+      padding: 0.75rem 0 0 0;
+
+      .empty {
+        padding: 2rem 2rem 3rem 2rem;
+
+        @media (min-width: 37.5rem) {
+          padding-top: 4.125rem;
+          padding-bottom: 0;
+          min-height: 36.125rem;
+        }
+        @media (min-width: 77.5rem) {
+          padding-right: 6.125rem;
+          padding-left: 6.125rem;
+        }
+        img {
+          margin: 0 auto 1.5rem auto;
+          max-height: 7.5rem;
+
+          @media (min-width: 37.5rem) {
+            max-height: none;
+            margin-bottom: 0.5rem;
+          }
+        }
+        h2 {
+          margin-bottom: 0.5rem;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+
+          @media (min-width: 37.5rem) {
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            line-height: 2.5rem;
+          }
+        }
+        p {
+          margin: 0;
+
+          @media (min-width: 37.5rem) {
+            font-size: 1rem;
+            line-height: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+.curve-last {
+  .mat-tab-labels {
+    .mat-tab-label {
+      &:last-child {
+        border-top-right-radius: 0;
+        padding-right: 1.9375rem;
+        margin-right: 0;
+        background-color: transparent;
+
+        .mat-tab-label-content {
+          padding-right: 1.09375rem;
+
+          @media (min-width: 48rem) {
+            padding-right: 1.90625rem;
+          }
+        }
+        &:after {
+          display: block;
+        }
+      }
+      &-active {
+        &:last-child {
+          .mat-tab-label-content {
+            &:before {
+              right: 1.9375rem;
+            }
+          }
+          &:after {
+            display: block;
+            background-image: url('../art/tab-active-right-last.svg');
+          }
+        }
+      }
+    }
+  }
+}
+.tab-dashboard {
+  .mat-tab-body-wrapper {
+    .tab-header {
+      display: block;
+      padding: 0;
+      border: 0 none;
+    }
+  }
+}
+.funds-tab {
+  background: none;
+
+  .tab-header {
+    background: var(--n0);
+    padding: 0.75rem 1rem !important;
+
+    @media (min-width: 60rem) {
+      padding: 1.5rem !important;
+      border-bottom: none !important;
+    }
+  }
+  .list-header {
+    background: var(--n0);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0;
+
+    @media (min-width: 60rem) {
+      padding: 0 1rem;
+    }
+    .inner-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+
+      @media (min-width: 60rem) {
+        border-bottom: 0.0625rem solid var(--n20);
+        padding: 0.75rem 0.625rem;
+      }
+    }
+  }
+  .mat-tab-body-wrapper {
+    background: none;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    box-shadow: none;
+
+    .mat-tab-body-content {
+      padding: 0;
+    }
+    .tab-content {
+      padding-top: 0;
+    }
+    .tab-box {
+      box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
+      0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      overflow: hidden;
+
+      @media (min-width: 60rem) {
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;        
+      }
+    }
+  }
+}
+.t-and-c-tab {
+  .mat-tab-body-wrapper {
+    border-radius: 0;
+    border-top-right-radius: 1rem;
+  }
+}
+.mat-tab-header-pagination {
+    display: none !important;
+  }
+.compare-tab {
+  margin-top: 2rem;
+  margin-bottom: 2.125rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  max-width: none !important;
+
+  .mat-tab-header-pagination {
+    display: none !important;
+  }
+  .mat-tab-header {
+    border: 0 none;
+    padding-bottom: 1.5rem;
+    overflow-x: scroll !important;
+
+    @media (min-width: 48rem) {
+      overflow: hidden !important;
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .mat-tab-labels {
+    padding-top: 2.25rem;
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+    position: relative;
+
+    @media (min-width: 48rem) {
+      justify-content: space-between;
+      padding-left: 0.375rem;
+      padding-right: 0.375rem;
+      padding-top: 2.5rem;
+    }
+    @media (min-width: 60rem) {
+      padding-top: 0;
+      margin-bottom: 4.875rem;
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+  }
+  .mat-tab-label-container {
+    overflow: visible !important;
+
+    @media (min-width: 48rem) {
+      overflow: hidden !important;
+    }
+  }
+  .mat-tab-label {
+    width: 6.6875rem;
+    border: 1px solid var(--n5);
+    border-radius: 1rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin-left: .25rem;
+    margin-right: .25rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.04rem;
+    color: var(--n100);
+    font-weight: var(--medium);
+    opacity: 1;
+    overflow: visible;
+    position: static;
+
+    @media (min-width: 48rem) {
+      width: 8.625rem;
+      margin: 0;
+      line-height: 2.5rem;
+      height: 3.625rem;
+      font-size: 0.875rem;
+      font-weight: var(--bold);
+      border: 0.5rem solid transparent;
+      padding: 0;
+    }
+    .mat-tab-label-content {
+      @media (min-width: 48rem) {
+        border: 1px solid var(--n5);
+        border-radius: 1rem;
+        width: 100%;
+      }
+    }
+    .label-text {
+      display: none;
+      cursor: default;
+    }
+    &:first-child,
+    &:nth-child(2) {
+      .label-text {
+        left: 0;
+      }
+    }
+    &:nth-child(4),
+    &:last-child {
+      .label-text {
+        right: 0;
+      }
+    }
+    &-active {
+      font-size: 0.875rem;
+      font-weight: var(--bold);
+      letter-spacing: 0;
+
+      @media (min-width: 48rem) {
+        border-color: var(--n5);
+      }
+      .label-text {
+        display: block;
+        position: absolute;
+        top: -36px;
+
+        @media (min-width: 48rem) {
+          font-size: 1rem;
+          line-height: 1.875rem;
+          height: 1.875rem;
+          top: -2.5rem;
+        }
+        @media (min-width: 60rem) {
+          top: auto;
+          bottom: -2.625rem;
+          left: 50% !important;
+          right: auto !important;
+          transform: translateX(-50%);
+        }
+      }
+      .mat-tab-label-content {
+        border-color: transparent;
+      }
+    }
+  }
+  .mat-ink-bar {
+    display: none;
+  }
+  .mat-tab-body-content {
+    overflow: hidden;
+  }
+  .mat-tab-body-wrapper {
+    padding: 0 1rem 0 1rem;
+  }
+}
+.select-investment-tab {
+  @media (min-width: 48rem) {
+    display: none !important;
+  }
+  // .mat-tab-labels {
+  //   .mat-tab-label {
+  //     &:first-child {
+  //       .mat-tab-label-content {
+  //         padding-left: 3.5rem;
+  //         padding-right: 1.875rem;
+  //       }
+  //     }
+  //     .mat-tab-label-content {
+  //       font-size: 0.75rem;
+  //       padding-left: 1.59375rem;
+  //       padding-right: 1.59375rem;
+  //     }
+  //     &:last-child {
+  //       .mat-tab-label-content {
+  //         padding-right: 1.59375rem;
+  //       }
+  //     }
+  //   }
+  // }
+  .mat-tab-body-wrapper {
+    display: none;
+
+    .mat-tab-body-content {
+      display: none;
+    }
+  }
+}
+.investment-box {
+  .box {
+    box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
+      0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+  }
+}
+.tab-al {
+  .mat-tab-body {
+    background: var(--n0);
+  }
+  .mat-tab-body-wrapper {
+    box-shadow: 0px 0px 16px -2px rgba(24, 39, 75, 0.08), 0px 10px 32px -4px rgba(24, 39, 75, 0.1);
+  }
+  .mat-tab-labels {
+    .mat-tab-label {
+      width: 50%;
+
+      @media (min-width: 48rem) {
+        width: 12.625rem;
+      }
+      &:first-child {
+        .mat-tab-label-content {
+          padding-left:1rem;
+        }
+      }
+      &:last-child {
+        width: calc(50% + 1.875rem);
+
+        @media (min-width: 48rem) {
+          width: 12.625rem;
+        }
+        .mat-tab-label-content {
+          padding:0;
+        }
+      }
+      
+      .mat-tab-label-content {
+        width: 100%;
+        padding:0;
+        text-align: center;
+
+        @media (min-width: 48rem) {
+          padding:0;
+        }
+        
+      }
+    }
+  }
+}

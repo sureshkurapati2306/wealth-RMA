@@ -1,0 +1,146 @@
+.page-wrapper {
+  padding: 1.5rem 0 0 0;
+
+  @media (min-width: 37.5rem) {
+    padding-top: 2rem;
+  }
+  // .search-wrapper {
+  //   margin-right: 16px;
+
+  //   button {
+  //     &.btn-clear {
+  //       display: none;
+  //     }
+  //   }
+  //   .mat-focused {
+  //     .mat-form-field-infix {
+  //       padding-left: 0;
+  //     }
+  //     .btn-search {
+  //       right: 0;
+  //       left: auto;
+  //     }
+  //   }
+  // }
+  .search-block {
+    margin-right: 1rem;
+    flex: 1 1 auto;
+
+    @media (min-width: 48rem) {
+      margin-right: 0;
+    }
+  }
+  .filter-mobile-wrapper {
+    flex: 0 1 3rem;
+
+    .btn-filter {
+      background: var(--n0);
+      box-shadow: 0px 0px 1rem -0.125rem rgba(24, 39, 75, 0.08),
+        0px 0.625rem 2rem -0.25rem rgba(24, 39, 75, 0.1);
+      border-radius: 0.5rem;
+      width: 3rem;
+      height: 3rem;
+      padding: 0;
+      min-width: 3rem;
+      color: var(--n60);
+
+      em {
+        font-size: 1.125rem;
+      }
+
+      .mat-badge-content {
+        background: var(--r100);
+        top: -0.375rem;
+        right: -0.375rem;
+        font-weight: var(--medium);
+      }
+    }
+  }
+}
+
+.search-wrapper {
+  width: 100%;
+
+  .autocomplete-block {
+    width: 100%;
+    display: block;
+    box-shadow: 0px 0.5rem 1rem -0.375rem rgba(24, 39, 75, 0.08);
+    position: relative;
+    margin-right: 1rem;
+  }
+  .custom-input {
+    border-color: transparent;
+
+    &[aria-expanded='false'] {
+      &:focus-visible {
+        border: none;
+      }
+    }
+
+    // &:focus {
+    //   border-color: var(--information);
+    // }
+  }
+  button {
+    background: none;
+    border: none;
+
+    em {
+      color: var(--n60);
+      font-size: 1.125rem;
+    }
+    &.btn-search {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &.btn-clear {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+
+      em {
+        font-size: 0.875rem;
+      }
+    }
+  }
+  &:focus-within {
+    .custom-input {
+      padding-left: 2.75rem;
+    }
+    .btn-search {
+      left: 0;
+    }
+    .btn-clear {
+      display: block;
+    }
+  }
+}
+.no-result {
+  padding: 4.375rem 1.875rem;
+
+  .image {
+    max-width: 11.25rem;
+    margin: 0 auto 2.5rem;
+
+    @media (min-width: 30rem + 10rem) {
+      max-width: 24.25rem;
+      margin-bottom: 0.9375rem;
+    }
+  }
+  h4 {
+    @media (min-width: 30rem + 10rem) {
+      font-size: 1.75rem;
+      line-height: 2.5rem;
+    }
+  }
+  p {
+    @media (min-width: 30rem + 10rem) {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+  }
+}

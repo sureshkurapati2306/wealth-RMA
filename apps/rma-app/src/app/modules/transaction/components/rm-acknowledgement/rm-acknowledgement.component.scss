@@ -1,0 +1,71 @@
+  .card6 {
+    .mat-card {
+      .mat-card-subtitle {
+        margin-bottom: 20px;
+      }
+
+      .AckTop {
+        margin-bottom: 24px;
+
+        .yes-checkbox {
+            ::ng-deep {
+                .mat-checkbox-layout {
+                    margin-bottom: 0 !important;
+                }
+            }
+
+            .warning {
+                align-items: center;
+                display: flex;
+                span {
+                    color: var(--danger);
+                    font-size: 1.5rem;
+                    &.icon {
+                        margin: 0 .5rem;
+                    }
+
+                    &.deviation-title {
+                        font-size: 0.875rem;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+      }
+
+      ::ng-deep .mat-checkbox {
+        .mat-checkbox-layout {
+          margin-bottom: 12px;
+        }
+
+        .mat-checkbox-inner-container {
+          margin-top: 3px;
+        }
+
+        .mat-checkbox-label {
+          font-size: 14px;
+          color: #575A5C;
+          font-weight: 400;
+          line-height: 1.5;
+          white-space: normal;
+        }
+      }
+
+      .AckBottom {
+        ::ng-deep.mat-checkbox:last-child {
+          .mat-checkbox-layout {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    ::ng-deep {
+        .mat-checkbox-disabled {
+            .mat-checkbox-label {
+                opacity: 0.4;
+            }
+        }
+    }
+  }

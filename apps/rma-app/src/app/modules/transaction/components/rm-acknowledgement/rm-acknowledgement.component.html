@@ -1,0 +1,56 @@
+<div class="card6 card" [formGroup]="acknowledgementForm">
+    <mat-card class="customer-account">
+        <mat-card-title>RM’s Acknowledgement</mat-card-title>
+        <mat-divider></mat-divider>
+
+        <mat-card-content formArrayName="terms" class="customer-account" *ngIf="{deviationEnable: getDeviationStatus() | async} as fund">
+            <div class="AckTop">
+                <mat-card-subtitle>Customer decided to purchase the investment product(s) that is/ are recommended
+                    based
+                    on customer’s risk profile.</mat-card-subtitle>
+                <div class="yes-checkbox flex">
+                    <mat-checkbox
+                    [checked]="this.acknowledgementForm.value.terms.includes('Y')"
+                    (change)="onChangeAcknowledment($event)" class="example-margin"
+                    [labelPosition]="labelPosition"
+                    [disabled]="fund.deviationEnable || !(productTransactionForm$ | async)?.isValid || !(salesForm$ | async)?.isValid || fundsInvalid  || (isAdHocSelected ? !(reginalDirectorFrom$ | async)?.isValid : false)" value="Y">
+                        <strong>YES,</strong> the product is recommended based on customer’s risk profile.
+                    </mat-checkbox>
+
+                    <div class="warning" *ngIf="fund.deviationEnable">
+                        <span class="icon-danger-1 icon"></span> <span class="deviation-title">Risk deviation</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="AckBottom">
+                <mat-card-subtitle><strong>NO,</strong> customer decided not to purchase recommended investment
+                    product because:
+                </mat-card-subtitle>
+                <div class="yes-checkbox">
+                    <mat-checkbox [checked]="this.acknowledgementForm.value.terms.includes('N1')" (change)="onChangeAcknowledment($event)" value="N1" class="example-margin"
+                        [labelPosition]="labelPosition" [disabled]="!(productTransactionForm$ | async)?.isValid || !(salesForm$ | async)?.isValid || fundsInvalid || !(reginalDirectorFrom$ | async)?.isValid">
+                        Investment objective, investment strategy and investment horizon does not meet customer’s
+                        needs
+                        and expectations.
+                    </mat-checkbox>
+
+                    <mat-checkbox [checked]="this.acknowledgementForm.value.terms.includes('N2')" value="N2" (change)="onChangeAcknowledment($event)" class="example-margin"
+                        [labelPosition]="labelPosition" [disabled]="!(productTransactionForm$ | async)?.isValid || !(salesForm$ | async)?.isValid || fundsInvalid || !(reginalDirectorFrom$ | async)?.isValid">
+                        Investor decided to invest based on own discretion although the investment product(s) may or
+                        may
+                        not be suitable to the customer’s risk profile.
+                    </mat-checkbox>
+
+                    <mat-checkbox [checked]="this.acknowledgementForm.value.terms.includes('N3')" value="N3" (change)="onChangeAcknowledment($event)" class="example-margin"
+                        [labelPosition]="labelPosition" [disabled]="!(productTransactionForm$ | async)?.isValid || !(salesForm$ | async)?.isValid || fundsInvalid || !(reginalDirectorFrom$ | async)?.isValid">
+                        This is an execution only transaction where no recommendation is made.
+                    </mat-checkbox>
+
+                </div>
+            </div>
+
+        </mat-card-content>
+
+    </mat-card>
+</div>

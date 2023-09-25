@@ -1,0 +1,21 @@
+.mat-card.custom-card {
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12) !important;
+    padding: 1rem !important;
+
+    .mat-card-title {
+        font-size: 1rem;
+        color: var(--n100);
+        font-weight: bold;
+        padding: 0 .5rem;
+        margin-bottom: 1rem !important;
+    }
+
+    .mat-card-content {
+        padding: 1rem .5rem;
+    }
+
+    .mat-divider-horizontal {
+        position: unset;
+    }
+}

@@ -1,0 +1,55 @@
+<div class="margin" *ngIf="(customerProfile$ | async) as customerProfile">
+    <div class="home-tab">
+        <cimb-office-home
+            [isProfileExpired$]="isProfileExpired$ | async"
+            [isUserBlock$]="isUserBlock$() | async"
+            [fundsAvailable]="fundsAvailable"
+            [customer$]="customer$ | async"
+            [riskProfile$]="riskProfile$ | async"
+            [customerProfile$]="customerProfile"
+            [settingsParam$]="settingsParam$ | async"
+        ></cimb-office-home>
+    </div>
+
+    <div class="new-account-transaction">
+        <div>
+            <cimb-office-risk-profile
+                [riskProfile$]="riskProfile$ | async"
+                [isProfileExpired$]="isProfileExpired$ | async"
+                [isUserBlock$]="isUserBlock$() | async"
+                [customerProfile$]="customerProfile"
+            ></cimb-office-risk-profile>
+            <div class="box-shadow mat-margin">
+                <cimb-office-customer-details [customerDetails]="customerProfile"></cimb-office-customer-details>
+            </div>
+
+            <div class="box-shadow mat-margin">
+                <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabChnage($event)" [selectedIndex]="tab">
+                    <mat-tab label="Customer Holdings">
+                        <ng-container *ngIf="tab === 0">
+                            <cimb-office-customer-holding
+                                (fundAvailable)="onFundAvailable($event)"
+                                (fundDetailRedirection)="redirectToFundDetails($event)"
+                                (goToTransaction)="goToTransactionPage($event)"
+                                [isUserBlock$]="isUserBlock$() | async"
+                                [isProfileExpired$]="isProfileExpired$ | async"
+                                [customer$]="customer$ | async"
+                                [customerProfile$]="customerProfile"
+                            ></cimb-office-customer-holding>
+                        </ng-container>
+                    </mat-tab>
+
+                    <mat-tab label="Application Status" >
+                        <ng-container *ngIf="tab === 1">
+                            <cimb-office-app-status></cimb-office-app-status>
+                         </ng-container>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+
+            <div class="box-shadow mat-margin">
+                <cimb-office-total-portfolio></cimb-office-total-portfolio>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+.risk-detail {
+    .update-btn {
+        cursor: pointer;
+    }
+    .action-buttons {
+        margin-top: 3.75rem;
+        justify-content: flex-end;
+
+        button {
+            min-height: 3rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+
+            &.success {
+                width: 14.375rem;
+                color: white;
+            }
+        }
+    }
+
+    .mat-card-title {
+        justify-content: space-between;
+        display: flex;
+
+        a {
+            color: var(--r100);
+        }
+    }
+
+    .mat-card-content {
+        padding: 1.5rem 5.75rem .5rem;
+
+        .riskProfileResult {
+            .heading {
+                font-size: 1rem;
+                font-weight: 600;
+                line-height: 1.5;
+                letter-spacing: 1.28px;
+            }
+
+            .status {
+                padding: 0;
+                .value {
+                    font-size: 1rem;
+                    font-weight: bold;
+                    margin-right: 0.5rem;
+                }
+
+                .tag {
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: var(--n0);
+                    padding: 3px 13px;
+                    line-height: 1.54;
+                    background-color: var(--s100);
+                    border-radius: 0.5rem;
+                }
+            }
+
+            .description {
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    .mb-24 {
+        margin-bottom: 1.5rem;
+    }
+}
+

@@ -1,0 +1,34 @@
+<div class="container login-container">
+    <div class="login-card">
+        <div class="inner">
+            <h1>Login</h1>
+            <p class="error-msg" *ngIf="!!(errorMessage$ | async)">LAN ID and/or password is invalid. Please try again.</p>
+            <form [formGroup]="authForm" autocomplete="off">
+                <mat-form-field>
+                    <label class="customLabel">LAN ID</label>
+                    <input #userName matInput type="text" formControlName="username" required />
+                    <mat-icon class="mat-error-icon" *ngIf="!!(errorMessage$ | async) || (!authForm.controls['username'].valid && authForm.controls['username']?.touched)">error</mat-icon>
+                </mat-form-field>
+                <mat-form-field>
+                    <label class="customLabel">Password</label>
+                    <input #password matInput type="password" (keydown.enter)="login()" formControlName="password" required />
+                    <mat-icon class="mat-error-icon" *ngIf="!!(errorMessage$ | async) || (!authForm.controls['password'].valid && authForm.controls['password']?.touched)">error</mat-icon>
+                </mat-form-field>
+                <button
+                    #loginButton
+                    class="btn-custom btn-red"
+                    mat-flat-button
+                    type="button"
+                    (click)="login()"
+                    [disabled]="!authForm.valid"
+                >
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="login-bottom">
+        <div class="login-bottom-helpText">Need help with your account?</div>
+        <div class="login-bottom-helpText">Email to <a href="mailto:support@cimb.com?subject=">support@cimb.com </a></div>
+    </div>
+</div>

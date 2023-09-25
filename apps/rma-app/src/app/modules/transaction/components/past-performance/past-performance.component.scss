@@ -1,0 +1,59 @@
+
+
+    .subHeading {
+        font-size: 0.875rem;
+        font-weight: bold;
+        line-height: 1.54;
+        color: var(--n100);
+        margin-bottom: 1.5rem;
+    }
+
+    .performance {
+        flex-direction: row;
+        align-items: center;
+        .stats {
+            width: 66.6666%;
+            flex-direction: row;
+            div {
+                width: 20%;
+
+                .title {
+                    font-size: 0.875rem;
+                    line-height: 1.54;
+                    color: var(--n60);
+                    margin-bottom: 0.25rem;
+                }
+
+                .value {
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    color: var(--n100);
+                    font-weight: bold;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .rating {
+            width: 33.3333%;
+            justify-content: end;
+            .morning-start-logo {
+                width: 125px;
+                height: auto;
+                display: block;
+                margin: auto;
+                margin-bottom: 0.875rem;
+            }
+            div.star {
+                .mat-icon {
+                    &.filled {
+                        color: var(--r100);
+                    }
+                    color: var(--n40);
+                    font-size: 1.75rem;
+                    width: 1.75rem;
+                    height: 1.75rem;
+                }
+            }
+        }
+    }

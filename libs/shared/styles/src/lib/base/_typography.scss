@@ -1,0 +1,92 @@
+.mat-typography {
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6 {
+    font-family: var(--OpenSans);
+    text-rendering: optimizeLegibility;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0.3125rem;
+    font-weight: var(--bold);
+    color: var(--n100);
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+
+    @media (min-width: 37.5rem) {
+      font-size: 1.25rem;
+    }
+  }
+  h3 {
+    font-size: 0.875rem;
+
+    @media (min-width: 37.5rem) {
+      font-size: 1.5rem;
+    }
+  }
+  h4 {
+    font-size: 1.25rem;
+  }
+  h5 {
+    font-size: 1rem;
+  }
+  h6 {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+  }
+  p {
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+  }
+  ul {
+    padding-left: 0;
+
+    li {
+      padding-left: 0;
+      list-style: none;
+    }
+  }
+  ol {
+    li {
+      padding-left: 0;
+    }
+  }
+  a {
+    font-size: 0.875rem;
+    text-decoration: none;
+    outline: 0;
+
+    &:hover {
+      background: none;
+    }
+  }
+}
+label {
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  color: var(--n80);
+
+  small {
+    display: block;
+    font-size: 0.75rem;
+    color: #d1d1d1;
+    font-weight: var(--regular);
+  }
+  &.mat-radio-label {
+    margin-bottom: 0;
+  }
+}

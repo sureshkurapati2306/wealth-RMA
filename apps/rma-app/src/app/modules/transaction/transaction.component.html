@@ -1,0 +1,84 @@
+<div class="page-top-container">
+    <div class="breadscrumbs">
+        <cimb-office-breadcrumb [breadcrumbs]="breadcrumbs"></cimb-office-breadcrumb>
+    </div>
+
+    <div class="page-details">
+        <div class="page-details--left">
+            <cimb-office-page-title [backButtonUrl]="'/customer'" [pageTitle]="pageTitle" [showCustomerDetails]="customerDetails"></cimb-office-page-title>
+        </div>
+        <div class="page-details-right">
+            <div class="progress-status">
+                <div class="transaction step active">
+                    <div class="step1 stepIndex">1</div>
+                    <div class="step-text">Transaction</div>
+                </div>
+                <div class="dot-line"></div>
+                <div class="summary step">
+                    <div class="step2 stepIndex">2</div>
+                    <div style="font-weight: 400;" class="step-text">Summary</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-container transaction-data">
+
+    <cimb-office-product-transaction
+        (informParentTransaction)="transactionFunds($event)"
+        (fundWarning)="fundWarning($event)"
+        (pageTypeData)="pageTypeData($event)"
+        (radioButtonChange)="onRadioChange($event)"
+        >
+    </cimb-office-product-transaction>
+
+    <cimb-office-funds
+        (removeFund)="onRemoveFunds($event)"
+        [dataFromSearchFunds]="this.parentTransactionFunds"
+        (fundDataChange)="onFundDataChange($event)">
+    </cimb-office-funds>
+
+    <cimb-office-adhoc-approval *ngIf="isAdHocSelected || isNondefaultSettlementAccount"></cimb-office-adhoc-approval>
+
+    <cimb-office-sales></cimb-office-sales>
+
+    <cimb-office-acknowledgement  *ngIf="pageType !== 'Redeem'" [fundsInvalid]="this.fundsInvalid" [isAdHocSelected]="isAdHocSelected"></cimb-office-acknowledgement>
+
+    <div class="button-actions">
+
+        <div class="left-btns">
+            <button *ngIf="isDraftPage" mat-button class="mat-focus-indicator warn action-btn save red-secondary-btn mat-button mat-button-base" (click)="delete_Draft()">Delete Draft</button>
+            <button mat-button
+            *ngIf="!isEditPage"
+            (click)="saveDraft(false)"
+                class="mat-focus-indicator warn action-btn save red-secondary-btn mat-button mat-button-base">
+                Save Draft
+            </button>
+            <button (click)="createOrCancelConfirmation(true)" mat-button
+                class="mat-focus-indicator cancel action-btn black-secondary-btn mat-button mat-button-base">
+                Cancel
+            </button>
+        </div>
+
+        <ng-container *ngIf="transactionService.transactionType !== 'Redeem'; else noAcknolwdgement">
+            <div class="btn-right" *ngIf="acknowledgeFormStatus$ | async, let acknowledgeFormStatus">
+                <button mat-button (click)="isEditPage ? dispatchCreateApplication() : createOrCancelConfirmation(false);"
+                    [disabled]="!acknowledgeFormStatus?.isValid"
+                    class="mat-focus-indicator create action-btn mat-button mat-button-base"
+                    [ngClass]="!acknowledgeFormStatus?.isValid ? 'graybg-btn ': 'btn-red'">
+                    {{ isEditPage ? 'Save & Resubmit' : 'Create Application'}}
+                </button>
+            </div>
+        </ng-container>
+        <ng-template #noAcknolwdgement>
+            <div class="btn-right" *ngIf="{isValid: createApplicationStatus() | async } as form">
+                <button mat-button (click)="isEditPage ? dispatchCreateApplication() : createOrCancelConfirmation(false);" [disabled]="!form?.isValid"
+                class="mat-focus-indicator create action-btn mat-button mat-button-base"
+                [ngClass]="!form?.isValid ? 'graybg-btn ': 'btn-red'">
+                    {{ isEditPage ? 'Save & Resubmit' : 'Create Application'}}
+                </button>
+            </div>
+        </ng-template>
+
+    </div>

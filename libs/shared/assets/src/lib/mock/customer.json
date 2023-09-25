@@ -1,0 +1,156 @@
+[
+    {
+      "id": "625d0c46aced26ac70593b96",
+      "coustomer": "Hoffman Haney",
+      "createdDate": "Thu Apr 23 1998 15:00:58 GMT+0530 (India Standard Time)",
+      "refID": 6758,
+      "status": "Draft",
+      "type": "New Account",
+      "gender": "male",
+      "cifNumber": "10330000219671",
+      "customerType": "ETP"
+    },
+    {
+      "id": "625d0c46aced26ac70593b36",
+      "coustomer": "Tonny Stark",
+      "createdDate": "Thu Apr 23 1998 15:00:58 GMT+0530 (India Standard Time)",
+      "refID": 6758,
+      "status": "Draft",
+      "type": "New Account",
+      "gender": "male",
+      "cifNumber": "10280000511312",
+      "customerType": "ETP"
+    },
+    {
+      "id": "625d0c465f295b6b83c93769",
+      "coustomer": "Stephenson Wilson",
+      "createdDate": "Sat Feb 04 1989 07:38:22 GMT+0530 (India Standard Time)",
+      "refID": 8712,
+      "status": "Pending Approval",
+      "type": "Redeem",
+      "gender": "male",
+      "cifNumber": "10110000311801",
+      "customerType": "NTP"
+    },
+    {
+      "id": "625d0c465f295b6b83c93769",
+      "coustomer": "Stephenson Wilson",
+      "createdDate": "Sat Feb 04 1989 07:38:22 GMT+0530 (India Standard Time)",
+      "refID": 8712,
+      "status": "Pending Approval",
+      "type": "Redeem",
+      "gender": "male",
+      "cifNumber": "10300000139447",
+      "customerType": "NTP"
+    },
+    {
+      "id": "625d0c4627e819ecc06e0312",
+      "coustomer": "Corinne Lang",
+      "createdDate": "Fri Feb 27 1970 03:22:26 GMT+0530 (India Standard Time)",
+      "refID": 8516,
+      "status": "Pending Approval",
+      "type": "Redeem",
+      "gender": "female",
+      "cifNumber": "10270000007722",
+      "customerType": "ETP"
+    },
+    {
+      "id": "625d0c465f2651a64645ea45",
+      "coustomer": "Adkins Maynard",
+      "createdDate": "Sat Feb 03 2018 09:25:05 GMT+0530 (India Standard Time)",
+      "refID": 5503,
+      "status": "Confirmed",
+      "type": "Subscribe",
+      "gender": "male",
+      "cifNumber": "10110000182691",
+      "customerType": "NTP"
+    },
+    {
+      "id": "625d0c4662c246ff459713c5",
+      "coustomer": "Ilene Hicks",
+      "createdDate": "Tue Nov 23 1999 04:31:07 GMT+0530 (India Standard Time)",
+      "refID": 2647,
+      "status": "Confirmed",
+      "type": "New Account",
+      "gender": "female",
+      "cifNumber": "10350000024717",
+      "customerType": "ETP"
+    },
+    {
+      "id": "625d0c46c3153840b4d135a8",
+      "coustomer": "Gross Clements",
+      "createdDate": "Sat Mar 29 1986 04:37:43 GMT+0530 (India Standard Time)",
+      "refID": 5928,
+      "status": "Pending Approval",
+      "type": "New Account",
+      "gender": "male",
+      "cifNumber": "10210000020351",
+      "customerType": "NTP"
+    },
+    {
+      "id": "625d0c468f4ddd01171287aa",
+      "coustomer": "Middleton Spencer",
+      "createdDate": "Wed Sep 30 2009 12:48:05 GMT+0530 (India Standard Time)",
+      "refID": 2554,
+      "status": "Confirmed",
+      "type": "Redeem",
+      "gender": "male",
+      "cifNumber": "10170000023648",
+      "customerType": "NTP"
+    },
+    {
+        "id": "625d0c468f4ddd01171287aa",
+        "coustomer": "Paul Walker",
+        "createdDate": "Wed Sep 30 2009 12:48:05 GMT+0530 (India Standard Time)",
+        "refID": 2554,
+        "status": "Confirmed",
+        "type": "Redeem",
+        "gender": "male",
+        "cifNumber": "10330000231584",
+        "customerType": "ETP"
+      },
+      {
+        "id": "625d0c468f4ddd01171287aa",
+        "coustomer": "Domanic Torato",
+        "createdDate": "Wed Sep 30 2009 12:48:05 GMT+0530 (India Standard Time)",
+        "refID": 2554,
+        "status": "Confirmed",
+        "type": "Redeem",
+        "gender": "male",
+        "cifNumber": "10280000511148",
+        "customerType": "ETP"
+      },
+      {
+        "id": "625d0c468f4ddd01171287aa",
+        "coustomer": "Ellen",
+        "createdDate": "Wed Sep 30 2009 12:48:05 GMT+0530 (India Standard Time)",
+        "refID": 2554,
+        "status": "Confirmed",
+        "type": "Redeem",
+        "gender": "male",
+        "cifNumber": "10280000511145",
+        "customerType": "ETP"
+      },
+      {
+        "id": "625d0c468f4ddd01171287aa",
+        "coustomer": "Alex Robertto",
+        "createdDate": "Wed Sep 30 2009 12:48:05 GMT+0530 (India Standard Time)",
+        "refID": 2554,
+        "status": "Confirmed",
+        "type": "Redeem",
+        "gender": "male",
+        "cifNumber": "10330000094273",
+        "customerType": "ETP"
+      },
+      {
+        "id": "625d0c468f4ddd01171287aa",
+        "coustomer": "Nand Kishor Naidu",
+        "createdDate": "Wed Sep 30 2009 12:48:05 GMT+0530 (India Standard Time)",
+        "refID": 2554,
+        "status": "Confirmed",
+        "type": "Redeem",
+        "gender": "male",
+        "cifNumber": "10280000511133",
+        "customerType": "NTP"
+      }
+  ]

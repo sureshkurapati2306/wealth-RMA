@@ -1,0 +1,59 @@
+<div class="customerSearch">
+    <mat-form-field appearance="outline" floatLabel="never" class="typeahead-input mint-office-auto-complete-dropdown">
+        <input class="inputType" #setFocus matInput [matAutocomplete]="automobile"
+        [placeholder]="dashboardTemplate ? 'Search Customer ID Number' : 'Search Customer ID Number to Create an Application'" [formControl]="searchValue" />
+
+        <a *ngIf="searchValue.value.length > 0" (click)="clearInput()" class="clearBtn"
+            matSuffix>
+            <p>Clear</p>
+        </a>
+        <mat-icon class = "cursor-ptr" [ngClass]="{'active': searchValue.value.length > 0}" matSuffix>search</mat-icon>
+
+        <mat-autocomplete class="mint-office-auto-complete-panel mobile-autocomplete dashboard" #automobile="matAutocomplete"
+            (optionSelected)="getSelectedOption($event)" panelClass="typeahead-panel">
+            <div class="outer">
+                <ng-container *ngIf="{customers: customers$ | async} as data">
+                    <ng-container *ngIf="data.customers && data.customers.length > 0; else noDataFound">
+                        <ng-container *ngIf="dashboardTemplate; else searchPageLayout;">
+                            <mat-option *ngFor="let option of data.customers" [value]="option.cifNumber" [id]="option.cifNumber">
+
+                                <div class="flex optionLayout">
+                                    <div>
+                                        {{option.coustomer}}
+                                    </div>
+                                    <div>
+                                        {{ getNric(option) }}
+                                    </div>
+                                </div>
+
+                            </mat-option>
+                        </ng-container>
+
+
+                        <ng-template #searchPageLayout>
+                            <mat-option *ngFor="let option of data.customers" [value]="option.cifNumber" class="searchPage" [id]="option.cifNumber">
+
+                                <div class="flex optionLayout f-10">
+                                    <div>
+                                        {{option.cifNumber}}
+                                    </div>
+                                    <div>
+                                        {{ option.coustomer }}
+                                    </div>
+                                </div>
+                            </mat-option>
+                        </ng-template>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <ng-template #noDataFound>
+                <mat-option>
+                    <div class="noDataFound">
+                        No result(s) found for <strong>{{ searchValue.value }}</strong>
+                    </div>
+                </mat-option>
+            </ng-template>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+

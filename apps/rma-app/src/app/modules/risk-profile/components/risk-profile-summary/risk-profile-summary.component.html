@@ -1,0 +1,80 @@
+<div class="rpq-approval rpq-card" *ngIf="(customerApprovalLinkData$ | async), let approvalLinkData">
+    <mat-card *ngIf="approvalLinkData.customerApprovalStatus !== 'A'">
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState=true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span class="boldText">RPQ Approval Link</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+
+                <mat-card-content class="rpq-status" >
+                    <h5 class="details-container">application status</h5>
+                    <div [ngClass]="approvalLinkData.customerApprovalStatus === 'R' || approvalLinkData.customerApprovalStatus === 'E'? 'status1' : 'status' ">
+                        <div class="approval-status" [ngSwitch]="approvalLinkData?.customerApprovalStatus">
+                            <div class="status-lable-rpq">
+                                Customer Approval Status
+                            </div>
+                            <div class="yellow-rpq a-link-rpq" *ngSwitchCase="'P'">
+                                <strong>Pending Approval</strong>
+                            </div>
+                            <div class="text-black-rpq" *ngSwitchDefault>
+                                <strong>N/A</strong>
+                            </div>
+                            <div class="red-rpq" *ngSwitchCase="'R'">
+                                <strong>Declined &nbsp;({{transformDate(approvalLinkData.createdOn)}})</strong>
+                            </div>
+                            <div class="green-rpq" *ngSwitchCase="'A'">
+                                <strong>Approved</strong>
+                            </div>
+
+                            <div class="red-rpq" *ngSwitchCase="'E'">
+                                <strong>Cancelled - Please create a new application</strong>
+                            </div>
+                            <div class="status-info-rpq" *ngSwitchCase="'R'">
+                                Please change the answers for question #3, #4 and #8
+                            </div>
+                        </div>
+                        <div *ngIf="approvalLinkData.customerApprovalStatus === 'R'">
+                            <button (click)="gotoRiskProfileEdit()" mat-button class="remainder-button">Edit Risk Profile</button>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-divider *ngIf="approvalLinkData.customerApprovalStatus !== 'A'"></mat-divider>
+                <div>
+                    <cimb-office-customer-approval-link *ngIf="approvalLinkData.customerApprovalStatus !== 'A'" [customerApprovalLinkData]="approvalLinkData"></cimb-office-customer-approval-link>
+                </div>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </mat-card>
+</div>
+<div class="risk-detail">
+    <mat-card class="custom-card ">
+        <mat-card-title class="flex">
+            <span>
+                Risk Profiling Details
+            </span>
+            <button class="edit-button"
+                *ngIf="(customerApprovalLinkData$ | async)?.customerApprovalStatus === 'R'"
+                type="button"
+                mat-button
+                (click)="gotoRiskProfileEdit()"
+                >
+                Edit/ Update Risk Profile
+            </button>
+
+        </mat-card-title>
+        <mat-divider></mat-divider>
+
+        <mat-card-content *ngIf="customerApprovalLinkData$ | async; let customerApprovalLinkData">
+            <cimb-office-risk-profile-questionnaire [customerApprovalLinkQuestionarie]="customerApprovalLinkData.RPQuestionaire ? customerApprovalLinkData.RPQuestionaire : []"></cimb-office-risk-profile-questionnaire>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="action-buttons flex">
+        <button (click)="gotoCustomerProfile()" mat-raised-button color="warn" class="success">Back to Customer Profile</button>
+    </div>
+</div>

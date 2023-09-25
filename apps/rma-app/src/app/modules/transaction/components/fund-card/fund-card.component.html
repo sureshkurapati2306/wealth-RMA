@@ -1,0 +1,383 @@
+<mat-card class="fundCard" *ngIf="{riskProfileInquiry: riskProfileInquiry$ | async} as customerDetails">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" #matExpansionPanel
+        [class.active]="selected" [ngClass]="{'inactiveFund': fundDeatil.details?.fundStatus === 'C' || fundDeatil.details?.fundStatus === 'D'}"
+        [expanded]="expanded">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="flex">
+                        <div class="wrapper flex">
+                            <div class="title">
+                                <div class="boldText flex">
+                                    <div>{{ fundDeatil.fundName }}</div>
+                                    <div *ngIf="fundDeatil.focusFund === 1" class="outline warn">Focus Funds</div>
+                                    <div *ngIf="fundDeatil.customerHolding === 1" class="outline info">Customer’s Holdings</div>
+                                    <div *ngIf="fundDeatil.wholeSale === 1" class="outline warn">Wholesale</div>
+                                    <div *ngIf="fundDeatil.closeEnded === 1" class="outline">Close Ended</div>
+                                    <div *ngIf="fundDeatil.details?.fundStatus === 'D'" class="outline disabled">Closed</div>
+                                    <div *ngIf="fundDeatil.details?.fundStatus === 'C'" class="outline disabled">Inactive</div>
+                                    <div *ngIf="fundDeatil.customerHolding === 0" class="outline">New Subscription</div>
+                                    <ng-container *ngIf="isRiskDeviation(customerDetails?.riskProfileInquiry, fundDeatil)">
+                                        <div class="warning">
+                                            <span class="icon-danger-1 icon"></span> <span class="deviation-title">Risk deviation</span>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="fundDeatil.details" >
+                                <div class="subtitle">{{ getRiskType(fundDeatil.details.riskRating) | uppercase }} <span *ngIf="fundDeatil.details?.fundIndicator === 'I'">{{ '| Shariah Compliant' | uppercase }}</span></div>
+                           </ng-container>
+
+                        </div>
+                        <mat-action-row>
+                            <button mat-stroked-button color="accent" (click)="$event.stopPropagation(); removeRecord()"><mat-icon>delete</mat-icon></button>
+                        </mat-action-row>
+                    </div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div *ngIf="panelOpenState" class="text-area-remark">
+                <div class="fund-details flex">
+                    <div class="fund-status">
+                        <ng-container *ngIf="fundDeatil.details">
+                            <p class="category" [ngStyle]="{'border-left':'0.25rem solid' +fundDeatil.details.colorCode}">{{ fundDeatil.details?.assetClass }}</p>
+                         </ng-container>
+                        <a class="link" (click)="openFundDetails(fundDeatil)">View Fund Details</a>
+                    </div>
+
+                    <div class="stats flex">
+                        <div class="nav-details col">
+                            <div>
+                                <p class="title">NAV Price (As of {{ fundDeatil.details?.navDate | date:'MMM d y' }})</p>
+                                <p class="value" *ngIf="fundDeatil.details?.nav !== 0 && fundDeatil.details?.nav"><span class="curruncy">MYR</span>{{ fundDeatil.details?.nav ? (fundDeatil.details?.nav | number: '1.6-6') : 0}}</p>
+                                <p class="value" *ngIf="fundDeatil.details?.nav === 0 || !fundDeatil.details?.nav">MYR 0</p>
+                            </div>
+
+                            <div>
+                                <p class="title">Total Invested</p>
+                                <p class="value" *ngIf="!fundDeatil.details?.totalInvested || (fundDeatil.details?.totalInvested && fundDeatil.details?.totalInvested === 0)">MYR 0</p>
+                                <p class="value" *ngIf="fundDeatil.details?.totalInvested !== 0 && fundDeatil.details?.totalInvested"><span class="curruncy">MYR</span>{{ fundDeatil.details?.totalInvested | number: '1.2-2'}}</p>
+                            </div>
+                        </div>
+
+                        <div class="unit-hold col">
+                            <div class="sup">
+                                <p class="title">Units Held </p>
+                                <p class="value">{{ fundDeatil.details?.unitsHeld | number: '1.2-2' }}</p>
+                            </div>
+
+                            <div>
+                                <p class="title">Current Investment Value</p>
+                                <ng-container *ngIf="fundDeatil.details">
+                                <p class="value" *ngIf="fundDeatil.details?.unitsHeld !== 0 && fundDeatil.details?.nav !== 0 && fundDeatil.details?.unitsHeld && fundDeatil.details?.nav"><span class="curruncy">MYR</span>{{ (this.fundDeatil.details.nav * this.fundDeatil.details.unitsHeld) | number: '1.2-2'}}</p>
+                                <p class="value" *ngIf="fundDeatil.details?.unitsHeld === 0 || fundDeatil.details?.nav === 0 || !fundDeatil.details?.unitsHeld || !fundDeatil.details?.nav">MYR 0</p>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="returns col" *ngIf="fundDeatil.details">
+                            <div>
+                                <p class="title">Returns<span *ngIf="fundDeatil?.details?.returns !== 0" Class="ruturnMyr"> ({{ getReturnValue(fundDeatil.details.totalInvested, fundDeatil.details.returns) }})</span></p>
+                                <p class="value"><span class="curruncy">
+                                    <ng-container *ngIf="{isNegative: getReturnValue(fundDeatil.details.totalInvested, fundDeatil.details.returns).startsWith('-')} as roi">
+                                        <mat-icon class="trending-up" [ngClass]="{'warn': roi.isNegative}" *ngIf="fundDeatil?.details?.returns !== 0">{{ roi.isNegative ? 'trending_down' : 'trending_up'}}</mat-icon>
+                                    </ng-container>
+                                    </span>{{ fundDeatil.details?.returns ? fundDeatil.details?.returns : 0 }}%
+                                </p>
+                            </div>
+
+                            <div *ngIf="!!fundDeatil?.details?.pledgeUnit && fundDeatil?.details?.pledgeUnit !== 0 && (pageType === 'Redeem' || pageType === 'Switch')">
+                                <p class="title">Pledged Units</p>
+                                <ng-container *ngIf="fundDeatil.details">
+                                    <p class="value" *ngIf="fundDeatil.details?.pledgeUnit !== 0">
+                                        {{ this.fundDeatil.details.pledgeUnit | number: '1.2-2' }}
+                                    </p>
+                                </ng-container>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-divider></mat-divider>
+        <div class="text-area-remark" *ngIf="fundDeatil" [ngClass]="{'inactiveFund': (fundDeatil.details?.fundStatus === 'C' || fundDeatil.details?.fundStatus === 'D')}" >
+            <div *ngIf="pageType !== 'Redeem' && pageType !== 'Switch'" class="accountForm tnxTypePanel bg-n5h card-botton-border-radius pb-2" [formGroup]="accountForm">
+                <div class="form-group flex pt-2" >
+                    <div class="subscription-amount mr-2">
+                        <div class="label">Subscription amount (MYR)</div>
+                        <mat-form-field appearance="outline" floatLabel="never">
+                            <input
+                                #amount
+                                matInput
+                                [attr.placeholder]="(minSubscriptionAmount ? minSubscriptionAmount : '1000') | number:'1.2-2'"
+                                formControlName="totalAmount"
+                                cimbAmountDirective
+                                (focusout)="enableForm()"
+                                (blur)="onBlur()"
+                                (change)="enableForm()">
+                        <mat-icon class="error amount" *ngIf="f.totalAmount.errors && f.totalAmount.touched && f.totalAmount.dirty" matSuffix>error_outline</mat-icon>
+                        </mat-form-field>
+                        <ng-container *ngIf="f.totalAmount.errors && f.totalAmount.touched && f.totalAmount.dirty; else amountInfo">
+                            <p class="text" *ngIf="f.totalAmount.errors && f.totalAmount.errors['required']">Minimum: MYR {{ minSubscriptionAmount | number:'1.2-2' }}</p>
+                            <p class="text" *ngIf="f.totalAmount.errors && f.totalAmount.errors['transactionAmount']">Amount exceeded the total transaction amount</p>
+                            <p class="text" *ngIf="f.totalAmount.errors && f.totalAmount.errors['maxSubscription']">Maximum: MYR {{ f.totalAmount.errors['value'] | number:'1.2-2' }}</p>
+                            <p class="text" *ngIf="f.totalAmount.errors && f.totalAmount.errors['minSubscription']">Minimum: MYR {{ f.totalAmount.errors['value'] | number:'1.2-2' }}</p>
+                        </ng-container>
+                        <ng-template #amountInfo>
+                            <p class="info warning" *ngIf="f.totalAmount.value">Maximum: <span class="bold">MYR {{ maxSubscriptionAmount | number:'1.2-2' }}</span></p>
+                            <p class="info warning" *ngIf="!f.totalAmount.value">Minimum: <span class="bold">MYR {{ minSubscriptionAmount | number:'1.2-2' }}</span></p>
+                        </ng-template>
+                    </div>
+
+                    <div class="sales-charge-promotion">
+                        <div class="label">sales charge / Promotion</div>
+                        <mat-form-field appearance="outline" floatLabel="never" class="select-panel">
+                            <mat-select placeholder="Default sales charge (3% - 5%)" formControlName="salesChargeId" (selectionChange)="onSalesChargeIdChange($event.value)"
+                                panelClass="custom-select-panel transaction">
+                                <ng-container *ngIf="_salesChargeDropDown">
+                                    <ng-container *ngFor="let item of _salesChargeDropDown">
+                                        <mat-option [value]="item.scId" *ngIf="(fundDeatil.closeEnded !== 1) || (fundDeatil.closeEnded === 1 && item.scId !== 'adhoc')">
+                                            <div>
+                                                <div class="min">{{ item.scName + " " }}</div>
+                                                <div *ngIf="((item.scId !== 'default' && item.rate) && (!item.minRate && item.rate))" class="min">({{item.rate}}%)</div>
+                                                <div *ngIf="(!item.rate && item.minRate) || item.minRate" class="min">
+                                                    <span *ngIf="!item.rate; else rate">({{item.minRate}}% - {{item.maxRate}}%)</span>
+                                                    <ng-template #rate>({{item.rate}}%)</ng-template>
+                                                </div>
+                                            </div>
+                                        </mat-option>
+                                    </ng-container>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="rate">
+                        <div class="label">rate (%)</div>
+                        <mat-form-field appearance="outline" floatLabel="never">
+                            <input
+                                matInput
+                                placeholder="0"
+                                #rate
+                                formControlName="salesChargeRate"
+                                (focus)="removePercentage()"
+                                (keypress)="formatDecimalError($event, rate)"
+                                (blur)="formatRate()"
+                                (paste)="rateValidationCheckOnPaste($event)"
+                                [ngClass]="!!this.f.salesChargeId.value ? 'text-black' : '' "
+                            >
+
+                            <mat-error class="rateError">Invalid Range</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="slaes-charge">
+                        <div class="label">sales charge (MYR)</div>
+                        <mat-form-field appearance="outline" floatLabel="never">
+                            <input [ngClass]="!!this.f.salesChargeId.value ? 'text-black' : '' " readonly matInput placeholder="0" formControlName="salesChargeAmount">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="description bottom-radiuses" *ngIf="f.salesChargeId.value === 'adhoc'">
+                    <p class="note">Note: Your sales charge request will be routed to the Authorised Person for approval.</p>
+                    <div>
+                        <div class="label flex justificationTxtArea">
+                            <div>
+                                ENTER justification
+                            </div>
+                            <div>
+                                {{ f.remark.value.length }}/500
+                            </div>
+                        </div>
+                        <mat-form-field appearance="outline" floatLabel="never">
+                            <textarea matInput placeholder="Please justify for the adhoc discount request" rows="3" formControlName="remark" (keypress)="formatDescription($event)"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="pageType === 'Redeem'" class="accountForm tnxTypePanel bg-n5h card-botton-border-radius" [formGroup]="redeemForm">
+                <div class="row flex pt-2">
+                    <div class="w-50 form-group pr-16">
+                        <div class="units inputBg mr-2">
+                            <div class="label">UNITS</div>
+                            <mat-form-field appearance="outline" floatLabel="never">
+                                <input
+                                matInput
+                                [attr.placeholder]="((fundDeatil.details && fundDeatil.details.minRealizationUnit) ? fundDeatil.details.minRealizationUnit : '1000') | number:'1.2-2'"
+                                cimbAmountDirective
+                                formControlName="outUnit"
+                                >
+                                <mat-icon class="error" *ngIf="rForm.outUnit.errors && rForm.outUnit.touched && rForm.outUnit.dirty" matSuffix>error_outline</mat-icon>
+                            </mat-form-field>
+                            <ng-container *ngIf="rForm.outUnit.errors && rForm.outUnit.touched && rForm.outUnit.dirty; else noSwitchOutError">
+                                <p class="minimumUnit error" *ngIf="rForm.outUnit.errors['minRedeem']">Minimum Redemption Units: <strong>{{ rForm.outUnit.errors['minRedeem'] | number:'1.2-2' }}</strong></p>
+                                <p class="minimumUnit error" *ngIf="rForm.outUnit.errors['maxRedeem']">Maximum Redemption Units: <strong>{{ rForm.outUnit.errors['maxRedeem'] | number:'1.2-2' }}</strong></p>
+                            </ng-container>
+                            <ng-template #noSwitchOutError>
+                                <ng-container *ngIf="fundDeatil.details && fundDeatil.details.minRealizationUnit">
+                                <p class="minimumUnit" *ngIf="fundDeatil.details.minRealizationUnit && getUnitInNumber(rForm.outUnit.value) < fundDeatil.details.minRealizationUnit">Minimum Redemption Units: <strong>{{ fundDeatil.details.minRealizationUnit | number:'1.2-2' }}</strong></p>
+                                <p class="minimumUnit" *ngIf="fundDeatil.details.maxRealizationUnit && getUnitInNumber(rForm.outUnit.value) >= fundDeatil.details.minRealizationUnit">Maximum Redemption Units: <strong>{{ fundDeatil.details.maxRealizationUnit | number:'1.2-2' }}</strong></p>
+                            </ng-container>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="w-25 form-group">
+                        <div class="feesNdAmt">
+                            <div class="non_padding_label">EXIT FEES</div>
+                            <p class="exitFeeValue">MYR 0</p>
+                        </div>
+                    </div>
+
+                    <div class="w-25 form-group">
+                        <div class="feesNdAmt">
+                            <div class="non_padding_label"><span>INDICATIVE AMOUNT</span><mat-icon class="matIcon">help_outline</mat-icon></div>
+                            <p class="exitFeeValue">MYR 0</p>
+                            <span class="indicativeCaption">
+                                (excludes exit fees)
+                                Based on 7 June 2021 NAV
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-1">
+                    <div class="w-50">
+                        <div class="bottom-radiuses redeemAllDiv">
+                            <div class="redeemAllCheckBoxDiv">
+                                <mat-checkbox formControlName="redeemAll" (change)="onRedeemChange($event)">
+                                    <span class="redeemAllLabel">Redeem All</span>
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div *ngIf="pageType === 'Switch'" class="accountForm tnxTypePanel bg-n5h card-botton-border-radius" [formGroup]="switchForm">
+                <div class="w-100 pt-2">
+                    <p class="text-right mb-0">
+                        <mat-icon class="accent">delete</mat-icon>
+                    </p>
+                </div>
+                <div class="row flex form-group">
+                    <div class="w-25 pr-16 inputBg">
+                        <div class="subscription-amount switch-out">
+                            <div class="label switchOutUnits">Switch out Units</div>
+                            <mat-form-field appearance="outline" floatLabel="never">
+                                <input matInput
+                                [attr.placeholder]="((fundDeatil.details && fundDeatil.details.minRealizationUnit) ? fundDeatil.details.minRealizationUnit : '1000') | number:'1.2-2'"
+                                cimbAmountDirective
+                                formControlName="outUnit"
+                                >
+                                <mat-icon class="error" *ngIf="sForm.outUnit.errors && sForm.outUnit.touched && sForm.outUnit.dirty" matSuffix>error_outline</mat-icon>
+                            </mat-form-field>
+
+                            <ng-container *ngIf="sForm.outUnit.errors && sForm.outUnit.touched && sForm.outUnit.dirty; else noSwitchOutError">
+                                <p class="minimumUnit error" *ngIf="sForm.outUnit.errors['minSwitchOut']">Minimum Units: <strong>{{ sForm.outUnit.errors['minSwitchOut'] | number:'1.2-2' }}</strong></p>
+                                <p class="minimumUnit error" *ngIf="sForm.outUnit.errors['maxSwitchOut']">Maximum Units: <strong>{{ sForm.outUnit.errors['maxSwitchOut'] | number:'1.2-2' }}</strong></p>
+                            </ng-container>
+                            <ng-template #noSwitchOutError>
+                                <ng-container *ngIf="fundDeatil && fundDeatil.details">
+                                <p class="minimumUnit" *ngIf="fundDeatil.details.minRealizationUnit && getUnitInNumber(sForm.outUnit.value) < fundDeatil.details.minRealizationUnit">Minimum Units: <strong>{{ fundDeatil.details.minRealizationUnit | number:'1.2-2' }}</strong></p>
+                                <p class="minimumUnit" *ngIf="fundDeatil.details.maxRealizationUnit && fundDeatil.details.minRealizationUnit && getUnitInNumber(sForm.outUnit.value) >= fundDeatil.details.minRealizationUnit">Maximum Units: <strong>{{ fundDeatil.details.maxRealizationUnit | number:'1.2-2' }}</strong></p>
+                            </ng-container>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="w-75">
+                        <div class="risk-category investment-dropdown sales-branch-dropdown switchin-fund" *ngIf="switchOutFunds$ | async as switchOutFunds">
+                            <div class="label switchOutUnits">Switch in to</div>
+                            <mat-form-field appearance="outline" floatLabel="never" class="select-panel places">
+                                <input #setFocus matInput [matAutocomplete]="automobile" (click)="setFocus.select()"  placeholder="Search and Select Fund"
+                                formControlName="switchSearchParam" [ngClass]="{'inactiveFund': selectedSwitchInFund && (selectedSwitchInFund.fundStatus === 'C' || selectedSwitchInFund.fundStatus === 'D')}"/>
+
+                            <div class="mat-select-arrow-wrapper" [ngClass]="{'arrow-up': automobile.isOpen}"
+                                matSuffix>
+                                <div class="tag" *ngIf="!automobile.isOpen && selectedSwitchInFund && (selectedSwitchInFund.fundStatus === 'C' || selectedSwitchInFund.fundStatus === 'D')">
+                                    Inactive
+                                </div>
+                            </div>
+                            <mat-autocomplete class="mobile-autocomplete sales-branch" #automobile="matAutocomplete"
+                                panelClass="typeahead-panel" (optionSelected)="getSelectedSwitchOut($event)">
+
+                                <ng-container *ngIf="switchOutFunds.length > 0; else noDataFound">
+                                    <mat-option #salesOption class="dff" *ngFor="let fund of switchOutFunds" [disabled]="fund.fundStatus === 'C' || fund.fundStatus === 'D'"
+                                        [value]="fund">
+                                        {{ fund.fundName }}
+                                        <span class="chip" *ngIf="fund.fundStatus === 'C' || fund.fundStatus === 'D'">Inactive</span>
+                                    </mat-option>
+                                </ng-container>
+                                <ng-template #noDataFound>
+                                    <mat-option>
+                                        <div class="noDataFound">
+                                            No result(s) found
+                                        </div>
+                                    </mat-option>
+                                </ng-template>
+                            </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row flex inputBg pt-1">
+                    <div class="w-25 pr-16">
+                        <mat-checkbox formControlName="switchAll" (change)="onSwitchAllChange($event)" class="example-margin reqSwitchFees">Switch All</mat-checkbox>
+                    </div>
+                    <div class="w-75 flex justify-space-between align-item-center switchInCategory">
+                        <ng-container *ngIf="customerDetails.riskProfileInquiry && selectedSwitchInFund && selectedSwitchInFund.details">
+                        <p class="riskCategory mb-0">Risk Category:
+                            <span class="marginDash" [ngClass]="{'danger': isRiskDeviation(customerDetails.riskProfileInquiry, selectedSwitchInFund)}">{{ selectedSwitchInFund ? getRiskType(selectedSwitchInFund.details.riskRating) : '-' | uppercase }}</span>
+                            <ng-container *ngIf="selectedSwitchInFund">
+                                <ng-container *ngIf="isRiskDeviation(customerDetails.riskProfileInquiry, selectedSwitchInFund)">
+                                    <span class="deviation">
+                                        <span class="warning">
+                                            <span class="icon-danger-1 icon"></span> <span class="deviation-title">Risk deviation</span>
+                                        </span>
+                                    </span>
+                                </ng-container>
+                            </ng-container>
+                        </p>
+                    </ng-container>
+                        <a class="link" *ngIf="selectedSwitchInFund" (click)="openFundDetails(selectedSwitchInFund)">View Fund Details</a>
+                    </div>
+                </div>
+                <div class="bgSwich">
+                    <div class="bottom-radiuses">
+                        <div class="flex">
+                            <div class="w-25 exitFee pr-16">
+                                <div><label class="switchOutUnits">Switch OUT<br>
+                                    Indicative amount*</label>
+                                    <p class="mb-0">MYR 0</p>
+                                </div>
+                                <div><label class="switchOutUnits">EXIT FEES<br>&nbsp;</label>
+                                    <p class="mb-0">MYR 0</p>
+                                </div>
+                            </div>
+
+                            <div class="w-75 exitFee switchIn">
+                                <div class="p-6"><label class="switchOutUnits">SWITCH IN NAV PRICE<br>(AS OF 7 JUNE 2021)**</label>
+                                    <p class="mb-0">MYR 0</p>
+                                </div>
+                                <div class="p-6"><label class="switchOutUnits">SWITCH IN FEES<br>&nbsp;</label>
+                                    <p class="mb-0">MYR 0</p>
+                                </div>
+
+                                <div class="adminFee"><label class="switchOutUnits">ADMIN FEES<br>&nbsp;</label>
+                                    <p class="mb-0">MYR 0.00</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="switchingFee">
+                            <mat-checkbox class="example-margin reqSwitchFees" formControlName="switchingWaiver">Request for switching fee(s) waiver</mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-accordion>
+</mat-card>

@@ -1,0 +1,142 @@
+.contactUs {
+  color: red;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.mat-dialog-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  text-align: center;
+  color: #333739;
+  margin-bottom: 8px;
+}
+
+.mat-dialog-content {
+  padding: 0;
+  text-align: center;
+  margin-bottom: 8px;
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  h3{
+    font-size: 24px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--emphasis-high-n-100);
+  }
+
+}
+
+.mat-dialog-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-bottom: 24px;
+  margin: 0;
+
+  button {
+    max-width: 260px !important;
+    height: 48px;
+    width: 100%;
+
+    &:first-child {
+      margin-right: 8px;
+    }
+
+    &:last-child {
+      margin-left: 8px;
+    }
+  }
+}
+
+.imageWrapper {
+  width: 106px;
+  height: 120px;
+  margin-bottom: 24px;
+  display: inline-flex;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.close-icon {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: -3px;
+  top: -3px;
+
+  .mat-icon {
+    cursor: pointer;
+  }
+}
+
+.dialog-content {
+  position: relative;
+  min-height: 346px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog_center {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+::ng-deep .bo {
+  .error-dialog {
+    .mat-dialog-container {
+      border-radius: 16px !important;
+      padding: 32px;
+      overflow: hidden !important;
+      box-shadow: 0 10px 32px -4px rgba(24, 39, 75, 0.1), 0 0 16px -2px rgba(24, 39, 75, 0.08);
+    }
+  }
+  .custom-dialog{
+    .mat-dialog-wrapper{
+      .mat-dialog-content{
+        margin-bottom: 0;
+        .image{
+          margin-bottom: 30px;
+          em{
+            font-size: 52px;
+          }
+        }
+      }
+      .mat-dialog-pad{
+        padding: 30px 0 22px 0;
+        position: relative;
+        .mat-dialog-actions{
+          padding-top: 18px;
+          &.cart-modal-actions-intercept {
+            padding-top: 40px;
+          }
+        }
+        .btn-close{
+          position: absolute;
+          top: -7px;
+          right: -7px;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .cdk-overlay-container {
+  z-index: 9999 !important;
+}

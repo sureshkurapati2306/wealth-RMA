@@ -1,0 +1,114 @@
+<div class="header">
+    <h2 *ngIf="showHeader">Application Status</h2>
+    <div class="filter">
+        <p *ngIf="showProductTypeHeading">Select product type:</p>
+        <div class="button-group">
+            <button mat-button (click)="setProductType(productTypeOtion.UT)" [ngClass]="{'active': (f.get('productType')?.value === productTypeOtion.UT)}" class="product-type">Unit Trust</button>
+            <button mat-button (click)="setProductType(productTypeOtion.ASNB)" [ngClass]="{'active': (f.get('productType')?.value === productTypeOtion.ASNB)}" class="product-type">ASNB</button>
+        </div>
+
+        <div class="selectGroup" [formGroup]="filterForm">
+            <div class="select">
+                <mat-label class="label">{{ filterHeadings.date }}</mat-label>
+                <mat-form-field  class="dropdown-form-field" floatLabel="always" appearance="outline">
+                    <mat-select #mySelect class=" placeholder" formControlName="days" panelClass="dropdown-panel custom-select-panel">
+                        <mat-option value="93" (click)="loadData()">All</mat-option>
+                        <mat-option value="7" (click)="loadData()">Last 7 Days</mat-option>
+                        <mat-option value="31" (click)="loadData()">Last 1 Month</mat-option>
+                        <mat-option value="93" (click)="loadData()">Last 3 Months</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="select" >
+                <mat-label class="label">{{ filterHeadings.type }}</mat-label>
+                <mat-form-field  class="dropdown-form-field" floatLabel="always" appearance="outline">
+                    <mat-select (selectionChange)="onSelectedNone()" #mySelectType value="all" (openedChange)="loadData()" class="placeholder multiDropDown" multiple formControlName="transactionType" panelClass="dropdown-panel custom-select-panel multiselect transaction-filter">
+                        <mat-option #allSelectedType (click)="toggleAllSelection('transactionType')" [value]="0">All</mat-option>
+                        <mat-option *ngFor="let option of avaialbleTypesOptions" [value]="option" (click)="togglePerOne('transactionType')">{{ getType(option) }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="select">
+                <mat-label class="label">{{ filterHeadings.status }}</mat-label>
+                <mat-form-field  class="dropdown-form-field" floatLabel="always" appearance="outline">
+                    <mat-select #mySelectStatus (selectionChange)="onSelectedNone()" value="all" (openedChange)="loadData()" class=" placeholder multiDropDown" multiple formControlName="transactionStatus" panelClass="dropdown-panel custom-select-panel multiselect transaction-filter">
+                        <mat-option #allSelectedStatus (click)="toggleAllSelection('transactionStatus')" [value]="0">All</mat-option>
+                        <mat-option *ngFor="let option of availableStatusOption" [value]="option" (click)="togglePerOne('transactionStatus')">{{ getStatus(option) }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="select reset">
+                <button mat-button color="warn" [disabled]="!isFilterEnable() && !resetEnable" class="no-hover-button" (click)="reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="application-status-table">
+        <mat-table [dataSource]="datasource" matSort matSortActive="CREATED_ON"  matSortDirection="desc" (matSortChange)="sortData($event)" aria-describedby="dashboard-table">
+            <!-- Created Column -->
+            <ng-container matColumnDef="CREATED_ON">
+                <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!isSortingEnable('CREATED_ON')" scope="createdOn">
+                    CREATED ON
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" class="cursor-ptr">{{row.creationDate | date: 'dd-MM-yyyy, h:mm' }}</mat-cell>
+            </ng-container>
+
+            <!-- Coustomer Column -->
+            <ng-container matColumnDef="COUSTOMER">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header [disabled]="!isSortingEnable('COUSTOMER')" scope="coustomer">CUSTOMER</mat-header-cell>
+                <mat-cell *matCellDef="let row" class="cursor-ptr">{{row.customerName}}</mat-cell>
+            </ng-container>
+
+            <!-- Type Column -->
+            <ng-container matColumnDef="TYPE">
+                <mat-header-cell *matHeaderCellDef scope="type">TYPE</mat-header-cell>
+                <mat-cell *matCellDef="let row" class="cursor-ptr">{{row.transactionType}}</mat-cell>
+            </ng-container>
+
+            <!-- Ref Id Column -->
+            <ng-container matColumnDef="REF_ID">
+                <mat-header-cell *matHeaderCellDef scope="refID">REF ID</mat-header-cell>
+                <mat-cell *matCellDef="let row" class="cursor-ptr">{{row.refId}}</mat-cell>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="STATUS">
+                <mat-header-cell *matHeaderCellDef scope="status" mat-sort-header [disabled]="!isSortingEnable('STATUS')">STATUS</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <span *ngIf="row.applicationStatus !== null" class="statusCol cursor-ptr" [ngClass]="getStatusColor(row)">
+                        {{ row.applicationStatus }}
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="ACTION">
+                <mat-header-cell *matHeaderCellDef scope="action"></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <mat-icon *ngIf="row.applicationStatus !== null" class="action cursor-ptr" (click)="onActionClick(row)" >arrow_forward</mat-icon>
+                </mat-cell>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </mat-table>
+
+        <ng-container *ngIf="datasource.totaltransaction === 0">
+            <div class="no-record-found">
+                No Investments Made
+            </div>
+        </ng-container>
+        <mat-paginator
+            *ngIf="datasource?.totaltransaction"
+            [length]="datasource.totaltransaction"
+            [pageSize]="pageSize"
+            (page)="paginate()"
+            showFirstLastButtons
+            hidePageSize
+            aria-label="Select page of GitHub search results"
+        ></mat-paginator>
+    </div>
+</div>

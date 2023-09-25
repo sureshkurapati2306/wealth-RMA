@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>
+   <span [class]="dialogData.icon"></span>
+   {{ dialogData.title }}
+</h1>
+<div mat-dialog-content>
+
+   <div [innerHtml]="dialogData.description"></div>
+   
+   <form>
+      <mat-form-field floatLabel="always">
+        <div class="block-label">
+          <mat-label>{{ dialogData.textareaLabel }}</mat-label>
+          <div class="text-count">{{ comments.length }}/{{ maxCharacterLength }}</div>
+        </div>  
+        <textarea matInput [placeholder]="dialogData.textareaPlaceholer" [(ngModel)]="comments" name="comments" rows="6" [class.error]="comments.length > maxCharacterLength"></textarea>
+      </mat-form-field>
+      <mat-error *ngIf="comments.length > maxCharacterLength">
+         You've reached the maximum characters
+       </mat-error>
+    </form>
+
+</div>
+<div mat-dialog-actions>
+   <button mat-flat-button mat-dialog-close class="btn-custom btn-red btn-ghost btn-xs">{{ dialogData.btnCancelLabel }}</button>
+   <button mat-flat-button class="btn-custom btn-red btn-xs" [disabled]="comments.length === 0 || comments.length > maxCharacterLength" (click)="clickOk()">{{ dialogData.btnOkLabel }}</button>
+</div>

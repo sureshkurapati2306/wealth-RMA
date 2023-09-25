@@ -1,0 +1,12 @@
+<div class="margin">
+        <span class="overall space">overall wealth</span>
+        <span class="span space" *ngIf="chartConfig">
+            <sup class="super">myr</sup>
+            {{ (( this.investments + this.savings) - this.expenses) | number: '1.2-2'}}
+        </span>
+    <div class="chart" *ngIf="chartConfig && chartConfig.total > 0">
+        <google-chart [formatters]="chartConfig.pieFormatters" #chart [title]="" [type]="chartConfig.type" [data]="chartConfig.data" [options]="chartConfig.options"
+            [width]="chartConfig.width" [height]="chartConfig.height">
+        </google-chart>
+    </div>
+</div>

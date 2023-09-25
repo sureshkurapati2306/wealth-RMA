@@ -1,0 +1,66 @@
+.mat-snack-bar-container {
+  width: auto;
+  min-height: 3rem;
+  padding: 1rem 0.75rem !important;
+  border-radius: 6.25rem !important;
+  color: var(--n0);
+  position: relative;
+  min-width: 0;
+  max-width: none !important;
+  box-shadow: 0rem 0rem 1rem -0.125rem rgba(24, 39, 75, 0.08),
+  0rem 0.625rem 2rem -0.25rem rgba(24, 39, 75, 0.1) !important;
+
+  p {
+    margin: 0;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: var(--medium);
+
+    span {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      margin-right: 12px;
+    }
+  }
+
+  .close {
+    cursor: pointer;
+  }
+  .btn-custom {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    color: var(--n0);
+    min-width: 0;
+    font-size: 1.25rem;
+
+    &.mat-flat-button {
+      &.btn-text {
+        color: var(--n0);
+      }
+    }
+  }
+  &.top {
+    margin-top: 5rem;
+  }
+  &.success {
+    background: #63c76a;
+  }
+  &.warning {
+    background: #ff7547;
+  }
+
+  .space-between {
+    justify-content: space-between;
+  }
+
+  .align-center {
+    align-items: center;
+  }
+}

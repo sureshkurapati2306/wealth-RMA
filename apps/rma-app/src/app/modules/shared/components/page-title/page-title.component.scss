@@ -1,0 +1,77 @@
+.back-button{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    display: inline-block;
+}
+.page-title{
+    line-height: 34px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #333739;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.expire {
+    display: inline;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #c6c7c8;
+    border-radius: 1rem;
+    padding: 2px 8px;
+    margin-left: 1.5rem !important;
+}
+
+.page-details {
+    justify-content: space-between;
+}
+.page-details--right{
+    .button-tab.custom-card {
+       .mat-card-content {
+        display: flex !important;
+        align-items: center;
+        .flex {
+            padding-right: 1rem;
+            margin-right: 1rem;
+            border-right: 1px solid var(--n20);
+            align-items: center;
+            cursor: pointer;
+            p {
+                margin: 0;
+                padding-left: 9px;
+                font-size: 16px;
+                font-weight: 700;
+                color: #FF0000;
+            }
+
+            &:last-child {
+                padding-right: 0;
+                margin-right: 0;
+                border-right: none;
+            }
+        }
+       }
+    }
+}
+
+.userDetails{
+    padding-left: 1.75rem;
+    .user-link{
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 27px;
+        color:  #FF0000;
+        text-decoration: underline;
+        text-transform: capitalize;
+        margin-right: 5px;
+    }
+    span{
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        color:  #7B7D7E;
+    }
+}

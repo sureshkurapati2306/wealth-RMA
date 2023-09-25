@@ -1,0 +1,77 @@
+:root {
+  //Asset base path
+  //--asset-base-path: '../../assets' !default;
+
+  //Font family
+  --OpenSans: 'Open Sans', sans-serif;
+
+  //Font weight
+  --light: 300;
+  --regular: 400;
+  --medium: 600;
+  --bold: 700;
+
+  //Font style
+  --body-font-size: 16px;
+  --body-line-height: 1.5;
+
+  //Colors
+  --n0: #ffffff;
+  --n5l: #fafafa;
+  --n5: #f0f0f0;
+  --n5h: #f6f6f6;
+  --n10: #dddede;
+  --n20: #d5d6d7;
+  --n40: #c6c7c8;
+  --n30: #ceced0;
+  --n50: #a7a9ac;
+  --n60: #7b7d7e;
+  --n70: #696b6d;
+  --n80: #575a5c;
+  --n90: #45484a;
+  --n100: #333739;
+
+  --c20: #DBDBDB;
+  --c60: #858788;
+  --c90: #595D5D;
+  --c100: #333739;
+
+  --r05: #fff2f2;
+  --r10: #FFE6E6;
+  --r60: #ff6666;
+  --r100: #ff0000;
+  --r120: #cc0000;
+  --r160: #780000;
+
+  --cg70: #b3be66;
+  --d70: #ff896e;
+  --jg70: #5cd3cd;
+  --ei70: #955cd6;
+  --f70: #d45dba;
+  --jl70: #4fa14f;
+
+  --azb70: #567dcc;
+
+  --opa1: #e3625a;
+  --danger: #ff5630;
+  --information: #2096d9;
+
+  --s70: #72caa5;
+  --s100: #36b37e;
+
+  --w70: #f8b939;
+  --w100: #ffab00;
+
+  --scarlet: #EC1D23;
+
+  //Screen sizes for media queries
+  --width-xxl: 90rem; //1440px
+  --width-xl: 64rem; //1024px
+  --width-lg: 60rem; //960px
+  --width-md: 48rem; //768px
+  --width-sm: 37.5rem; //600px
+  --width-xs: 30rem; //480px
+  --width-xxs: 22.5rem; //360px
+
+  //--global-width: 88.125rem !default;
+}

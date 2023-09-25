@@ -1,0 +1,56 @@
+.dialog-content {
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    height: 100% !important;
+    max-height: 100%;
+
+    .fund-title {
+        font-size: 1.75rem;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.42;
+        padding: 1rem 2.25rem 0;
+        .subHeading {
+            margin-top: 0.75rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 24px;
+            color: var(--n80);
+            padding-left: 0.75rem;
+            border-left: 0.25rem solid var(--azb70);
+        }
+    }
+
+    .fund-performance, .investment-details {
+        padding: 1.5rem 2.25rem 0rem;
+        .heading {
+            color: var(--n100);
+            font-size: 1.25rem;
+            line-height: 1.4;
+            margin-bottom: 2.5rem;
+        }
+        .investment-section{
+          padding: 0rem 0rem 2rem 3.25rem;
+        }
+    }
+
+    .document {
+        padding: 1.5rem 2.25rem 1rem;
+
+        .heading {
+            color: var(--n100);
+            font-size: 1.25rem;
+            line-height: 1.4;
+            margin-bottom: 2.5rem;
+        }
+    }
+
+
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+

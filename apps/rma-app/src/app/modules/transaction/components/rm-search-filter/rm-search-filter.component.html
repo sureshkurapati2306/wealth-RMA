@@ -1,0 +1,90 @@
+<div class="search-filter-dd">
+    <button class="search-mat-button" matPrefix mat-button (click)="filtersOpen = !filtersOpen">
+        Search Filter
+        <mat-icon>{{!filtersOpen ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}</mat-icon>
+    </button>
+    <div class="selected-items">
+        <div *ngFor="let label of category" class="selected-item">
+            <div class="itemText">
+                {{label.name === 'All Categories' ? 'All Risk Categories' : label.name }}
+                <mat-icon class="close-icon" *ngIf="label.name !== 'All Categories'" (click)="onChange_category(label)">close
+                </mat-icon>
+            </div>
+        </div>
+        <div *ngFor="let label of class" class="selected-item">
+            <div class="itemText">{{ label.name === 'All Classes' ? 'All Asset Classes' : label.name }}
+                <mat-icon class="close-icon" *ngIf="label.name !== 'All Classes'" (click)="onChange_class(label)">close
+                </mat-icon>
+            </div>
+        </div>
+        <div *ngFor="let label of fund" class="selected-item">
+            <div class="itemText">{{ label.name === 'All Types' ? 'All Fund Types' : label.name }}
+                <mat-icon class="close-icon" *ngIf="label.name !== 'All Types'" (click)="onChange_fund(label)">close
+                </mat-icon>
+            </div>
+        </div>
+        <div class="selected-item">
+            <div class="itemText">Local Currency</div>
+        </div>
+    </div>
+
+    <div class="reset" *ngIf="!filtersOpen && !isResetDisable()">
+        <button (click)="reset()" [disabled]="isResetDisable()" class="text-btn text-btn--red" mat-button>Reset</button>
+    </div>
+</div>
+<div *ngIf="filtersOpen" class="search-filter">
+    <mat-card>
+        <div class="columns">
+            <div class="column">
+                <div class="header">risk category</div>
+                <div class="listright " *ngFor="let item of categoryRisk; let i = index">
+                    <mat-checkbox #allCategory [disabled]="i === 0 && item.isChecked"  (change)='onChange_category(item)' [labelPosition]="'after'"
+                        class="custom-checkbox  required" [checked]="item.isChecked" aria-label="checkbox"
+                        disableRipple="false">{{item.name}}
+                    </mat-checkbox>
+                </div>
+            </div>
+            <mat-divider vertical="true"></mat-divider>
+            <div class="column">
+                <div class="header">asset class</div>
+                <div class="listright " *ngFor="let item of classList; let i =index">
+                    <mat-checkbox #allClassCheckbox [disabled]="i === 0 && item.isChecked" (change)='onChange_class(item)' [labelPosition]="'after'"
+                        class="custom-checkbox  required" [checked]="item.isChecked" aria-label="checkbox"
+                        disableRipple="false">{{item.name}}
+                    </mat-checkbox>
+                </div>
+            </div>
+            <mat-divider vertical="true"></mat-divider>
+            <div class="column">
+                <div class="header">fund type</div>
+                <div class="listright " *ngFor="let item of fundList; let i = index">
+                    <mat-checkbox #allType [disabled]="i === 0 && item.isChecked" (change)='onChange_fund(item)' [labelPosition]="'after'"
+                        class="custom-checkbox  required" [checked]="item.isChecked" aria-label="checkbox"
+                        disableRipple="false">{{item.name}}
+                    </mat-checkbox>
+                </div>
+            </div>
+            <mat-divider vertical></mat-divider>
+            <div class="column">
+                <div class="yes-checkbox local">
+                    <div class="header">
+                        Fund Currency
+                    </div>
+                    <mat-checkbox class="example-margin local" style="color: #a7a9ac !important;"
+                        [(indeterminate)]="indeterminate" [labelPosition]="labelPosition" [disabled]="true"
+                        [checked]="true">
+                        Local Currency (RM)
+                    </mat-checkbox>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="text-btn text-btn--grey" [disabled]="isResetDisable()" (click)="reset()" mat-button>Reset Filters</button>
+            <button (click)="filtersOpen = !filtersOpen" class="text-btn text-btn--red" mat-button>Close</button>
+        </div>
+
+    </mat-card>
+</div>

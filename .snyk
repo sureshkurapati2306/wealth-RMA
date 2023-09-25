@@ -1,0 +1,34 @@
+# ignore snyk vulnerability
+ignore:
+  'SNYK-JS-SETVALUE-1540541':
+    - '* > set-value':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-TMPL-1583443':
+    - '* > tmpl':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-ANSIREGEX-1583908':
+    - '* > ansi-regex':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-SHELLQUOTE-1766506':
+    - '* > shell-quote':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-UNSETVALUE-2400660':
+    - '* > unset-value':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-ASYNC-2441827':
+    - '* > async':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-EJS-2803307':
+    - '* > ejs':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'
+  'SNYK-JS-MOMENT-2944238':
+    - '* > moment':
+        reason: 'No remediation available'
+        expires: '2023-03-18T00:00:00.000Z'

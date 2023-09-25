@@ -1,0 +1,211 @@
+// IE 10 fixes
+@-ms-viewport {
+  width: device-width;
+}
+
+@-o-viewport {
+  width: device-width;
+}
+
+@viewport {
+  width: device-width;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--OpenSans) !important;
+  font-size: var(--body-font-size);
+  text-rendering: optimizeLegibility;
+  line-height: var(--body-line-height);
+  color: var(--n80);
+  background: var(--n5h);
+  position: relative;
+
+  @media (min-width: 48rem) {
+    background: var(--n5l);
+  }
+}
+
+html {
+  padding-top: 4rem;
+}
+
+p {
+  font-size: 0.875rem;
+}
+
+* {
+  &:not(.mat-icon) {
+    font-family: var(--OpenSans) !important;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+a:focus {
+  box-shadow: none !important;
+}
+
+.text-default-size {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-xs-size {
+  font-size: 0.75rem;
+  color: var(--n60);
+  line-height: 1.125rem;
+}
+
+:focus-visible {
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari/Edge */
+  color: var(--n40);
+}
+
+input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--n40);
+}
+
+input:-ms-input-placeholder {
+  /* IE 10+ */
+  color: var(--n40);
+}
+
+mat-error {
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  color: #3d3c3c;
+  display: block;
+}
+
+mat-form-field {
+  &.fw {
+    width: 100%;
+  }
+
+  .mat-form-field-wrapper,
+  .mat-form-field-infix {
+    padding: 0;
+    border: 0 none;
+  }
+}
+
+.mat-date-range-input-container {
+  line-height: 22px;
+}
+
+.bo {
+  color: var(--n100);
+
+  body {
+    color: var(--n100);
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    .mat-form-field-label {
+      font-size: 1rem;
+      color: var(--c60);
+    }
+
+    .mat-form-field-label-wrapper {
+      padding-top: 1rem;
+      top: -1rem;
+    }
+
+    .mat-input-element {
+      font-size: 1rem;
+      height: 100%;
+      color: #333739;
+    }
+
+    .mat-form-field-underline {
+      background-color: var(--n100);
+    }
+
+    &.mat-form-field-should-float {
+      .mat-form-field-label {
+        color: var(--n100);
+      }
+
+      .mat-form-field-underline {
+        height: 0.0625rem;
+        background-color: var(--n100);
+      }
+    }
+
+    &.mat-form-field-invalid {
+      .mat-form-field-underline {
+        background-color: #ff7547;
+      }
+
+      .mat-error {
+        font-size: 0.6875rem;
+        line-height: 1rem;
+        font-weight: var(--medium);
+        color: var(--danger);
+      }
+    }
+
+    .mat-form-field-ripple {
+      display: none;
+    }
+
+    .icon-error {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &.field_error {
+      .mat-form-field-underline {
+        background-color: #ff7547;
+      }
+    }
+  }
+}
+
+.mat-form-field {
+  &.new-account-error {
+    .mat-form-field-subscript-wrapper {
+      position: absolute !important;
+      bottom: -1.20rem;
+      display: flex;
+      align-items: flex-end;
+
+      .mat-error {
+        font-weight: var(--regular);
+        font-size: 0.875rem;
+        line-height: 1.10rem;
+      }
+    }
+  }
+}
+
+.radioWithSelect {
+  .radioGroup {
+    .radio {
+      &.hide-radio {
+          .mat-radio-container {
+            display: none;
+          }
+      }
+    }
+  }
+}

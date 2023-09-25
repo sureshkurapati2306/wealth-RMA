@@ -1,0 +1,23 @@
+<cimb-office-breadcrumb [breadcrumbs]="breadcrumbs"></cimb-office-breadcrumb>
+
+<mat-card class="new-account page-items-align">
+
+    <cimb-office-page-title pageTitle='Customer Profile' (clickEvent)="onClickName($event)"
+        [showCustomerDetails]="customerDetails"></cimb-office-page-title>
+
+    <mat-card-content class="account">
+        <a id="new_account" (click)="gotoNewInvestment()" [ngClass]="{'disabled': isNewAccDisabled()}">
+            <mat-card class="na" [ngClass]="{'disabled':  isNewAccDisabled()}">
+                <mat-icon class="icon">account_balance</mat-icon>
+                <mat-card class="decoration">new account</mat-card>
+            </mat-card>
+        </a>
+        <mat-divider [vertical]="true" class="divider"></mat-divider>
+        <a id="new_transaction" (click)="routeTotransactionPage('new', cifNumber)" [ngClass]="{'disabled': isNewTransactionDisabled() }">
+            <mat-card class="na" [ngClass]="{'disabled': isNewTransactionDisabled() }">
+                <mat-icon class="icon">account_balance_wallet</mat-icon>
+                <mat-card class="decoration">New Transaction</mat-card>
+            </mat-card>
+        </a>
+    </mat-card-content>
+</mat-card>

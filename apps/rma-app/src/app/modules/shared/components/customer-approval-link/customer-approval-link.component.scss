@@ -1,0 +1,225 @@
+.approval-link{
+    padding: 24px 0px 8px;
+    max-width: 778px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 0;
+
+    .copyLink {
+        color: var(--s100);
+        font-weight: 600;
+    }
+    .title{
+        margin-bottom: 24px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        color: #575a5c;
+        letter-spacing: 1.28px;
+    }
+    .link-msg{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 154%;
+        color: #333739;
+        margin-bottom: 24px;
+    }
+    .approval-qrcode{
+        display: flex;
+        >.qrcode{
+            flex: 0 0 136px;
+            padding-right: 12px;
+        }
+        .qrcode-link{
+            .qrcode-title{
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                margin-bottom:0px;
+                color: #333739;
+            }
+            .qr-link{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                padding-bottom: 24px;
+                padding-top: 8px;
+                display: flex;
+                align-items: center;
+                .copyButton{
+                    line-height: inherit;
+                    min-width: auto;
+                    padding: 0;
+                    color: #007AFF;
+                    width: auto;
+                    height: auto;
+                    margin: 0 6px;
+                    mat-icon{
+                        font-size: 19px;
+                        width: 20px;
+                        display: flex;
+                        align-items: center;
+                    }
+                    &.disabled{
+                        color: #c6c7c8;
+                        pointer-events: none;
+                    }
+                }
+                .activateButton{
+                    line-height: 1.54;
+                    min-width: auto;
+                    padding: 0;
+                    color: #ff0000;
+                    text-decoration: underline;
+                    font-size: 14px;
+                    font-weight: normal;
+                    cursor: pointer;
+                }
+                .urlLink{
+                    color: #007AFF;
+                    text-decoration: underline;
+                    font-size: 14px;
+                    font-weight: normal;
+                    line-height: 1.54;
+                    padding: 0;
+                    &.disabled{
+                        color: #c6c7c8;
+                        pointer-events: none;
+                    }
+                }
+            }
+            .width{
+                &.mobile{
+                    .sub-container{
+                        margin-bottom: 0;
+                        color: #7b7d7e;
+                    }
+                    .mat-form-field-underline{
+                        display: none;
+                    }
+                    .sub-container-1{
+                        &.select{
+                            margin-bottom: 0;
+                            max-width: 175px;
+                        }
+                        ::ng-deep mat-form-field{
+                            .mat-select-value-text{
+                                font-weight: bold;
+                            }
+                            .mat-form-field-underline{
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+            .qr-details{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 154%;
+                padding-bottom: 5px;
+                .info{
+                    color: #ff0000;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+    }
+    .reminder{
+        border: 1px solid #f0f0f0;
+        padding: 16px;
+        border-radius: 8px;
+        background-color:#f0f0f0;
+        width: 100%;
+        .header{
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 1.54;
+            color: #333739;
+        }
+        .reminder-points{
+            ul{
+                padding-left: 23px;
+                margin: 0;
+                li{
+                    list-style: disc;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 154%;
+                    color: #333739;
+                }
+            }
+        }
+    }
+}
+
+.QR-Code-bg {
+    flex: 0 0 124px;
+    margin-right: 24px;
+    height: 124px;
+    padding: 16px 8px;
+    border-radius: 8px;
+    background-color: #c6c7c8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .title {
+        margin: 0 0 10px;
+        font-family: var(--OpenSans) !important;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.54;
+        letter-spacing: normal;
+        text-align: center;
+        color: #575a5c;
+        max-width: 108px;
+      }
+      .link-title {
+        margin: 10px 0 0;
+        font-family: var(--OpenSans) !important;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: #575a5c;
+        max-width: 108px;
+      }
+  }
+
+  .link-copy {
+    width: 54px;
+    height: 18px;
+    flex-grow: 0;
+    font-family: var(--OpenSans) !important;
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #696b6d;
+  }
+
+  .rpq-mobile {
+    color: #333739;
+    font-size: 1rem;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    margin: 0rem;
+    height: -10px;
+}

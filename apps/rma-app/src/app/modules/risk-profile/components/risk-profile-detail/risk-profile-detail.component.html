@@ -1,0 +1,46 @@
+<div class="risk-detail">
+        <mat-card class="custom-card mb-24" >
+            <ng-container  *ngIf="(getCustomerStatus$ | async) as customerStatus">
+                <mat-card-title class="flex" *ngIf="customerStatus && customerStatus.rpqApprovalStatus">
+                    <span>
+                        Risk Profile
+                    </span>
+                    <span>
+                        <a class="update-btn" (click)="updateConfirmation(customerStatus)">Update</a>
+                    </span>
+                </mat-card-title>
+            </ng-container>
+            <mat-divider></mat-divider>
+            <ng-container  *ngIf="{ riskProfile: riskProfile$ | async } as customer">
+                <mat-card-content *ngIf="customer && customer.riskProfile">
+                    <div class="riskProfileResult">
+                        <h3 class="heading mb-24">Risk Profile Results</h3>
+                        <p class="status mb-24">
+                            <span class="value">{{ customer.riskProfile.riskProfile }}</span>
+                            <span class="tag">Risk Profile</span>
+                        </p>
+                        <p class="description" [innerHTML]="customer.riskProfile.riskProfileAssetAllocation"></p>
+                    </div>
+                </mat-card-content>
+        </ng-container>
+        </mat-card>
+
+
+    <mat-card class="custom-card ">
+        <mat-card-title class="flex">
+            <span>
+                Risk Profiling Details
+            </span>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+            <cimb-office-risk-profile-questionnaire [customerApprovalLinkQuestionarie]="getQuestioniore() | async"></cimb-office-risk-profile-questionnaire>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="action-buttons flex">
+        <button mat-raised-button color="warn" class="success" (click)="gotoCustomerProfile()">Back to Customer Profile</button>
+    </div>
+</div>
+

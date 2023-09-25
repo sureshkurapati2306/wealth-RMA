@@ -1,0 +1,149 @@
+.progress-sub-header {
+  @media (min-width: 60rem) {
+    background: var(--n0);
+  }
+  .container {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 60rem) {
+      padding: 1.375rem 1rem;
+      justify-content: space-between;
+    }
+  }
+
+  .col-steps {
+    order: 1;
+    width: 100%;
+
+    @media (min-width: 60rem) {
+      order: 2;
+      width: 35.25rem;
+    }
+  }
+  .col-header {
+    order: 2;
+    width: 100%;
+    display: block;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--n0);
+    box-shadow: 0px 0.125rem 0.25rem -0.125rem rgba(24, 39, 75, 0.12),
+      0px 0.25rem 0.25rem -2px rgba(24, 39, 75, 0.08);
+    border-radius: 0px 0px 1rem 1rem;
+
+    @media (min-width: 60rem) {
+      order: 1;
+      box-shadow: none;
+      width: 40%;
+      display: block;
+      padding-left: 0;
+    }
+    @media (min-width: 75rem) {
+      width: 46%;
+    }
+
+    .t-util {
+      display: flex;
+
+      @media (min-width: 48rem) {
+        display: block;
+      }
+    }
+    a {
+      margin-right: 0.8125rem;
+      cursor: pointer;
+
+      @media (min-width: 48rem) {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      em {
+        color: var(--n100);
+        font-size: 0.75rem;
+
+        @media (min-width: 48rem) {
+          font-size: 0.75rem;
+          margin-right: 0.625rem;
+        }
+      }
+      span {
+        color: var(--n100);
+
+        @media (min-width: 60rem) {
+          display: inline-block;
+          color: var(--n100);
+          font-size: 1rem;
+          line-height: 1.5rem;
+          font-weight: var(--regular);
+        }
+      }
+    }
+    h2 {
+      font-size: 1.125rem;
+      line-height: 1.625rem;
+      color: var(--n90);
+      margin-bottom: 0;
+
+      @media (min-width: 60rem) {
+        font-size: 1.75rem;
+        line-height: 2.5rem;
+      }
+    }
+    .b-util {
+      padding-left: 20px;
+
+      @media (min-width: 48rem) {
+        padding-left: 0;
+      }
+      .tag {
+        @media (min-width: 62rem) {
+          margin-top: 0.75rem;
+        }
+      }
+    }
+  }
+  // .tag {
+  //   font-size: 12px;
+  //   line-height: 18px;
+  //   text-transform: uppercase;
+  //   color: var(--n80);
+  //   letter-spacing: 0.08em;
+  //   font-weight: var(--medium);
+  //   margin-bottom: 0;
+  //   margin-top: 0.3125rem;
+  //   padding-left: 4px;
+
+  //   @media (min-width: 768px) {
+  //     line-height: 1.5rem;
+  //     font-size: 1rem;
+  //     padding-left: 8px;
+  //   }
+  // }
+  // .fund-holiday-label {
+  //   background: var(--w70);
+  //   border-radius: 16px;
+  //   border: 1px solid var(--warning);
+  //   padding: 1px 8px;
+  //   font-size: 12px;
+  //   line-height: 18px;
+  //   color: var(--n0);
+  //   text-align: center;
+  //   font-weight: bold;
+  //   display: inline-block;
+  //   margin-top: 0.3125rem;
+
+  //   @media (min-width: 992px) {
+  //     margin-top: 0.75rem;
+  //   }
+
+  //   span {
+  //     margin-left: 5px;
+  //     font-size: 16px;
+  //   }
+  // }
+}

@@ -1,0 +1,37 @@
+<div [formGroup]="formGroup" class="search searched">
+    <div [ngClass]="formGroup.controls.fundName.status === 'DISABLED' ? 'disabled': 'label'">Search fund</div>
+    <mat-form-field appearance="outline" floatLabel="always" class="mint-office-auto-complete-dropdown">
+        <mat-label></mat-label>
+        <input #fundNameInput type="text" matInput formControlName="fundName"
+            placeholder="Search by Fund Name or Fund House" [matAutocomplete]="auto" name="search" [ngClass]="formGroup.controls.fundName.status === 'DISABLED' ? 'disabled': ''">
+
+        <button *ngIf="this.formGroup.controls.fundName.value?.length > 0"
+            (click)="this.formGroup.controls.fundName.patchValue(''); searchFunds()" mat-button matSuffix>
+            <p class="clear-text" [ngClass]="{'active': this.formGroup.controls.fundName.value?.length > 0}">Clear</p>
+        </button>
+        <button matSuffix mat-button>
+            <mat-icon [ngClass]="{'active': this.formGroup.controls.fundName.value?.length > 0}" (click)="searchFunds()">
+                search</mat-icon>
+        </button>
+
+        <mat-autocomplete class="mint-office-auto-complete-panel custom-search-funds" classlist="custom-search-funds"
+            #auto="matAutocomplete">
+            <mat-option #searchOption *ngFor="let option of transactionFundsResponse$ | async" [value]="option.fundCode"
+                (click)="addFunds(option, fundNameInput);">
+                {{option.fundName}}
+                <div class="tags">
+                    <div *ngIf="option.focusFund === 1" class="tag FF">Focus Fund</div>
+                    <div *ngIf="option.customerHolding === 1" class="tag CH">Customer’s Holdings</div>
+                    <div *ngIf="option.wholeSale === 1" class="tag open-ended">Wholesale</div>
+                    <div *ngIf="option.closeEnded === 1" class="tag close-ended">Close Ended</div>
+                    <div *ngIf="option.fundStatus === 'C'" class="tag FH">Inactive</div>
+                    <div  *ngIf="option.fundStatus === 'D'" class="tag open-ended">Closed</div>
+                </div>
+                <span *ngIf="option.fundStatus !== 'D' && option.fundStatus !== 'C'" class="add-fund">
+                    <span [ngClass]="{'warn': isFundAdded(option)}">{{ isFundAdded(option) ? 'REMOVE' : 'ADD' }}</span>
+                </span>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+<cimb-office-search-filter></cimb-office-search-filter>

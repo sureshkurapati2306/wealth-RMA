@@ -1,0 +1,266 @@
+.risk-detail {
+  .action-buttons {
+    margin-top: 3.75rem;
+    justify-content: flex-end;
+
+    button {
+      min-height: 3rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+
+      &.success {
+        width: 14.375rem;
+        color: white;
+      }
+    }
+  }
+
+  .mat-card-title {
+    justify-content: space-between;
+    display: flex;
+
+    a {
+      color: var(--r100);
+    }
+  }
+
+  .mat-card-content {
+    padding: 0rem 5.75rem .5rem;
+  }
+}
+
+.rpq-approval {
+  .mat-card {
+    overflow: hidden;
+
+    .mat-expansion-panel-header {
+      min-height: 58px;
+    }
+
+    .mat-expansion-panel-header-title {
+      .boldText {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333739;
+      }
+    }
+  }
+}
+
+.rpq-card {
+  .mat-card {
+    box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+    margin-bottom: 24px;
+    border-radius: 16px;
+    padding: 0;
+
+    .mat-card-title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 700;
+      color: #333739;
+      padding: 16px 24px;
+    }
+
+    .mat-card-content {
+      padding: 24px 0px;
+      max-width: 778px;
+      width: 100%;
+      margin: 0 auto;
+      margin-bottom: 0;
+
+      .details-container {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.5;
+        color: #575a5c;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        letter-spacing: 1.28px;
+      }
+    }
+
+    .mat-divider-horizontal {
+      position: absolute;
+      width: calc(100% - 32px);
+      left: 16px;
+      right: 16px;
+      border-top-color: #d5d6d7;
+    }
+
+    .mat-card-subtitle {
+      font-size: 14px;
+      line-height: 21px;
+      color: #333739;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .transaction-type-buttons {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+
+
+  .label {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 3px;
+    color: #575A5C;
+    font-weight: 600;
+    border-left: none;
+    padding-left: 8px;
+  }
+}
+
+.rpq-status {
+  .status {
+    border: 1px solid #c6c7c8;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+
+    .reminder-btn {
+      .mat-button {
+        border-radius: 8px;
+        height: 40px;
+        border: solid 1px #ff0000;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ff0000;
+      }
+    }
+
+    .status-lable-rpq {
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.54;
+      color: #7b7d7e;
+    }
+
+    .a-link-rpq {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 22px;
+    }
+
+    .yellow-rpq {
+      color: #ffab00;
+    }
+
+    .red-rpq {
+      color: #ff5630;
+      font-size: 16px;
+      padding-top: 4px;
+      text-transform: none;
+    }
+
+    .green-rpq {
+      color: #36b37e;
+    }
+
+    .text-black-rpq {
+      color:#7B7D7E;
+      font-size: 12px;
+
+    }
+
+    .status-info-rpq {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 154%;
+      color: #7B7D7E;
+      padding-top: 4px;
+    }
+  }
+  .status1 {
+    border: 1px solid red;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+
+    .reminder-btn {
+      .mat-button {
+        border-radius: 8px;
+        height: 40px;
+        border: solid 1px #ff0000;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ff0000;
+      }
+    }
+
+    .status-lable-rpq {
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.54;
+      color: #7b7d7e;
+    }
+
+    .a-link-rpq {
+      font-size: 16px;
+      font-weight: bold;
+      padding-top: 4px;
+      line-height: 22px;
+    }
+
+    .yellow-rpq {
+      color: #ffab00;
+    }
+
+    .red-rpq {
+      color: #ff5630;
+      font-size: 16px;
+      padding-top: 4px;
+    }
+
+    .green-rpq {
+      color: #36b37e;
+    }
+
+    .text-black-rpq {
+      color: #333739;
+    }
+
+    .status-info-rpq {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 154%;
+      color: #7B7D7E;
+      padding-top: 16px;
+    }
+  }
+}
+
+.edit-button {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 154%;
+  text-align: right;
+  color: #ff0000;
+}
+.remainder-button {
+  color: #FF0000;
+  border-radius: 8px;
+  background-color: none;
+  border: solid #FF0000 1px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 0px 29px;
+
+}
+.text-description{
+  padding-top: 4px;
+  font-size: 14px;
+  color: #7B7D7E;
+}

@@ -1,0 +1,9 @@
+<div class="breadscrumbs">
+    <p>
+        <span routerLink="/" class="grey85-text home pointer">{{ "Home" | uppercase }}</span>
+        <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last;">
+            <span class="grey85-text"> / </span>
+            <span class="black33-text" [ngClass]="{'pointer': !last}">{{ breadcrumb.title | uppercase }}</span>
+        </ng-container>
+    </p>
+</div>

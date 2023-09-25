@@ -1,0 +1,8 @@
+<cimb-office-application-status-table
+    [pageSize]="5"
+    [displayedColumns]="['CREATED_ON', 'TYPE', 'REF_ID', 'STATUS', 'ACTION']"
+    [sortHeader]="['CREATED_ON', 'STATUS']"
+    [filterHeadings]="filterHeadings" class="application"
+    [getRmDetailsResponse$]="getRmResponse$"
+    (goToTransaction)="goToTransactionPage($event)"
+></cimb-office-application-status-table>

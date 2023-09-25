@@ -1,0 +1,187 @@
+.bo-tab {
+  max-width: none !important;
+  margin-left: -0.3125rem;
+  margin-right: -0.3125rem;
+
+  &.mat-tab-group {
+    .mat-tab-header {
+      border:0 none;
+      margin:0 .3125rem;
+      background: var(--n0);
+      box-shadow: 0rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+      position:relative;
+      z-index: 2;
+
+      @media (min-width: 37.5rem) {
+        padding:0 .8125rem;
+      }
+      .mat-tab-labels {
+        justify-content: center;
+  
+        @media (min-width: 48rem) {
+          justify-content: flex-start;
+        }
+        .mat-tab-label {
+          padding:0 .3125rem;
+          height: 4.25rem;
+          font-size: 1rem;
+          color: var(--c90);
+          opacity: 1;
+
+          @media (min-width: 37.5rem) {
+            padding: 0 .6875rem
+          }
+          @media (min-width: 48rem) {
+            padding:0 1.0625rem;
+            margin-right: 4.6875rem;
+          }
+          &-active {
+            font-weight: var(--medium);
+            color: var(--n100);
+          }
+          .mat-tab-label-content {
+            span {
+              width: .375rem;
+              height: .375rem;
+              border-radius: 50%;
+              background: var(--scarlet);
+              margin-left: .25rem;
+
+              @media (min-width: 48rem) {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                background: #EAEBEB;
+                color: var(--c90);            
+                text-align: center;
+                margin-left: .5625rem;             
+              }
+              strong {
+                display: none;
+
+                @media (min-width: 48rem) {
+                  font-size: .75rem;
+                  line-height: 1.5rem;
+                  display: inline-block;
+                  font-weight: var(--medium);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .mat-tab-body-content {
+      padding-left: .3125rem;
+      padding-right: .3125rem;
+      padding-bottom: .625rem;
+
+      .mat-table {
+        box-shadow: 0rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+      }
+    }
+    .mat-ink-bar {
+      background: var(--scarlet);
+      height: .125rem;
+      border-radius: .0625rem;
+    }
+    .tab-content,
+    .block-table {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .empty {
+        min-height: 30rem;
+        padding: 2.5rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        background: var(--n0);
+        box-shadow: 0rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  
+        span {
+          display: block;
+          margin:0 auto 1rem auto;
+          background: #F5F7FA;
+          width: 7rem;
+          height: 7rem;
+          text-align: center;
+          border-radius: 50%;
+  
+          em {
+            font-size: 3rem;
+            line-height: 7rem;
+          }
+        }
+        h1 {
+          font-size: 1.5rem;
+          line-height: 2rem;
+          color: var(--c90);
+          font-weight: var(--regular);
+          margin:0 0 8px 0;
+        }
+        p {
+          font-size: 1rem;
+          line-height: 1.375rem;
+          color: var(--c60);
+          margin: 0;
+        }
+        h5 {
+          font-size: 1.125rem;
+          line-height: 1.5rem;
+          color: var(--c90);
+          margin-bottom: .25rem;
+
+          + p {
+            font-size: .875rem;
+            line-height: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}
+.tab-button {
+  display: flex;
+  margin: 0 auto 1rem;
+  justify-content: center;
+
+  .btn-custom {
+    width: 8.125rem;
+    height: 7rem;
+    margin: 0 .5rem;
+    white-space: normal;
+    border-radius: .25rem;
+    box-shadow: 0px .125rem .3125rem rgba(0, 0, 0, 0.1);
+    text-align: left;
+    padding: .875rem 1rem;
+    color: var(--c60);
+    border: .0625rem solid transparent;
+
+    em {
+      border: 0 none;
+      display: block;
+      margin: 0 .3125rem 1rem;
+      font-size: 1.3125rem;
+
+      &.icon-log {
+        font-size: 1.125rem;
+      }
+    }
+    strong {
+      display: block;
+      font-size: .875rem;
+      line-height: 1.25rem;
+      font-weight: normal;
+    }
+    &.btn-selected {
+      border-color: #3879C7;
+      color: #3879C7;
+
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
+}

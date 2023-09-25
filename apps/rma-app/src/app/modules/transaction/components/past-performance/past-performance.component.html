@@ -1,0 +1,24 @@
+
+    <h3 class="subHeading">Past Performance</h3>
+    <div class="flex performance">
+        <div class="stats flex">
+            <div *ngFor="let performance of pastPerformance; let i=index">
+                <p class="title">{{ pastPerformanceHeader[i] }}</p>
+                <p class="value">{{ performance.pastPerformance === null ? '-' : (performance.pastPerformance  | number:'2.2-2')+'%'}}</p>
+            </div>
+        </div>
+        <div class="rating flex">
+            <div class="box-wapper">
+                <img src="./assets/images/morning-star-logo.png" alt="morning-star-logo" class="morning-start-logo">
+                <div class="flex">
+                    <div class="star" *ngFor="let item of [1,2,3,4,5]">
+                        <mat-icon [ngClass]="{'filled': (item <= +fundDetails.riskRating)}">{{ (item <= +fundDetails.riskRating) ? 'star' : 'star_border'}}</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="performanceChart">
+        <cimb-office-chart-fund-performance [fundDetails]="fundDetails"></cimb-office-chart-fund-performance>
+    </div>

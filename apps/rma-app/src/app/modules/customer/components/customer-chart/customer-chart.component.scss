@@ -1,0 +1,53 @@
+.overall {
+    padding-left: 9%;
+    display: flex;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 150%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #575a5c;
+    flex-direction: column;
+}
+
+.span {
+    padding-left: 9%;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 140%;
+    color: #333739;
+}
+
+.super {
+    vertical-align: super;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.625rem;
+    line-height: 160%;
+    text-align: right;
+    letter-spacing: 0.04em;
+    color: #333739;
+    display: inline;
+}
+.margin {
+    flex-direction: column;
+    padding-top: 1.5rem;
+    padding-bottom: 76px;
+}
+@media only screen and (max-width: 900px) {
+    .margin{
+        overflow-x: scroll;
+    }
+}
+@media only screen and (max-width: 1250px) {
+    .margin{
+        overflow-x: scroll;
+    }
+}
+
+@media only screen and (max-width: 380px){
+    .margin{
+        overflow-x: scroll;
+    }
+}

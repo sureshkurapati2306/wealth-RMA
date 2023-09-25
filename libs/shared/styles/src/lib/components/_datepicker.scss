@@ -1,0 +1,265 @@
+.datepicker-menu {
+  &.custom-menu-panel {
+    @media (min-width: 48rem) {
+      // width: 33rem;
+      // max-width: 33rem;
+      height: 28.8125rem;
+      max-height: 28.8125rem;
+      width: 23.5rem;
+      max-width: 23.5rem;
+    }
+    .mat-menu-content {
+      @media (min-width: 48rem) {
+        padding: 0;
+      }
+    }
+    .mat-calendar {
+      @media (min-width: 48rem) {
+        padding: 0 1rem;
+        // flex: 1 1 50%;
+        // max-width: 50%;
+        flex: 1;
+        max-width: 100%;
+      }
+
+      + .mat-calendar {
+        @media (min-width: 48rem) {
+          display: none;
+        }
+      }
+    }
+    .mat-calendar-header {
+      padding-top: 1.6875rem;
+    }
+    .mat-calendar-controls {
+      margin: 0;
+
+      @media (min-width: 48rem) {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      // .mat-calendar-spacer,
+      // .mat-icon-button {
+      //   display: none;
+      // }
+      .mat-calendar-spacer {
+        display: none;
+      }
+      .mat-calendar-previous-button,
+      .mat-calendar-next-button {
+        width: 1.5rem;
+        height: 1.5rem;
+        background: var(--n0);
+        box-shadow: 0rem 0.125rem 0.25rem -0.125rem rgba(24, 39, 75, 0.12),
+          0rem 0.25rem 0.25rem -0.125rem rgba(24, 39, 75, 0.08);
+        border-radius: 1rem;
+        text-align: center;
+        line-height: 1.5rem;
+        font-size: 0.75rem;
+
+        @media (max-width: 47.9375rem) {
+          display: none;
+        }
+
+        &:after {
+          width: 0.5rem;
+          height: 0.5rem;
+          top: 0.5625rem;
+          margin: 0;
+          color: var(--n100);
+        }
+      }
+      .mat-calendar-previous-button {
+        @media (min-width: 48rem) {
+          order: 1;
+        }
+        &:after {
+          left: 0.4375rem;
+          right: auto;
+        }
+      }
+      .mat-calendar-next-button {
+        @media (min-width: 48rem) {
+          order: 3;
+        }
+        &:after {
+          right: 0.4375rem;
+          left: auto;
+        }
+      }
+      .mat-calendar-period-button {
+        margin: 0 auto;
+        height: auto;
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+        color: var(--n100);
+        letter-spacing: 0.08rem;
+        text-transform: uppercase;
+        font-weight: var(--medium);
+
+        @media (min-width: 48rem) {
+          font-size: 0.875rem;
+          font-weight: var(--bold);
+          letter-spacing: 0;
+          order: 2;
+          margin: 0;
+        }
+        .mat-button-ripple {
+          display: none;
+        }
+        svg {
+          display: none;
+        }
+      }
+    }
+    .mat-calendar-table {
+      .mat-calendar-table-header {
+        display: none;
+
+        @media (min-width: 48rem) {
+          display: table-header-group;
+        }
+        tr {
+          &:last-child {
+            display: none;
+          }
+          th {
+            font-size: 0.875rem;
+            color: var(--n100);
+
+            abbr {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+    .mat-calendar-content {
+      padding: 1.1875rem 0 0.4375rem 0;
+
+      mat-multi-year-view,
+      mat-year-view {
+        .mat-calendar-body-cell-content {
+          height: 1.5rem;
+
+          @media (min-width: 48rem) {
+            height: 1.5rem;
+          }
+        }
+      }
+    }
+    .mat-calendar-body {
+      tr {
+        &:first-child {
+          display: none;
+        }
+      }
+    }
+    .mat-calendar-body-cell {
+      font-size: 0.875rem;
+
+      &:not(.mat-calendar-body-disabled) {
+        &:hover {
+          > .mat-calendar-body-cell-content {
+            &:not(.mat-calendar-body-selected) {
+              &:not(.mat-calendar-body-comparison-identical) {
+                background: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .cdk-keyboard-focused {
+      .mat-calendar-body-active {
+        > .mat-calendar-body-cell-content {
+          &:not(.mat-calendar-body-selected) {
+            &:not(.mat-calendar-body-comparison-identical) {
+              background: none;
+            }
+          }
+        }
+      }
+    }
+    .cdk-program-focused {
+      .mat-calendar-body-active {
+        > .mat-calendar-body-cell-content {
+          &:not(.mat-calendar-body-selected) {
+            &:not(.mat-calendar-body-comparison-identical) {
+              background: none;
+            }
+          }
+        }
+      }
+    }
+    .mat-calendar-body-in-range {
+      .mat-calendar-body-cell-content {
+        color: var(--n60);
+      }
+      &:before {
+        background-color: var(--r10);
+      }
+      &:first-child {
+        &:before {
+          border-top-left-radius: 50%;
+          border-bottom-left-radius: 50%;
+        }
+      }
+      &:last-child {
+        &:before {
+          border-top-right-radius: 50%;
+          border-bottom-right-radius: 50%;
+        }
+      }
+    }
+    .mat-calendar-body-label {
+      + .mat-calendar-body-in-range {
+        &:before {
+          border-radius: 50% 0 0 50%;
+        }
+      }
+    }
+    .mat-calendar-body-cell-content {
+      font-size: 0.875rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--n100);
+      box-shadow: none;
+
+      &.mat-calendar-body-selected {
+        color: var(--n0);
+        background-color: var(--r160);
+      }
+    }
+    .mat-date-range-input-separator {
+      color: var(--n100);
+    }
+    .mat-calendar-body-cell-preview {
+      height: 100%;
+    }
+    .mat-calendar-body-today {
+      &:not(.mat-calendar-body-selected) {
+        &:not(.mat-calendar-body-comparison-identical) {
+          border-color: var(--r100);
+        }
+      }
+    }
+    .mat-calendar-body-disabled {
+      > .mat-calendar-body-cell-content {
+        &:not(.mat-calendar-body-selected) {
+          &:not(.mat-calendar-body-comparison-identical) {
+            color: var(--n40);
+          }
+        }
+      }
+    }
+    .mat-button {
+      .mat-button-focus-overlay {
+        background: none;
+        display: none;
+      }
+    }
+  }
+}

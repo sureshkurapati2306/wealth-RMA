@@ -1,0 +1,181 @@
+@font-face {
+  font-family: 'wealth';
+  src: url('../fonts/wealth/wealth.eot?64898602');
+  src: url('../fonts/wealth/wealth.eot?64898602#iefix') format('embedded-opentype'),
+    url('../fonts/wealth/wealth.woff2?64898602') format('woff2'),
+    url('../fonts/wealth/wealth.woff?64898602') format('woff'),
+    url('../fonts/wealth/wealth.ttf?64898602') format('truetype'),
+    url('../fonts/wealth/wealth.svg?64898602#wealth') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'wealth', serif;
+    src: url('../fonts/wealth/wealth.svg?36589134#wealth') format('svg');
+  }
+}
+*/
+[class^='icon-']:before,
+[class*=' icon-']:before {
+  font-family: 'wealth', serif;
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-user:before {
+  content: '\e800';
+} /* '' */
+.icon-cart:before {
+  content: '\e801';
+} /* '' */
+.icon-help:before {
+  content: '\e802';
+} /* '' */
+.icon-close:before {
+  content: '\e803';
+} /* '' */
+.icon-arrow-down:before {
+  content: '\e804';
+} /* '' */
+.icon-add:before {
+  content: '\e805';
+} /* '' */
+.icon-cancel:before {
+  content: '\e806';
+} /* '' */
+.icon-warning-bubble:before {
+  content: '\e807';
+} /* '' */
+.icon-arrow-left:before {
+  content: '\e808';
+} /* '' */
+.icon-check:before {
+  content: '\e809';
+} /* '' */
+.icon-search:before {
+  content: '\e80a';
+} /* '' */
+.icon-filter:before {
+  content: '\e80b';
+} /* '' */
+.icon-danger:before {
+  content: '\e80c';
+} /* '' */
+.icon-download:before {
+  content: '\e80e';
+} /* '' */
+.icon-pdf:before {
+  content: '\e80f';
+} /* '' */
+.icon-sort:before {
+  content: '\e810';
+} /* '' */
+.icon-danger-1:before {
+  content: '\e813';
+} /* '' */
+.icon-info:before {
+  content: '\e814';
+} /* '' */
+.icon-success:before {
+  content: '\e815';
+} /* '' */
+.icon-warning:before {
+  content: '\e816';
+} /* '' */
+.icon-icon-sorter:before {
+  content: '\e817';
+} /* '' */
+.icon-error:before {
+  content: '\e81a';
+} /* '' */
+.icon-arrow-right:before {
+  content: '\e81d';
+} /* '' */
+.icon-arrow-right-1:before {
+  content: '\e81f';
+} /* '' */
+.icon-calendar:before {
+  content: '\e820';
+} /* '' */
+.icon-arrow-back:before {
+  content: '\e822';
+} /* '' */
+.icon-arrow-prev:before {
+  content: '\e829';
+} /* '' */
+.icon-arrow-next:before {
+  content: '\e82a';
+} /* '' */
+.icon-logout:before {
+  content: '\e830';
+} /* '' */
+.icon-call:before {
+  content: '\e831';
+} /* '' */
+.icon-sort-up:before {
+  content: '\e81b';
+} /* '' */
+.icon-sort-down:before {
+  content: '\e80d';
+} /* '' */
+.icon-bin:before {
+  content: '\e83a';
+} /* '' */
+.icon-arrow-right-end:before {
+  content: '\e83b';
+} /* '' */
+.icon-arrow-left-regular:before {
+  content: '\e83c';
+} /* '' */
+.icon-arrow-left-start:before {
+  content: '\e83d';
+} /* '' */
+.icon-arrow-right-regular:before {
+  content: '\e83e';
+} /* '' */
+.icon-calendar-alt:before {
+  content: '\e846';
+} /* '' */
+.icon-dropdown:before {
+  content: '\e847';
+} /* '' */
+.icon-log:before {
+  content: '\e84b';
+} /* '' */
+.icon-profile:before {
+  content: '\e84c';
+} /* '' */
+.icon-download-alt:before {
+  content: '\e84e';
+} /* '' */
+.icon-clock:before {
+  content: '\e84f';
+} /* '' */

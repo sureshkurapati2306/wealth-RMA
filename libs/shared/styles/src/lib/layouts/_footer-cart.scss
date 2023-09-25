@@ -1,0 +1,111 @@
+#FooterCart {
+  background: var(--n100);
+  border-radius: 1rem 1rem 0 0;
+  position: sticky !important;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  .footer-cart {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media (min-width: 37.5rem) {
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+    &-item {
+      @media (min-width: 37.5rem) {
+        flex: 1 0 auto;
+      }
+      p {
+        margin: 0;
+        font-size: 0.625rem;
+        font-weight: var(--regular);
+        line-height: 1rem;
+        color: var(--n0);
+
+        @media (min-width: 48rem) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+        strong {
+          display: block;
+
+          @media (min-width: 37.5rem) {
+            display: inline;
+          }
+        }
+      }
+    }
+    &-amount {
+      text-align: right;
+
+      @media (min-width: 37.5rem) {
+        margin-left: 40px;
+        flex: 0 0 auto;
+      }
+      p {
+        margin: 0;
+        font-size: 0.625rem;
+        font-weight: var(--regular);
+        line-height: 1rem;
+        color: var(--n0);
+        letter-spacing: 0.04rem;
+
+        @media (min-width: 48rem) {
+          font-size: 0.875rem;
+          line-height: 1.3475rem;
+          letter-spacing: 0;
+        }
+      }
+      h6 {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: var(--n0);
+        margin: 0;
+
+        @media (min-width: 48rem) {
+          font-size: 1.75rem;
+          line-height: 2.5rem;
+        }
+        sup {
+          font-weight: var(--medium);
+          font-size: 0.625rem;
+        }
+      }
+      small {
+        display: block;
+        font-weight: var(--medium);
+        font-size: 0.625rem;
+        line-height: 1rem;
+        color: var(--n0);
+
+        @media (min-width: 48rem) {
+          font-weight: var(--regular);
+          font-size: 0.875rem;
+        }
+      }
+    }
+    &-button {
+      margin-top: 0.5rem;
+      flex-basis: 100%;
+
+      @media (min-width: 37.5rem) {
+        flex: 0 0 auto;
+        margin: 0 0 0 2.5rem;
+      }
+      button {
+        width: 100%;
+        text-align: center;
+
+        @media (min-width: 37.5rem) {
+          width: auto;
+        }
+      }
+    }
+  }
+}

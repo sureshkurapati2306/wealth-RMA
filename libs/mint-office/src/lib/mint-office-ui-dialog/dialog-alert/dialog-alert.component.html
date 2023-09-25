@@ -1,0 +1,64 @@
+<div class="mat-dialog-wrapper">
+  <div class="mat-dialog-pad">
+    <button mat-icon-button class="btn-close"
+      *ngIf="dialogShowCloseButtonCancel || (this.dialogButtonCancelText!=='Logout') || (this.dialogButtonProceedText!=='Stay on Page')"
+      (click)="proceed(true)">
+      <em class="icon-close"></em>
+    </button>
+    <button mat-icon-button class="btn-close"
+      *ngIf="(this.dialogButtonCancelText==='Logout') || (this.dialogButtonProceedText==='Stay on Page')"
+      (click)="proceed(false)">
+      <em class="icon-close"></em>
+    </button>
+    <div class="dialog_center">
+      <mat-dialog-content>
+        <div class="image" [innerHtml]="dialogImage" *ngIf="dialogImage"></div>
+        <h3 [innerHTML]="dialogHeading">
+
+          <small *ngIf="dialogHeadingSubText" [innerHTML]="dialogHeadingSubText"></small>
+        </h3>
+        <div *ngIf="(dialogHeading !== 'Unexpected Issue')" [innerHtml]="transform(dialogContent)"></div>
+        <div *ngIf="(dialogHeading === 'Unexpected Issue')">
+          <p>We have encountered an unexpected issue. Please try again later. If this issue persists, please<strong><a
+                href="https://www.cimb.com.my/en/personal/help-support/contact-us.html"
+                class="contactUs go_to_consumer_contact_centre_link"> contact us to report this issue.</a></strong></p>
+        </div>
+      </mat-dialog-content>
+    </div>
+    <mat-dialog-actions align="center" [ngClass]="dialogButtonProceedText === 'Reload' ? 'cart-modal-actions-intercept' : 'cart-modal-actions'"
+      *ngIf="((dialogButtonCancel || dialogButtonProceed)&&(dialogHeading !== 'Unexpected Issue')) && !isInactive">
+      <button *ngIf="dialogButtonCancel" mat-flat-button class="btn-custom btn-lg btn-white" disableRipple="true"
+        (click)="cancel()">
+        {{ dialogButtonCancelText }}
+      </button>
+      <button *ngIf="dialogButtonProceed" mat-flat-button class="btn-custom btn-red" disableRipple="true"
+        (click)="proceed(false)">
+        {{ dialogButtonProceedText }}
+      </button>
+    </mat-dialog-actions>
+    <mat-dialog-actions align="center" class="cart-modal-actions"
+      *ngIf="((dialogButtonCancel || dialogButtonProceed)&&(dialogHeading === 'Unexpected Issue')) && !isInactive">
+
+      <button *ngIf="dialogButtonCancel" mat-flat-button class="btn-custom btn-red" disableRipple="true"
+        (click)="cancel()">
+        {{ dialogButtonCancelText }}
+      </button>
+    </mat-dialog-actions>
+    <mat-dialog-actions *ngIf="isInactive" align="center" class="cart-modal-actions">
+      <button mat-flat-button class="btn-custom btn-red" disableRipple="true"
+        (click)="proceed(false)">
+        {{ dialogButtonProceedText }}
+      </button>
+    </mat-dialog-actions>
+
+
+    <mat-dialog-content *ngIf="dialogFooter || dialogFooterSubText">
+      <br />
+      <h3> <span *ngIf="dialogFooter">{{ dialogFooter }}</span>
+
+      </h3>
+      <h5> <strong><small *ngIf="dialogFooterSubText">{{dialogFooterSubText}}</small></strong></h5>
+      <div [innerHtml]="dialogFooterContent"></div>
+    </mat-dialog-content>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+.search-filter {
+    .mat-card {
+      box-shadow: none;
+      background-color: #F0F0F0;
+      margin-bottom: 0;
+      padding: 0 16px 24px 0;
+      border-top-left-radius: 0;
+    }
+
+    .filters {
+      .categories {
+        height: auto;
+        width: 220px;
+      }
+    }
+
+    .header {
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #575A5C;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .columns {
+      padding: 32px 5px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      
+      ::ng-deep .mat-checkbox-layout{
+        margin-bottom: 14px;
+        .mat-checkbox-label{
+          font-size: 16px;
+          font-weight: normal;
+          color: #575A5C;
+        }
+      } 
+      
+    }
+
+
+    .column {
+      flex: 1 1 0;
+      margin: 0px 20px 0px 20px;
+      .yes-checkbox {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+    }
+
+  }
+
+  .reset {
+    margin-top: 4px;
+    .text-btn {
+        font-size: 14px;
+    }
+  }
+  .text-btn {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    min-height: 32px;
+
+    &--red {
+      color: #FF0000;
+    }
+
+    &--grey {
+      color: #7B7D7E;
+      margin-right: 12px;
+    }
+  }
+
+  .search-filter-dd {
+    display: flex;
+    align-items: flex-start;
+
+    .search-mat-button {
+      min-height: 40px;
+      min-width: 160px;
+      color: #7B7D7E;
+      background-color: #F0F0F0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      margin-right: 14px;
+
+      .mat-button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .selected-items {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1 1 auto;
+
+      .selected-item {
+        height: 33px;
+        display: flex;
+        align-items: center;
+        padding-right: 14px;
+
+        .itemText {
+          padding: 2px 8px;
+          border-radius: 16px;
+          border: 1px solid #a7a9ac;
+          color: #7b7d7e;
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: 600;
+          background-color: #ffffff;
+        }
+      }
+    }
+    .close-icon {
+      float: right;
+      width: auto;
+      height: auto;
+      font-size: 15px;
+      margin-top: 3px;
+      margin-left: 4px;
+      cursor: pointer;
+    }
+  }

@@ -1,0 +1,36 @@
+.subheader {
+  background: var(--r120);
+  border-radius: 0 0 1rem 1rem;
+
+  @media (min-width: 48rem) {
+    background: var(--n0);
+  }
+
+  .container {
+    padding-top: 1.5rem;
+    padding-bottom: 9.125rem;
+
+    @media (min-width: 48rem) {
+      padding-bottom: 2rem;
+      padding-top: 2rem;
+    }
+
+    h3 {
+      color: var(--n0);
+      margin: 0;
+
+      @media (min-width: 48rem) {
+        color: var(--n100);
+      }
+    }
+    p {
+      color: var(--n0);
+      font-size: 0.625rem;
+      margin: 0;
+
+      @media (min-width: 48rem) {
+        color: var(--n60);
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div class="app-container">
+    <div class="header" *ngIf="isAuthenticated | async; else loginHeader">
+        <div class="container">
+            <div class="inline-flex">
+                <a class="logo" routerLink="/home">
+                    <img src="./assets/back-office/logo.svg" alt="CIMB" />
+                </a>
+                <button (click)="logout()" mat-flat-button class="btn-custom btn-text btn-lg btn-ghost"
+                    disableRipple="true">
+                    <img src="./assets/back-office/logout.svg" alt="Logout" /> <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-template #loginHeader>
+        <div class="header">
+            <div class="container login-header-container">
+                <div class="inline-flex">
+                    <a class="logo" routerLink="/home">
+                        <div class="logo-upperText">Welcome to</div>
+                        <img src="./assets/back-office/logo.svg" alt="CIMB" />
+                    </a>
+
+                    <a class="octo-nav-logo" routerLink="/home">
+                        <img src="./assets/back-office/octo-welcome.svg" alt="CIMB" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <div class="content-wrapper">
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <cimb-footer class="{{ footerClassName$ | async }}"></cimb-footer>
+</div>

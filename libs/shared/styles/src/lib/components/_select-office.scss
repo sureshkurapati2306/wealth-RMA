@@ -1,0 +1,270 @@
+@mixin info-chip {
+    border: 1px solid var(--information);
+    font-size: 0.75rem !important;
+    color: var(--information);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.75rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.mat-select {
+    line-height: 1.25rem;
+    font-size: 1rem !important;
+
+    &.investment-account,
+    &.settlement-account {
+        .mat-select-value .mat-select-value-text {
+            font-weight: 400 !important;
+        }
+        .tag {
+            @include info-chip();
+        }
+    }
+
+    .mat-select-trigger {
+        .mat-select-value-text {
+            mat-select-trigger {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .mat-select-arrow-wrapper {
+        border: 0 none;
+        background: none;
+        padding-right: 0.75rem;
+        transform: translateY(-5%) !important;
+
+        &:before {
+            content: '\e847';
+            font-family: 'wealth', serif;
+            color: var(--n100);
+            font-size: 0.5625rem;
+        }
+    }
+    .mat-select-arrow {
+        display: none;
+    }
+
+    &.mat-select-disabled {
+        .mat-select-arrow-wrapper {
+            &:before {
+                color: var(--n20);
+            }
+        }
+    }
+}
+.mat-select-panel {
+    &.custom-select-panel {
+        border-radius: 8px;
+        min-width: calc(100% + 20px) !important;
+        margin-top: 31px !important;
+
+        .mat-option {
+            position: relative;
+            overflow: visible;
+            height: 3rem;
+            margin: 0 !important;
+            padding: 0 !important;
+
+            &.mat-option-multiple {
+                margin: 0 1rem !important;
+                .mat-option-text {
+                    border-bottom: none !important;
+                    height: auto !important;
+                    display: block;
+                    margin: 0;
+                }
+                border-bottom: 1px solid var(--n20);
+            }
+
+            .mat-option-text {
+                height: 100% !important;
+                display: flex;
+                align-items: center;
+                margin: 0 1rem;
+                border-bottom: 1px solid var(--n20);
+            }
+
+            &:last-child {
+                border-width: 0 !important;
+                .mat-option-text {
+                    border-width: 0 !important;
+                }
+            }
+
+            &:not(:first-child) {
+                margin-top: 0.0625rem;
+
+                &:before {
+                    height: 0.0625rem;
+                    content: '';
+                    position: absolute;
+                    top: -0.0625rem;
+                    left: 0.75rem;
+                    right: 0.75rem;
+                    background: var(--c20);
+                }
+            }
+            &.mat-active {
+                background: var(--n0);
+                color: var(--n100);
+            }
+            &.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled),
+            &:hover {
+                background: var(--scarlet) !important;
+                color: var(--n0) !important;
+
+                .tag {
+                    border-color: var(--n0) !important;
+                    color: var(--n0) !important;
+                }
+            }
+        }
+        .mat-option-text {
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        &.transaction {
+            .mat-option {
+                .mat-option-text {
+                    justify-content: center !important;
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    p {
+                        margin-bottom: 0;
+
+                        span.tag {
+                            @include info-chip();
+                        }
+                    }
+                }
+            }
+
+            &.investment-account {
+                .mat-option {
+                    height: 4.25rem;
+                    .mat-option-text {
+                        height: 4.25rem;
+                    }
+                }
+            }
+
+            &.settlement-account {
+                .mat-option {
+                    height: 5.5rem;
+                    .mat-option-text {
+                        height: 5.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+.multi-select {
+    .mat-chip-list-wrapper {
+        margin: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        padding-right: 2.5rem;
+
+        .mat-autocomplete-trigger {
+            max-width: none;
+            margin: 0;
+        }
+        .icon-dropdown {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.5625rem;
+        }
+        .selected-text {
+            .mat-chip {
+                margin: 0;
+                height: auto;
+                padding: 0;
+                min-height: 0;
+                background: var(--n0);
+                font-size: 1rem;
+                line-height: 1.375rem;
+
+                &:after {
+                    display: none;
+                }
+                &:not(:last-child) {
+                    span {
+                        &:after {
+                            content: ',';
+                            font-size: 1rem;
+                            display: inline-block;
+                            margin-left: -0.1875rem;
+                            margin-right: 0.1875rem;
+                        }
+                    }
+                }
+                .mat-chip-ripple {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.bo-autocomplete {
+    &:not([class*='mat-elevation-z']) {
+        box-shadow: 0px 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+    }
+    .mat-option {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 2.9375rem;
+
+        &:not(:first-child) {
+            span {
+                border-top: 0.0625rem solid var(--c20);
+            }
+        }
+        &:hover {
+            background: var(--r160);
+            color: var(--n0);
+        }
+        &.selected,
+        &.mat-selected {
+            &:not(.mat-active):not(:hover) {
+                background: var(--scarlet);
+
+                &:not(.mat-option-disabled) {
+                    color: var(--n0);
+                }
+            }
+            &:hover {
+                background: var(--scarlet);
+            }
+        }
+    }
+}
+// multiselect scss
+.mat-select-panel.custom-select-panel.multiselect .mat-option.mat-active,
+.mat-select-panel.custom-select-panel.multiselect .mat-option:hover {
+    background: transparent;
+    color: var(--n100);
+    font-weight: 600;
+}
+
+.mat-select-panel.custom-select-panel.multiselect {
+    .mat-pseudo-checkbox-checked,
+    .mat-pseudo-checkbox-indeterminate {
+        background: var(--scarlet);
+    }
+
+    .mat-option.mat-selected:not(.mat-option-disabled) {
+        color: var(--n100);
+        font-weight: 600;
+    }
+}

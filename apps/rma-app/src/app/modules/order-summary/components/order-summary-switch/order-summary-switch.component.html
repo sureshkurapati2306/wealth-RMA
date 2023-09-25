@@ -1,0 +1,40 @@
+<mat-expansion-panel [expanded]="true" class="box-shadow">
+
+    <mat-expansion-panel-header [expandedHeight]="'100%'" class="disable-ripple">
+
+        <mat-panel-description class="expansion-panel" (click)="$event.stopPropagation();">
+           
+                <div>
+                    <h3 class="customer-main">Switch</h3>
+                    <mat-divider></mat-divider>
+                    <cimb-office-order-summary-common-table [dataSource]="dataSource"></cimb-office-order-summary-common-table>
+                </div>
+                <div class="card3 card">
+
+                    <mat-card>
+                        <div class="result-container">
+                            <div class="result">
+                                <div class="sales">
+                                    <div class="salesInfo">
+                                        Indicative Switch Out Amount
+                                    </div>
+                                    <span class="salesDetails">
+                                        MYR 14,459.96
+                                    </span>
+                                </div>
+                                
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="total">
+                                <div class="salesInfo">
+                                    * Final Switch In unit will be confirmed by Fund Houses.
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </mat-card>
+                
+                </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+</mat-expansion-panel>

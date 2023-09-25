@@ -1,0 +1,39 @@
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--n100);
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: var(--n100);
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: var(--r100);
+}
+.section-content-right {
+  label {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: var(--regular);
+  }
+  .mat-radio-group {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .mat-radio-button {
+      &:last-child {
+        .mat-radio-label {
+          justify-content: flex-start;
+
+          @media (min-width: 48rem) {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

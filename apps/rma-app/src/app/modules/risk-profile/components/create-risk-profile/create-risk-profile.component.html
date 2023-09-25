@@ -1,0 +1,23 @@
+<div class="create-risk-profile" [formGroup]="riskProfileForm" *ngIf="riskProfileForm && riskProfileQuestionnaire">
+    <div class="custom-form-field" *ngFor="let question of riskProfileQuestionnaire?.RPQuestionaire.jsonFinal">
+        <div class="label">{{question?.question_no}}-{{question?.question_desc | uppercase}}</div>
+        <mat-form-field appearance="outline" floatLabel="never">
+            <mat-select (selectionChange)="question?.additional === 'P' ? activeSelectedValue($event.value) : null" panelClass="dropdown-panel custom-select-panel" placeholder="Select your answer" class="select-panel" [formControlName]='"q"+question?.question_no'>
+                <mat-select-trigger *ngIf="question?.additional === 'P'">
+                    <span [innerHTML]="selectedValue"></span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let option of question?.answer_options" [value]="option.answer_no">
+                    <span [innerHTML]="option.answer_desc"></span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="chartInfo" *ngIf="question?.additional === 'P' && getSelectedAnswer(question?.question_no)">
+            <div class="chart">
+                <img [src]='getPortfolioImage(question?.question_no)' alt="Finance Chart" class="chartSvg">
+            </div>
+            <span class="disclaimer">
+                Disclaimer: Please note that this chart is for illustrative purposes only. Actual returns and losses may vary.
+            </span>
+        </div>
+    </div>
+</div>

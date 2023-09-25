@@ -1,0 +1,72 @@
+<ng-container *ngIf="getTotalInvestment$ | async as customerInvestment">
+    <mat-card class="box-shadow">
+        <div class="total">
+            <mat-card-title class="totla-portfolio"> total portfolio</mat-card-title>
+            <label class="last-update" *ngIf="customerInvestment.lastUpdatedDate">Last updated: {{ customerInvestment.lastUpdatedDate | date: 'd MMMM y, hh:mmaaa' | titlecase }}</label>
+        </div>
+        <mat-divider inset></mat-divider>
+        <cimb-office-customer-chart></cimb-office-customer-chart>
+        <mat-divider inset></mat-divider>
+        <div>
+            <h5 class="details-container color-1">savings</h5>
+            <div class="personal-name padding">
+                <div class="personalname">
+                    <p class="sub-container color-4">current & savings account</p>
+                    <p class="sub-container p color-1">
+                        <sup *ngIf="customerInvestment.casaAmount >= 0" class="super">{{ customerInvestment.currency }}</sup>
+                        {{transformDecimal(customerInvestment.casaAmount)}}
+                    </p>
+                </div>
+                <div class="personalname width">
+                    <p class="sub-container color-4">fixed deposit</p>
+                    <p class="sub-container p color-1">
+                        <sup *ngIf="customerInvestment.fixedDeposit >= 0" class="super">{{ customerInvestment.currency }}</sup>
+                        {{transformDecimal(customerInvestment.fixedDeposit)}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <mat-divider inset></mat-divider>
+        <div class="container" *ngIf="customerInvestment">
+            <div class="investment">
+                <h5 class="color-2">investments</h5>
+                <p class="disclaimer"><span class="red">*</span> All investments may not based on the latest NAV price.
+                </p>
+            </div>
+
+            <div class="personal-name padding flex">
+                <div class="personalname">
+                    <p class="sub-container color-4">unit trust</p>
+                    <p class="sub-container p color-2">
+                        <sup *ngIf="customerInvestment.investmentAmount >= 0" class="super">{{ customerInvestment.currency }}</sup>
+                        {{ transformDecimal(customerInvestment.investmentAmount )}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <mat-divider inset></mat-divider>
+        <div class="container">
+            <div class="expenses">
+                <h5 class="color-3">expenses</h5>
+                <p class="disclaimer">Credit card record is available for MyKad (New IC) holders only. The balance shown
+                    excludes supplementary card(s).</p>
+            </div>
+            <div class="personal-name padding">
+                <div class="personalname">
+                    <p class="sub-container color-4">credit card</p>
+                    <p class="sub-container p color-3">
+                        <sup *ngIf="customerInvestment.creditCard >= 0" class="super">{{ customerInvestment.currency }}</sup>
+                        {{transformDecimal(customerInvestment.creditCard)}}
+                    </p>
+                </div>
+                <div class="personalname width">
+                    <p class="sub-container color-4">loan / financing</p>
+                    <p class="sub-container p color-3">
+                        <sup *ngIf="customerInvestment.loanAndFinance >= 0" class="super">{{ customerInvestment.currency }}</sup>
+                        {{transformDecimal(customerInvestment.loanAndFinance)}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</ng-container>

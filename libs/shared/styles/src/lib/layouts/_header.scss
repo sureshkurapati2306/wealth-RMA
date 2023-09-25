@@ -1,0 +1,66 @@
+#Header {
+  border-bottom: 0.0625rem solid var(--n20);
+  background: var(--n0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 4;
+  width: 100%;
+
+  .container {
+    min-height: 3.25rem;
+  }
+  .btn-panel {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .logo {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .utility {
+    text-align: right;
+    padding-top: 0.375rem;
+
+    .mat-icon-button {
+      font-size: 1.5rem;
+      margin-left: 0.875rem;
+      color: var(--n60);
+      line-height: 0;
+      position: relative;
+
+      .mat-icon {
+        width: 3rem;
+        height: 3rem;
+        transform: scale(0.5);
+      }
+      em {
+        font-size: 1.25rem;
+      }
+      .cart-item {
+        width: 1rem;
+        height: 1rem;
+        display: block;
+        border-radius: 50%;
+        font-size: 0.625rem;
+        font-weight: var(--medium);
+        line-height: 1rem;
+        text-align: center;
+        background: var(--r100);
+        color: var(--n0);
+        position: absolute;
+        top: 0.125rem;
+        right: 0.125rem;
+      }
+    }
+  }
+}

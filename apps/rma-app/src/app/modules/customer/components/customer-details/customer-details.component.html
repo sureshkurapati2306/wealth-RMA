@@ -1,0 +1,192 @@
+<mat-expansion-panel [expanded]="false" class="box-shadow customer-detail">
+
+    <mat-expansion-panel-header [expandedHeight]="'100%'" [collapsedHeight]="'31.4rem'" class="disable-ripple">
+
+        <mat-panel-description class="expansion-panel" (click)="$event.stopPropagation();">
+            <ng-container *ngIf="customerDetails">
+                <div class="w-100">
+                    <div class="w-100">
+                        <h3 class="customer-main">Customer Details</h3>
+                        <mat-divider></mat-divider>
+                        <div>
+                            <h5 class="details-container">personal details</h5>
+                            <div class="personal-name padding">
+                                <div class="personalname">
+                                    <p class="sub-container">title/ salutation</p>
+                                    <p class="sub-container-1 p">{{ customerDetails.salutation ?
+                                        customerDetails.salutation: '-' }}</p>
+                                </div>
+                                <div class="personalname width">
+                                    <p class="sub-container">full name</p>
+                                    <p class="sub-container-1 p">{{ customerDetails.name ? customerDetails.name: '-' }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="personal-name padding">
+                                <div class="personalname">
+                                    <p class="sub-container">customer ID</p>
+                                    <p class="sub-container-1 p">{{ customerDetails.idNo? customerDetails.idNo: '-' }}
+                                        ({{
+                                        customerDetails.idType }})</p>
+                                </div>
+                                <div class="personalname width">
+                                    <p class="dob">Date of Birth</p>
+                                    <p class="sub-container-1 p">{{ customerDetails.birthDate?
+                                        customerDetails.birthDate: '-' }} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="container">
+                        <h5 class="details-container">contact information</h5>
+                        <div class="personal-name padding">
+                            <div class="personalname email_test">
+                                <p class="sub-container">email address</p>
+                                <div class="sub-container-1 p select email"
+                                    *ngIf="customerDetails.email || customerDetails.emailId">
+                                    <mat-form-field floatLabel="never" class="formField">
+                                        <mat-select #mySelect value="all" panelClass="custom-select-panel"
+                                            [formControl]="email" (selectionChange)="onEmailChange()"
+                                            class="select-panel emailmatselectwidth">
+                                            <mat-option *ngFor="let option of customerDetails.emailId" [value]="option">
+                                                {{ option }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <button class="email-button-info" #emailTooltip="matTooltip"
+                                        (mouseleave)="$event.stopImmediatePropagation()" (click)="emailTooltip.toggle()"
+                                        matTooltipClass="allow-cr" [matTooltip]="getEmailTooltipText()"
+                                       >i</button>
+                                </div>
+                            </div>
+                            <div class="width mobile">
+                                <p class="sub-container">mobile phone number</p>
+                                <div class="sub-container-1 p select number" *ngIf="customerDetails.mobileNumber">
+                                    <mat-form-field floatLabel="never" class="formField">
+                                        <mat-select #mySelect value="all" panelClass="custom-select-panel"
+                                            [formControl]="mobileNumber" (selectionChange)="onMobileNumberChange()"
+                                            class="select-panel">
+                                            <mat-option class="" *ngFor="let option of customerDetails.mobileNumbers"
+                                                [value]="option">
+                                                {{ option }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <button class="button-info" #phoneTooltip="matTooltip"
+                                        (click)="tooltip(phoneTooltip)" matTooltipClass="allow-cr"
+                                        (mouseleave)="$event.stopImmediatePropagation()"
+                                        [matTooltip]="getMobileTooltipText()"
+                                        >i</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personal-name padding">
+                            <div class="personalname">
+                                <p class="sub-container">House Phone Number (Optional)</p>
+                                <p class="sub-container-1 p">{{ customerDetails.housePhone &&
+                                    customerDetails.housePhone.length > 0?customerDetails.housePhone[0]:'-' }}</p>
+                            </div>
+                            <div class="personalname width">
+                                <p class="sub-container">Office Phone Number (Optional)</p>
+                                <p class="sub-container-1 p">{{ customerDetails.offPhone &&
+                                    customerDetails.offPhone.length > 0?customerDetails.offPhone[0]:'-' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="w-100">
+                    <h5 class="details-container">other personal details</h5>
+                    <div class="personal-name">
+                        <div class="personalname">
+                            <p class="sub-container">nationality</p>
+                            <p class="sub-container-1 p">{{ customerDetails.nationality?customerDetails.nationality:'-'
+                                }} </p>
+                        </div>
+                        <div class="personalname width">
+                            <p class="sub-container">citizen</p>
+                            <p class="sub-container-1 p">{{ customerDetails.cntyCitizenship?
+                                customerDetails.cntyCitizenship:'-' }}</p>
+                        </div>
+                    </div>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">gender</p>
+                            <p class="sub-container-1 p">{{ customerDetails.gender?customerDetails.gender:'-' }}</p>
+                        </div>
+                        <div class="personalname width">
+                            <p class="sub-container">race</p>
+                            <p class="sub-container-1 p">{{ customerDetails.race?customerDetails.race:'-' }}</p>
+                        </div>
+                    </div>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">religion</p>
+                            <p class="sub-container-1 p">{{ customerDetails.religion? customerDetails.religion: '-' }}
+                            </p>
+                        </div>
+                        <div class="personalname width">
+                            <p class="sub-container">marital status</p>
+                            <p class="sub-container-1 p">{{
+                                customerDetails.maritalStatus?customerDetails.maritalStatus:'-' }}</p>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div class="w-100" *ngIf="customerDetails.addresses && customerDetails.addresses.length > 0">
+                    <h5 class="details-container">address</h5>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">default address</p>
+                            <ul class="sub-container-1 p">
+                                <li>
+                                   <ng-template *ngTemplateOutlet="mailingAddress"></ng-template>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="personalname width"
+                            *ngIf="customerDetails.addresses && customerDetails.addresses.length > 0">
+                            <p class="sub-container">mailing address</p>
+                            <ul class="sub-container-1 p">
+                                <li>
+                                   <ng-template *ngTemplateOutlet="mailingAddress"></ng-template>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <mat-divider id="divider"></mat-divider>
+                </div>
+                <div class="w-100">
+                    <h5 class="details-container">employment details</h5>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">industry</p>
+                            <ul class="sub-container-1 p">
+                                <li>
+                                    <p>{{ customerDetails.industry?customerDetails.industry:'-' }}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="personalname width">
+                            <p class="sub-container">profession</p>
+                            <p class="sub-container-1 p">{{ customerDetails.profession?customerDetails.profession:'-' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+</mat-expansion-panel>
+
+<ng-template #mailingAddress>
+    <p>{{ customerDetails.addresses[0].address1? customerDetails.addresses[0].address1 +
+        ',': '' }} {{
+        customerDetails.addresses[0].address2 ? customerDetails.addresses[0].address2 :
+        '' }}</p>
+    <p>{{ customerDetails.addresses[0].address3? ',' +
+        customerDetails.addresses[0].address3: '' }} {{
+        customerDetails.addresses[0].address4 ? ',' +
+        customerDetails.addresses[0].address4: '' }}</p>
+</ng-template>

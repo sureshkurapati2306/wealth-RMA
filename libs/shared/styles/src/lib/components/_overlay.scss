@@ -1,0 +1,9 @@
+.bo {
+  .cdk-overlay-backdrop {
+    &:not(.mat-overlay-transparent-backdrop) {
+      &.cdk-overlay-backdrop-showing {
+        background: rgba(51, 55, 57, 0.8);
+      }
+    }
+  }
+}

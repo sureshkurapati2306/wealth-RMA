@@ -1,0 +1,103 @@
+@media only screen and (max-width: 900px) {
+    .new-account {
+        flex-direction: column;
+        margin-bottom: 1.5rem !important;
+    }
+    .account{
+        width: 100% !important;
+        margin-left: 0px !important;
+        margin-top: 1.5rem !important;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+     .new-account {
+        flex-direction: column;
+        align-items: center;
+    }
+    .account{
+        width: 100% !important;
+        margin-left: 0px !important;
+        margin-top: 1.5rem !important;
+    }
+}
+
+.new-account {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 0;
+    background-color: #f5f7fa;
+    box-shadow: none;
+    flex-wrap: wrap;
+    margin-bottom: 3.75rem;
+    .mat-card {
+        display: flex;
+        flex-direction: column;
+        vertical-align: middle;
+        padding: 0rem;
+        box-shadow: none;
+        background-color: #f5f7fa;
+    }
+    
+    .matlabel {
+        color: #858788;
+        font-weight: bold;
+        font-size: 18px;
+        text-transform: capitalize;
+        width: auto;
+        padding-left: 0.313rem;
+    }
+
+    .id {
+        text-transform: lowercase;
+    }
+    .account-transaction {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .account {
+        width: 38%;
+        border-radius: 1rem;
+        box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+        display: flex;
+        justify-content: space-around;
+        background: #ffffff;
+        height: 3.125rem;
+        a{
+            .cursor-ptr{
+                cursor: pointer;
+            }
+        }
+    }
+    .decoration {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #ff0000;
+        margin-left: 0.563rem;
+        text-transform: capitalize;
+        margin-top: 2px;
+        background: none;
+    }
+    .na {
+        flex-direction: row !important;
+        color: #ff0000;
+        margin-top: 0.875rem;
+        background: none;
+        cursor: pointer;
+
+        &.disabled {
+           .icon, .decoration {
+            color: var(--n20);
+           }
+        }
+    }
+    .divider {
+        margin: 0.5rem 0rem;
+    }
+}
+
+a.disabled {
+    pointer-events: none;
+}

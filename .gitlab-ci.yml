@@ -1,0 +1,10 @@
+include:
+  - project: tcj/wealth/template-wl-pipelines
+    file: Nx.rma.gitlab-ci.yml
+    ref: release-0.9
+
+variables:
+  IMAGE_TITLE: 'RMA Web Apps'
+  IMAGE_DESCRIPTION: 'RMA Applications'
+  KUBE_SERVICE_NAME: 'rma-frontend'
+  KUBE_SERVICE_TITLE: 'RMA Applications'

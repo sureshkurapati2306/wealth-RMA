@@ -1,0 +1,46 @@
+<mat-card class="box-shadow" >
+    <div>
+        <mat-card-title class="riskprofile" >
+            <mat-card class="risk-profile">risk profile</mat-card>
+            <button class="button" [disabled]="!customerProfile$ || isUserBlock$ || !customerProfile$.licenseValidity || customerProfile$.casaStatus !== 'Y'" type="button" mat-button (click)="updateConfirmation(customerProfile$)">
+                Update
+            </button>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+
+        <div class="modes">
+            <div class="profile-mode flex align-center">
+                <div>
+                    <p class="modes-1">{{ riskProfile$ ? riskProfile$?.riskProfile : 'NA' }}</p>
+                </div>
+                <button *ngIf="riskProfile$" mat-icon-button type="button" [color]="'warn'" [disabled]="!customerProfile$ || !customerProfile$.licenseValidity || customerProfile$.casaStatus !== 'Y'" class="onclick" (click)="goToRiskProfilePage()" >
+                    <mat-icon >arrow_forward</mat-icon>
+                </button>
+            </div>
+            <div class="align-center flex label">
+                <ng-container *ngIf="riskProfile$; else noRiskProfile">
+                    Created: {{ riskProfile$?.lastUpdatedDate | date: 'dd-MM-yyyy' }}
+                    <span class="expired-profile" *ngIf="isProfileExpired$">Expired: Risk Profile update is required.</span>
+                </ng-container>
+                <ng-template #noRiskProfile>
+                    Created: NA
+                    <span class="expired-profile">Not Available: Risk Profile update is required</span>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="block-user">
+            <div class="error-message flex" *ngIf="isUserBlock$">
+                <div class="icon">
+                    <mat-icon>error</mat-icon>
+                </div>
+
+                <div class="message">
+                    <p>This customer is from an AML sanctioned country and has an existing investment account and/ or UT subscribed before the sanction. Customer is not permitted to do account opening, and/ or to apply for any investment applications.</p>
+                    <p>Customer is permitted to redeem unit trust only.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</mat-card>

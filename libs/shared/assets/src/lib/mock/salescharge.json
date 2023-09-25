@@ -1,0 +1,13 @@
+[
+    {
+      "scId": "default",
+      "scName": "Default sales charge",
+      "rate": 3
+    },
+    {
+      "scId": "adhoc",
+      "scName": "Request for adhoc discount",
+      "minRate": 0,
+      "maxRate": 2.49
+    }
+  ]

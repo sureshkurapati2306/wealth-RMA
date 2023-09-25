@@ -1,0 +1,59 @@
+.investment {
+    div[class^="col-"] {
+
+        &.col-6 {
+            width: 50%;
+        }
+
+        &.col-3 {
+            width: 25%;
+        }
+
+        &:last-child {
+            display: flex;
+            justify-content: end;
+        }
+
+        div {
+
+            &:nth-child(1) {
+                margin-bottom: 2rem;
+            }
+
+            &.returns {
+                text-align: right;
+
+                .mat-icon {
+                    color: var(--s100);
+                }
+            }
+
+
+            .title {
+                font-size: 0.875rem;
+                line-height: 1.54;
+                color: var(--n60);
+                margin-bottom: 0.25rem;
+            }
+
+            .value {
+                font-size: 1rem;
+                line-height: 1.5;
+                color: var(--n100);
+                font-weight: bold;
+                margin-bottom: 0;
+
+                .curruncy {
+                    font-size: 0.625rem;
+                    vertical-align: text-top;
+                    padding-right: 0.25rem;
+                }
+            }
+
+            .notes {
+                font-size: 0.75rem;
+                color: var(--n60);
+            }
+        }
+    }
+}

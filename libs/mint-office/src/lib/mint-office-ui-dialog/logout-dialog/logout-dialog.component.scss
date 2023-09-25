@@ -1,0 +1,119 @@
+.mat-dialog-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  text-align: center;
+  color: #333739;
+  margin-bottom: 8px;
+}
+
+.mat-dialog-content {
+  padding: 0;
+  text-align: center;
+  margin-bottom: 8px;
+
+}
+
+.mat-dialog-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-bottom: 24px;
+  margin: 0;
+
+  button {
+    max-width: 260px !important;
+    height: 48px;
+    width: 100%;
+
+    &:first-child {
+      margin-right: 8px;
+    }
+
+    &:last-child {
+      margin-left: 8px;
+    }
+  }
+}
+
+.imageWrapper {
+  width: 105.1px;
+  height: 120px;
+  margin-bottom: 24px;
+  display: inline-flex;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.close-icon {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+
+  .mat-icon {
+    cursor: pointer;
+  }
+}
+
+.dialog-content {
+  position: relative;
+  min-height: 346px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog_center {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  h1 {
+    color: #333739;
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+  }
+}
+
+::ng-deep .cdk-overlay-container {
+  z-index: 9999 !important;
+}
+
+::ng-deep .bo {
+    .logout-dialog {
+        .mat-dialog-container {
+          box-shadow: 0 10px 32px -4px rgba(24, 39, 75, 0.1), 0 0 16px -2px rgba(24, 39, 75, 0.08);
+          border-radius: 16px !important;
+          padding: 32px;
+          max-height: 410px !important;
+        }
+
+        &.custom-dialog{
+            .mat-dialog-wrapper{
+              .mat-dialog-pad{
+                padding: 1.875rem 0 22px 0;
+                position: relative;
+                .btn-close{
+                  position: absolute;
+                  top: -7px;
+                  right: -7px;
+                }
+              }
+            }
+          }
+    }
+
+
+}

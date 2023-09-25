@@ -1,0 +1,97 @@
+.mat-tooltip {
+  background: var(--n10);
+  padding: 0.875rem 1rem !important;
+  border-radius: 0.5rem !important;
+  color: var(--n100) !important;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  font-weight: var(--medium);
+  box-shadow: 0px 8px 16px -6px rgba(24, 39, 75, 0.08) !important;
+  position: relative;
+  overflow: visible !important;
+}
+.mat-tooltip-panel-right {
+  .mat-tooltip {
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 0.9375rem solid transparent;
+      border-right: 0.9375rem solid var(--n10);
+      border-bottom: 0.9375rem solid transparent;
+      border-left: 0.9375rem solid transparent;
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -1.75rem;
+    }
+  }
+}
+.mat-tooltip-panel-left {
+  .mat-tooltip {
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 0.9375rem solid transparent;
+      border-left: 0.9375rem solid var(--n10);
+      border-bottom: 0.9375rem solid transparent;
+      border-right: 0.9375rem solid transparent;
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -1.75rem;
+    }
+  }
+}
+.mat-tooltip-panel-below {
+  .mat-tooltip {
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 0.75rem solid transparent;
+      border-right: 0.75rem solid transparent;
+      border-bottom: 0.75rem solid var(--n10);
+      border-left: 0.75rem solid transparent;
+
+      position: absolute;
+      top: -1.4375rem;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+  }
+}
+.mat-tooltip-panel-above {
+    .mat-tooltip {
+        &:before {
+          content: '';
+          display: block;
+          width: 0;
+          height: 0;
+          border-top: 0.75rem solid transparent;
+          border-right: 0.75rem solid transparent;
+          border-bottom: 0.75rem solid var(--n10);
+          border-left: 0.75rem solid transparent;
+          position: absolute;
+          bottom: -1.5rem;
+          transform: rotate(180deg) translateX(50%);
+          left: 50%;
+        }
+      }
+}
+.tips {
+  em {
+    font-size: 1rem;
+  }
+}
+
+.allow-cr {
+  white-space: pre-line;
+  margin-left: 30px !important;
+}

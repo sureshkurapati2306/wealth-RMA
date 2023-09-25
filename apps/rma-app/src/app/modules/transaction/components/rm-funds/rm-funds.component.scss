@@ -1,0 +1,273 @@
+.card2 {
+    .mat-card {
+        overflow: hidden;
+        background-color: #f0f0f0;
+
+        .card-header {
+            padding: 24px 24px 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mat-card-title {
+            font-size: 16px;
+            padding: 0;
+            font-weight: 600;
+            color: #575a5c;
+            line-height: 1.5;
+            letter-spacing: 1.28px;
+            text-transform: uppercase;
+        }
+
+        .secondary-btn {
+            &.charge-btn {
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 700;
+                min-width: 240px;
+                margin: 0;
+                min-height: 40px;
+                color: #7b7d7e;
+                border: 1px solid #d5d6d7;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    display: inline-flex;
+                    margin-right: 10px;
+                }
+
+                &.disabled {
+                    color: #d5d6d7;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        .card-body {
+            min-height: 332px;
+
+            &.no-funds {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .no-funds-content {
+                padding: 8px 24px 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                flex: 1 1 auto;
+
+                img {
+                    width: 236px;
+                    margin-bottom: 24px;
+                }
+
+                p {
+                    color: #a7a9ac;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}
+
+.card3 {
+    .mat-card {
+        background-color: #333739;
+
+        .result-container {
+            max-width: 854px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 24px 18px;
+            position: relative;
+        }
+
+        .mat-divider-horizontal {
+            width: calc(100% - 20px);
+            left: 10px;
+            right: 10px;
+        }
+
+        .result {
+            padding-bottom: 18px;
+        }
+
+        .total {
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .salesDetails {
+                line-height: 46px;
+                font-size: 2rem;
+                P.bigText {
+                    line-height: 46px;
+                    font-size: 2rem;
+                    .curruncy {
+                        font-size: 0.625rem;
+                        vertical-align: text-top;
+                        padding-right: 0.25rem;
+                        letter-spacing: 0.4px;
+                        line-height: 3;
+                    }
+                }
+            }
+        }
+
+        .sales {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .salesInfo {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .salesDetails {
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+    }
+}
+
+::ng-deep {
+    .paginating {
+        .mat-paginator-range-label{
+            color: #333739;
+            font-size: 14px;
+        }
+    }
+}
+
+.points{
+    display: flex;
+    flex-direction: column !important;
+}
+
+.fund-card {
+    padding: 0 24px;
+}
+
+
+.input-text {
+  background-color: #ffffff;
+  border: 1px solid #7b7d7e;
+  height: 27px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.selct-input {
+  background-color: #ffffff;
+  border: 1px solid #7b7d7e;
+  border-radius: 8px;
+  width: 350px;
+  height: 44px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  font-family: var(--OpenSans) !important;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #333739;
+}
+
+.rate-text {
+  background-color: #ffffff;
+  border: 1px solid #7b7d7e;
+  height: 27px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.sales-text {
+  background-color: #ffffff;
+  border: 1px solid #7b7d7e;
+  height: 27px;
+  width: 150px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+::ng-deep {
+    .sales-charge-promotion {
+        .mat-form-field-outline {
+            background-color: #ffffff;
+
+        }
+        .mat-select-value-text {
+            font-weight: normal !important;
+        }
+    }
+
+    .form-group.flex {
+        .mat-input-element {
+            font-size: 1rem;
+        }
+
+        .mat-form-field-outline {
+            background-color: #ffffff;
+
+        }
+    }
+}
+
+::ng-deep {
+    .paginating {
+        .mat-paginator-container {
+            justify-content: center !important;
+            background-color: #f0f0f0 !important;
+        }
+
+        .mat-paginator-icon {
+            width: 1.5rem !important;
+            height: 1.5rem !important;
+            flex-grow: 0 !important;
+            object-fit: contain !important;
+        }
+    }
+}

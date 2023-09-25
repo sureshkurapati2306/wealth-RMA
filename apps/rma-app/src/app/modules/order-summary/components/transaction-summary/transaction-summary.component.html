@@ -1,0 +1,231 @@
+<mat-card class="box-shadow">
+    <div>
+        <div>
+            <div>
+                <mat-card-title>Summary</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content class="application-status">
+                    <h5 class="details-container">application status</h5>
+                    <div *ngIf="(orderSummaryData$ | async), let orderSummary"
+                        [ngClass]="orderSummary?.approvalStatus === 'E' || orderSummary?.approvalStatus === 'RR' ? 'status canceled' : 'status'">
+                        <div class="approval-status">
+                            <div class="status-lable">
+                                RD/PO Approval Status
+
+                                <div class="status-code">
+                                    <div class="yellow-rpq a-link-rpq" *ngIf="orderSummary?.approvalStatus === 'PP' || orderSummary?.approvalStatus === 'RP'">
+                                        <strong>Pending Approval</strong>
+                                    </div>
+                                    <div class="text-black-rpq" *ngIf="orderSummary?.approvalStatus === null || orderSummary?.approvalStatus === 'NA'">
+                                        <strong>N/A</strong>
+                                    </div>
+                                    <div class="red-rpq" *ngIf="orderSummary?.approvalStatus === 'RR' || orderSummary?.approvalStatus === 'PR'">
+                                        <strong>Declined &nbsp;({{transformDate(orderSummary.createdOn)}})</strong>
+                                    </div>
+                                    <div class="green-rpq" *ngIf="orderSummary?.approvalStatus === 'RA' || orderSummary?.approvalStatus === 'PA'">
+                                        <strong>Approved ({{transformDate(orderSummary.createdOn)}})</strong>
+                                    </div>
+                                    <div class="red-rpq" *ngIf="orderSummary?.approvalStatus === 'E' || orderSummary?.approvalStatus === 'PX' || orderSummary?.approvalStatus === 'RX'">
+                                        <strong>Cancelled - Please create a new application</strong>
+                                    </div>
+                                    <div *ngIf="orderSummary?.approvalStatus === 'RR' || orderSummary?.approvalStatus === 'PR'" class="text-description">
+                                        <span>{{orderSummary.approvalRemark}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <button
+                                        *ngIf="orderSummary.approvalStatus === 'RP' || orderSummary.approvalStatus === 'RR' || orderSummary.approvalStatus === 'PR' || orderSummary.approvalStatus === 'PP'"
+                                        mat-button class="remainder-button">
+                                        <strong (click)="sendingEmail()"
+                                            *ngIf="orderSummary.approvalStatus === 'RP' || orderSummary.approvalStatus === 'PP'">Send Reminder</strong>
+                                        <strong (click)="gotoTransactionPage(orderSummary)"
+                                            *ngIf="orderSummary.approvalStatus === 'RR' || orderSummary.approvalStatus === 'PR'">Edit Subscribe</strong>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div *ngIf="(orderSummaryData$ | async), let orderSummary"
+                        [ngClass]="orderSummary?.customerApprovalStatus === 'E' || orderSummary?.customerApprovalStatus === 'R' ? 'status canceled' : 'status'">
+                        <div class="approval-status">
+                            <div class="status-lable">
+                                Customer Approval Status
+                                <div class="status-code" [ngSwitch]="orderSummary?.customerApprovalStatus">
+                                    <div class="yellow-rpq a-link-rpq" *ngSwitchCase="'P'">
+                                        <strong>Pending Approval</strong>
+                                    </div>
+                                    <div class="text-black-rpq" *ngSwitchDefault>
+                                        <strong>N/A</strong>
+                                    </div>
+                                    <div class="red-rpq" *ngSwitchCase="'R'">
+                                        <strong>Declined &nbsp;({{transformDate(orderSummary.createdOn)}})</strong>
+                                    </div>
+                                    <div class="green-rpq" *ngSwitchCase="'A'">
+                                        <strong>Approved ({{transformDate(orderSummary.createdOn)}})</strong>
+                                    </div>
+                                    <div class="red-rpq" *ngSwitchCase="'E'">
+                                        <strong>Cancelled - Please create a new application</strong>
+                                    </div>
+                                    <div class="status-info-reason" *ngSwitchCase="'R'">
+                                        {{orderSummary.custRemark}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <ng-container *ngIf="orderSummary.customerApprovalStatus === 'R'">
+                                <div *ngIf="orderSummary.transactionType === 'S'">
+                                    <button mat-button class="remainder-button" (click)="gotoTransactionPage(orderSummary)">Edit
+                                        Subscribe</button>
+                                </div>
+                                <div *ngIf="orderSummary.transactionType === 'W'">
+                                    <button mat-button class="remainder-button" (click)="gotoTransactionPage(orderSummary)">Edit
+                                        Switch</button>
+                                </div>
+                            </ng-container>
+                            </div>
+
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <div *ngIf="(orderSummaryData$ | async), let orderSummary">
+                    <h5 class="details-container">customer Accounts</h5>
+                    <div class="personal-name padding">
+                        <div class="personalname">
+                            <p class="sub-container">Investment Account</p>
+                            <p class="sub-container-1 p">{{orderSummary.investmentAccount}} (Joint - Or)</p>
+                        </div>
+                        <div class="personalname width">
+                            <p class="sub-container">Settlement Account</p>
+                            <p class="sub-container-1 p">{{orderSummary.settlementAccount}} (Individual)</p>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider *ngIf="(orderSummaryData$ | async)?.customerApprovalStatus === 'P'"></mat-divider>
+            </div>
+            <div class="ap-link" *ngIf="(orderSummaryData$ | async), let customerApprovalLinkRes">
+                <cimb-office-customer-approval-link *ngIf="customerApprovalLinkRes.customerApprovalStatus === 'P'"
+                    [customerApprovalLinkData]="customerApprovalLinkRes">
+                </cimb-office-customer-approval-link>
+            </div>
+        </div>
+        <mat-divider *ngIf="(orderSummaryData$ | async)?.customerApprovalStatus !== 'E'"></mat-divider>
+        <div *ngIf="(orderSummaryData$ | async), let orderSummary">
+            <h5 class="details-container">Application Summary</h5>
+            <div class="personal-name">
+                <div class="personalname">
+                    <p class="sub-container">Product Type</p>
+                    <p *ngIf="orderSummary.productType === 'UT'" class="sub-container-1 p">Unit Trust</p>
+                </div>
+                <div class="personalname width">
+                    <p class="sub-container">Transaction Type</p>
+                    <p *ngIf="orderSummary.transactionType === 'S'" class="sub-container-1 p">Subscribe</p>
+                </div>
+            </div>
+            <div class="personal-name padding">
+                <div class="personalname">
+                    <p class="sub-container">Created On</p>
+                    <p class="sub-container-1 p">{{transformDate(orderSummary.createdOn)}}</p>
+                </div>
+                <div class="personalname width">
+                    <p class="sub-container">Application ID</p>
+                    <p class="sub-container-1 p">{{orderSummary.applicationId}} (RMA Ref ID)</p>
+                </div>
+            </div>
+            <div class="personal-name padding">
+                <div class="personalname ">
+                    <p class="sub-container">Sales Branch</p>
+                    <p class="sub-container-1 p">{{orderSummary.salesBranch}}</p>
+                </div>
+                <div class="personalname width">
+                    <p class="sub-container">Staff Branch</p>
+                    <p class="sub-container-1 p">{{orderSummary.staffBranch}}</p>
+                </div>
+            </div>
+            <div class="personal-name padding">
+                <div class="personalname">
+                    <p class="sub-container">Referral</p>
+                    <p class="sub-container-1 p">{{orderSummary.referral}}</p>
+                </div>
+                <div class="personalname width">
+                    <p class="sub-container">Remarks</p>
+                    <p class="sub-container-1 p">{{orderSummary.custRemark}}</p>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div *ngIf="(orderSummaryData$ | async), let orderSummary">
+            <h5 class="details-container">RM’s acknowledgement</h5>
+            <div class="acknowledgement" [ngSwitch]="orderSummary?.acknowledgement">
+                <div>
+                    Customer decided to purchase the investment product(s) that is/ are recommended based on customer’s
+                    risk profile.
+                    <p class="text" *ngSwitchCase="'Y'">
+                        <strong>YES, the product is recommended based on customer’s risk profile.</strong>
+                    </p>
+                    <p *ngSwitchCase="'N'">
+                        <strong>NO, customer decided not to purchase recommended investment product because:</strong>
+                    </p>
+                </div>
+                <div *ngSwitchCase="'N1'">
+                    <P class="text">
+                        <strong>
+                            Investment objective, investment strategy and investment horizon does not meet customer’s
+                            needs
+                            and expectations.
+                        </strong>
+                    </P>
+                </div>
+                <div *ngSwitchCase="'N2'">
+                    <P class="text">
+                        <strong>Investor decided to invest based on own discretion although the investment product(s)
+                            may or may not
+                            be suitable to the customer’s risk profile.</strong>
+                    </P>
+                </div>
+                <div *ngSwitchCase="'N3'">
+                    <P class="text">
+                        <strong> This is an execution only transaction where no recommendation is made.</strong>
+                    </P>
+                </div>
+                <div *ngSwitchCase="'N1,N2'" class="N_div">
+                    <strong>Investment objective, investment strategy and investment horizon does not meet customer’s
+                        needs and
+                        expectations.</strong>
+                    <p class="text">
+                        <strong> Investor decided to invest based on own discretion although the investment product(s)
+                            may or may
+                            not be suitable to the customer’s risk profile.</strong>
+                    </p>
+                </div>
+                <div *ngSwitchCase="'N1,N3'" class="N_div">
+                    <strong> Investment objective, investment strategy and investment horizon does not meet customer’s
+                        needs and
+                        expectations.</strong>
+                    <P class="text">
+                        <strong>This is an execution only transaction where no recommendation is made.</strong>
+                    </P>
+                </div>
+                <div *ngSwitchCase="'N2,N3'" class="N_div">
+                    <strong> Investor decided to invest based on own discretion although the investment product(s) may
+                        or may not
+                        be suitable to the customer’s risk profile.</strong>
+                    <P class="text">
+                        <strong> This is an execution only transaction where no recommendation is made.</strong>
+                    </P>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</mat-card>
+<div *ngIf="(orderSummaryData$ | async), let orderSummary">
+    <div *ngIf="orderSummary.transactionType === 'newAccount'">
+        <cimb-office-customer-details></cimb-office-customer-details>
+    </div>
+</div>

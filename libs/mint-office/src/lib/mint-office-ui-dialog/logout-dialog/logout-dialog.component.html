@@ -1,0 +1,24 @@
+<div class="dialog-content">
+    <div class="close-icon">
+        <mat-icon (click)="cancel()" mat-dialog-close="">close</mat-icon>
+    </div>
+    <div class="dialog_center">
+        <div class="imageWrapper">
+            <img src="./assets/images/logout.svg" alt="CIMB" />
+        </div>
+        <h1 mat-dialog-title>
+            {{ dialogData.title }}
+        </h1>
+        <div mat-dialog-content>
+            <div [innerHtml]="dialogData.description"></div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-flat-button class="btn-custom btn-lg btn-white" (click)="cancel()">{{
+            dialogData.btnCancelLabel }}
+        </button>
+        <button mat-flat-button class="btn-custom btn-red" (click)="proceed()">{{
+            dialogData.btnOkLabel }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,264 @@
+@media only screen and (max-width: 900px) {
+
+    .details-container,
+    .personal-name {
+        padding-left: 0rem;
+    }
+}
+
+.box-shadow {
+    border-radius: 1rem;
+    padding: 0px;
+    box-shadow: 0 4px 4px -2px rgba(24, 39, 75, 0.08), 0 2px 4px -2px rgba(24, 39, 75, 0.12);
+
+    mat-divider {
+        left: 2%;
+        right: 2%;
+        width: 96%;
+    }
+
+    .mat-card-title {
+        font-weight: 700;
+        font-size: 16px;
+        padding: 16px 24px;
+        margin-bottom: 0px !important;
+    }
+
+    .ap-link {
+        margin-bottom: 20px !important;
+    }
+
+    .application-status {
+        .canceled {
+            border-radius: 8px;
+            border: solid 1px #ff5630 !important;
+        }
+
+        .status {
+            border: 1px solid #c6c7c8;
+            padding: 16px;
+            margin: 0px 108px 32px 108px;
+            width: 78%;
+
+            .approval-status {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+            }
+
+            .customerStatusCode {
+                flex-direction: column !important;
+            }
+
+            .reminder-btn {
+                .mat-button {
+                    border-radius: 8px;
+                    height: 40px;
+                    border: solid 1px #ff0000;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #ff0000;
+                }
+            }
+
+            .status-lable {
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 1.54;
+                color: #7b7d7e;
+            }
+
+            .a-link-rpq {
+                font-size: 16px;
+                font-weight: bold;
+                padding-top: 4px;
+                line-height: 22px;
+            }
+
+            .yellow {
+                font-size: 16px;
+                font-weight: bold;
+                color: #ffab00;
+                padding-top: 9px;
+            }
+
+            .yellow-rpq {
+                color: #ffab00;
+                font-size: var(--body-font-size);
+            }
+
+            .red-rpq {
+                color: #ff5630;
+                font-size: var(--body-font-size);
+                text-transform: none;
+            }
+
+            .green-rpq {
+                color: #36b37e;
+            }
+
+            .text-black-rpq {
+                color: #333739;
+            }
+
+            .status-info-reason {
+                padding-top: 16px;
+                text-transform:  none;
+              }
+
+            .status-info {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 154%;
+                color: #7B7D7E;
+                padding-top: 16px;
+            }
+        }
+    }
+}
+
+.acknowledgement {
+    padding: 0px 108px 0px 108px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 154%;
+    color: #333739;
+}
+.text{
+    padding: 24px 0px;
+}
+.N_div{
+    padding-top: 24px;
+}
+
+.acknowledgement-imp {
+    padding: 0px 108px 30px 108px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 154%;
+    color: #333739
+}
+
+::ng-deep .mat-expansion-indicator::after {
+    margin-bottom: 6px;
+}
+
+.disable-ripple:hover {
+    background: white !important;
+    cursor: default !important;
+}
+.mat-expansion-panel-header {
+    align-items: baseline;
+}
+.expansion-panel {
+    flex-direction: column;
+    margin-top: 1rem;
+}
+.customer-main {
+    font-weight: 700;
+    font-size: 16px;
+    padding-bottom: 1rem;
+}
+.details-container {
+    padding-left: 108px;
+    margin: 0rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.08em;
+    color: #575a5c;
+}
+.personal-name {
+    padding-left: 108px;
+    justify-content: space-between;
+    display: flex;
+}
+.width {
+    width: 46.4%;
+}
+.personalname {
+    margin: 0rem;
+    padding-top: 0.5rem;
+}
+.mobile {
+    margin: 0rem;
+    padding-top: 0.5rem;
+}
+.sub-container {
+    margin: 0rem;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 154%;
+    color: #7b7d7e;
+    text-transform: capitalize;
+}
+.sub-container-1 {
+    padding: 0rem;
+    margin: 0rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 154%;
+    color: #7b7d7e;
+    text-transform: capitalize;
+}
+.p {
+    color: #333739;
+    font-weight: 700;
+    margin: none;
+    padding-bottom: 1.5rem;
+}
+
+.select {
+    display: flex;
+    padding-bottom: 0rem;
+}
+.select-panel {
+    font-weight: 700;
+    width: 12.5rem;
+}
+.button-info {
+    position: absolute;
+    margin-top: -5px;
+    margin-left: 13.75rem;
+    padding: 0.188rem 0.563rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    border: none;
+    color: #ffffff;
+    background-color: #2096d9;
+}
+.detail {
+    margin-top: 0.5rem;
+}
+
+.data {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+li p {
+    margin-bottom: 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.remainder-button {
+    color: red;
+    border-radius: 8px;
+    background-color: none;
+    border: solid red 1px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0px 29px;
+
+}
+.text-description{
+    padding-top: 0.5rem;
+    font-size: 14px;
+    color: var(--n60);
+}

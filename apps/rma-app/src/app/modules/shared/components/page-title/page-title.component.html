@@ -1,0 +1,24 @@
+<div class="top-container" *ngIf="(customerProfile$ | async) as customerDetails">
+    <div class="page-details flex">
+        <div class="page-details--left">
+            <div class="page-title">
+                <div [routerLink]="[backButtonUrl]" class="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="16" height="16" x="0" y="0" viewBox="0 0 20 20" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                        <g transform="matrix(-1,-1.2246467991473532e-16,1.2246467991473532e-16,-1,20,20)">
+                            <path xmlns="http://www.w3.org/2000/svg" d="m12 2-1.4 1.4 5.6 5.6h-16.2v2h16.2l-5.6 5.6 1.4 1.4 8-8z" fill="#333739" data-original="#000000" class="">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+               <span>{{pageTitle}}</span>
+               <span *ngIf="!!showCustomerDetails?.isDraft" class="expire">
+                    Draft (expires: {{showCustomerDetails?.isDraft}})
+                </span>
+            </div>
+            <div class="userDetails" *ngIf="showCustomerDetails.isEnable">
+                <a (click)="onClick($event)" class="user-link" [routerLink]="[showCustomerDetails.route]">{{customerDetails.name}}</a>
+                 <span>(Customer ID: {{maskId(customerDetails.idNo)}})</span>
+            </div>
+        </div>
+    </div>
+</div>

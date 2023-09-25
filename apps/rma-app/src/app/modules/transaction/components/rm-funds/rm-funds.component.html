@@ -1,0 +1,196 @@
+<div class="card2 card" *ngIf="{availableFunds : availableFunds$ | async} as customer">
+    <mat-card *ngIf="customer.availableFunds">
+        <div class="card-header">
+            <mat-card-title *ngIf="transactionService.transactionType !== 'Redeem' && transactionService.transactionType !== 'Switch'">Fund(s) to SUBSCRIBE (Max 4 funds per application):</mat-card-title>
+            <mat-card-title *ngIf="transactionService.transactionType === 'Switch'">Fund to SWITCH:</mat-card-title>
+            <mat-card-title *ngIf="transactionService.transactionType === 'Redeem'">Fund to Redeem:</mat-card-title>
+        </div>
+        <div *ngIf="customer.availableFunds?.length < 1" class="card-body no-funds">
+            <div class="no-funds-content">
+                <img src="./assets/images/ic_no_fund.svg" alt="no fund">
+                <p>No fund(s) added. Please search and add fund(s).</p>
+            </div>
+        </div>
+        <ng-container>
+                <div class="fund-card card" *ngFor="let dataFromSearchFund of customer.availableFunds | slice:0:4; let i=index">
+                    <cimb-office-fund-card
+                        [fundDeatil]="dataFromSearchFund"
+                        (remove)="removeRecord($event, customer.availableFunds)"
+                        (fundDataChange)="onFundDataChange($event)"
+                        [pageType]="transactionService.transactionType"
+                    ></cimb-office-fund-card>
+                </div>
+        </ng-container>
+    </mat-card>
+
+</div>
+
+<div>
+
+    <!-- Subscribe -->
+
+    <div class="card3 card" *ngIf="transactionService.transactionType !== 'Redeem' && transactionService.transactionType !== 'Switch'">
+        <mat-card>
+            <div class="result-container">
+                <div class="result">
+
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Investment Amount
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.netinvestedAmountToal || totalFundAmount.netinvestedAmountToal === '0' || totalFundAmount.netinvestedAmountToal === '0.00'; else netInvestmentAmount">
+                            MYR 0
+                        </span>
+                        <ng-template #netInvestmentAmount>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.netinvestedAmountToal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Sales Charges
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.salesChargeAmountTotal || totalFundAmount.salesChargeAmountTotal === '0' || totalFundAmount.salesChargeAmountTotal === '0.00'; else salesCharge">
+                            MYR 0
+                        </span>
+                        <ng-template #salesCharge>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.salesChargeAmountTotal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="total">
+                    <div class="salesInfo">
+                        Total Indicative Amount
+                    </div>
+                    <div class="salesDetails">
+                        <span class="bigText" *ngIf="!totalFundAmount.totalAmount || totalFundAmount.totalAmount === '0' || totalFundAmount.totalAmount === '0.00';else totalAmount">
+                            MYR 0
+                        </span>
+                        <ng-template #totalAmount>
+                            <p class="bigText">
+                                <span class="curruncy">MYR </span> <span> {{ totalFundAmount.totalAmount | number: '1.2-2'}} </span>
+                            </p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+    <!-- Switch -->
+
+    <div class="card3 card"  *ngIf="transactionService.transactionType === 'Switch'">
+
+        <mat-card>
+            <div class="result-container">
+                <div class="result">
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Exit Fees
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.salesChargeAmountTotal || totalFundAmount.salesChargeAmountTotal === '0' || totalFundAmount.salesChargeAmountTotal === '0.00'; else salesCharge">
+                            MYR 0
+                        </span>
+                        <ng-template #salesCharge>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.salesChargeAmountTotal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Switch Out Indicative Amount *
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.salesChargeAmountTotal || totalFundAmount.salesChargeAmountTotal === '0' || totalFundAmount.salesChargeAmountTotal === '0.00'; else salesCharge">
+                            MYR 0
+                        </span>
+                        <ng-template #salesCharge>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.salesChargeAmountTotal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Switch In Fees **
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.netinvestedAmountToal || totalFundAmount.netinvestedAmountToal === '0' || totalFundAmount.netinvestedAmountToal === '0.00'; else netInvestmentAmount">
+                            MYR 0
+                        </span>
+                        <ng-template #netInvestmentAmount>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.netinvestedAmountToal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="total">
+                    <div class="salesInfo points">
+                        <span>* Switch Out indicative amount excludes exit fees.</span>
+                        <span>** Final Switch In unit will be confirmed by Fund Houses.</span>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+    <!-- Redeem -->
+
+    <div class="card3 card"  *ngIf="transactionService.transactionType === 'Redeem'">
+
+        <mat-card>
+            <div class="result-container">
+                <div class="result">
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Exit Fees
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.salesChargeAmountTotal || totalFundAmount.salesChargeAmountTotal === '0' || totalFundAmount.salesChargeAmountTotal === '0.00'; else salesCharge">
+                            MYR 0
+                        </span>
+                        <ng-template #salesCharge>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.salesChargeAmountTotal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                    <div class="sales">
+                        <div class="salesInfo">
+                            Total Redemption Units
+                        </div>
+                        <span class="salesDetails" *ngIf="!totalFundAmount.netinvestedAmountToal || totalFundAmount.netinvestedAmountToal === '0' || totalFundAmount.netinvestedAmountToal === '0.00'; else netInvestmentAmount">
+                            0
+                        </span>
+                        <ng-template #netInvestmentAmount>
+                            <span class="salesDetails">
+                                MYR {{ totalFundAmount.netinvestedAmountToal | number: '1.2-2' }}
+                            </span>
+                        </ng-template>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="total">
+                    <div class="salesInfo">
+                        Total Indicative Redemption Amount *
+                    </div>
+                    <div class="salesDetails">
+                        <span class="bigText" *ngIf="!totalFundAmount.totalAmount || totalFundAmount.totalAmount === '0' || totalFundAmount.totalAmount === '0.00';else totalAmount">
+                            MYR 0
+                        </span>
+                        <ng-template #totalAmount>
+                            <p class="bigText">
+                                <span class="curruncy">MYR </span> <span> {{ totalFundAmount.totalAmount | number: '1.2-2'}} </span>
+                            </p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+</div>

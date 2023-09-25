@@ -1,0 +1,32 @@
+<div class="pre-chart">
+  <div class="flex">
+    <h5 class="show-md">Performance Chart</h5>
+    <div class="toggle">
+      <p class="show-md">Fund Past Performance</p>
+      <mat-button-toggle-group value="1mnth">
+        <mat-button-toggle (click)="toogleData(1)" value="1mnth">1-mth</mat-button-toggle>
+        <mat-button-toggle (click)="toogleData(3)" value="3mnth">3-mth</mat-button-toggle>
+        <mat-button-toggle (click)="toogleData(6)" value="6mnth">6-mth</mat-button-toggle>
+        <mat-button-toggle (click)="toogleData(12)" value="12mnth">1-yr</mat-button-toggle>
+        <mat-button-toggle (click)="toogleData(60)" value="60mnth">5-yr</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+</div>
+<div class="card-wrapper"> 
+        <div class="chart">
+            <google-chart
+              type="LineChart"
+              [data]="graphData"
+              [options]="GraphConfig"
+              [columns]="column"
+              [width]="width"
+              [height]="height"
+              ></google-chart>
+          <p>
+            Disclaimer: Past performance of a fund is not an indication of its
+            future performance.
+          </p>
+        </div>
+  </div>
+  

@@ -1,0 +1,30 @@
+.content-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--n100);
+    letter-spacing: 1.28px;
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    margin-top: 3.75rem;
+    justify-content: space-between;
+
+    button {
+        min-height: 3rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+
+        &.cancel {
+            width: 12rem;
+            border-color: var(--n80);
+            color: var(--n80);
+        }
+
+        &.success {
+            width: 14.375rem;
+            color: white;
+        }
+    }
+}

@@ -1,0 +1,142 @@
+<form [formGroup]="transactionForm">
+    <div class="card7 card">
+        <mat-card>
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="boldText">Add Remarks </span>(if applicable)
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+                    <div *ngIf="panelOpenState" class="text-area-remark">
+                        <mat-form-field appearance="outline" floatLabel="never">
+                            <textarea matInput formControlName="remarks" name="questionText" formControlName="remarks" rows="3" maxlength="500" placeholder="Please add remarks about this application (if any)"></textarea>
+                        </mat-form-field>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </mat-card>
+    </div>
+
+    <div class="card8 card" *ngIf="isRefralEnable()">
+        <mat-card>
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <span class="boldText">Add Referral </span>(if applicable)
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-divider></mat-divider>
+
+                    <div class="referral">
+
+                        <div class="referral-form-inputfild">
+                            <div class="label">referral Code</div>
+                            <mat-form-field appearance="outline" floatLabel="never">
+                                <input matInput formControlName="referralCode" placeholder="Referrer Code">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="referral-form-inputfild">
+                            <div class="label">referrer name</div>
+                            <mat-form-field appearance="outline" floatLabel="never">
+                                <input matInput formControlName="referralName" placeholder="Referrer Name">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="branch">
+                            <div class="investment-dropdown refree-branch" *ngIf="refreeBranches$ | async as branches">
+                                <div class="label">referrer branch</div>
+                                <mat-form-field appearance="outline" floatLabel="never" class="mint-office-auto-complete-dropdown">
+                                    <input #refreeInput matInput [matAutocomplete]="refreeAutoComplete" (click)="refreeInput.select()" (blur)="clearSaleSearch(refreeInput, branches, 'referrer')" placeholder="Select Branch"
+                                        [formControl]="refreeSerachKey" />
+
+                                    <div class="mat-select-arrow-wrapper" [ngClass]="{'arrow-up': refreeAutoComplete.isOpen}"
+                                        matSuffix></div>
+                                    <mat-autocomplete class="mint-office-auto-complete-panel mobile-autocomplete sales-branch" #refreeAutoComplete="matAutocomplete"
+                                        panelClass="typeahead-panel">
+
+                                        <ng-container *ngIf="branches.length > 0; else noDataFound">
+                                            <mat-option #salesOption class="dff" *ngFor="let branch of branches"
+                                                [value]="branch.branchCode + ' - ' + branch.branchName">
+                                                {{ branch.branchCode + ' - ' + branch.branchName }}
+                                            </mat-option>
+                                        </ng-container>
+                                        <ng-template #noDataFound>
+                                            <mat-option>
+                                                <div class="noDataFound">
+                                                    No result(s) found
+                                                </div>
+                                            </mat-option>
+                                        </ng-template>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card>
+    </div>
+
+    <div class="card5 card" [formGroup]="salesForm">
+        <mat-card>
+            <mat-card-title>RM’s Sales Branch</mat-card-title>
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+                <mat-card-subtitle>Select sales branch (mandatory):</mat-card-subtitle>
+                <div class="investment">
+                    <div class="dropdowns">
+                        <div class="investment-dropdown sales-branch-dropdown" *ngIf="branches$ | async as branches">
+                            <div class="label">Sales branch</div>
+                            <mat-form-field appearance="outline" floatLabel="never" class="mint-office-auto-complete-dropdown">
+                                <input #setFocus matInput [matAutocomplete]="automobile" (click)="setFocus.select()" (blur)="clearSaleSearch(setFocus, branches)" placeholder="Select Branch"
+                                    [formControl]="searchValue" />
+
+                                <div class="mat-select-arrow-wrapper" [ngClass]="{'arrow-up': automobile.isOpen}"
+                                    matSuffix></div>
+                                <mat-autocomplete class="mint-office-auto-complete-panel mobile-autocomplete sales-branch" #automobile="matAutocomplete"
+                                    panelClass="typeahead-panel" >
+
+                                    <ng-container *ngIf="branches.length > 0; else noDataFound">
+                                        <mat-option #salesOption class="dff" *ngFor="let branch of branches"
+                                            [value]="branch.branchCode + ' - ' + branch.branchName">
+                                            {{ branch.branchCode + ' - ' + branch.branchName }}
+                                        </mat-option>
+                                    </ng-container>
+                                    <ng-template #noDataFound>
+                                        <mat-option>
+                                            <div class="noDataFound">
+                                                No result(s) found
+                                            </div>
+                                        </mat-option>
+                                    </ng-template>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                        <div class="investment-dropdown staff-branch input"
+                            *ngIf="getCurruntUserDetails$ | async as rmDetails">
+                            <div class="label">staff branch</div>
+                            <mat-form-field appearance="outline" floatLabel="never">
+                                <mat-select formControlName="staffBranch" placeholder="Select Branch" disabled [value]="rmDetails.branch"
+                                     #branchSelect
+                                    panelClass="custom-select-panel transaction" class="select-panel">
+                                    <mat-option #branchOption class="dff" *ngFor="let branch of allBranches$ | async"
+                                        [value]="branch.branchCode">
+                                        {{ branch.branchCode + ' - ' + branch.branchName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</form>

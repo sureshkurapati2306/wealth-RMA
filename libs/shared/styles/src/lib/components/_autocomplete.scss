@@ -1,0 +1,394 @@
+.fund-autocomplete {
+  &.mat-autocomplete-panel {
+    box-shadow: none !important;
+    margin-right: -0.9375rem;
+    margin-left: -0.9375rem;
+    width: 100vw !important;
+    padding-bottom: 2rem;
+    margin-top: 1.0625rem;
+    max-height: 100%;
+
+    @media (min-width: 48rem) {
+      width: 100% !important;
+      margin-left: 0;
+      margin-right: 0;
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 11rem -0.125rem rgba(24, 39, 75, 0.08),
+        0px 10px 2rem -0.25rem rgba(24, 39, 75, 0.1) !important;
+      padding: 0;
+      position: relative;
+      max-height: 16.9375rem;
+    }
+
+    &:before {
+      @media (min-width: 48rem) {
+        width: 0;
+        height: 0;
+        border-top: 0.75rem solid transparent;
+        border-right: 0.75rem solid transparent;
+        border-bottom: 0.75rem solid var(--n0);
+        border-left: 0.75rem solid transparent;
+        position: absolute;
+        top: -1.4375rem;
+        right: 10px;
+        content: '';
+        display: block;
+      }
+    }
+
+    mat-option {
+      height: 3.4375rem;
+
+      @media (min-width: 48rem) {
+        height: auto;
+      }
+      span {
+        border-bottom: 0.0625rem solid var(--n20);
+        color: var(--n80);
+        font-size: 0.875rem;
+        font-weight: var(--regular);
+        display: block;
+        line-height: 3.375rem;
+
+        @media (min-width: 48rem) {
+          height: auto;
+          line-height: 1.375rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+        }
+      }
+      &.mat-selected,
+      &:hover,
+      &:focus {
+        span {
+          background: var(--r100) !important;
+          font-weight: var(--bold);
+          color: var(--n0) !important;
+        }
+      }
+
+      &:last-child {
+        span {
+          border-bottom: none;
+        }
+      }
+    }
+    .mat-option:hover:not(.mat-option-disabled),
+    .mat-option:focus:not(.mat-option-disabled) {
+      background: var(--r100) !important;
+      font-weight: var(--bold);
+      color: var(--n0) !important;
+    }
+  }
+}
+.mat-autocomplete-panel-above {
+  .custom-autocomplete {
+    @media (min-width: 48rem) {
+      margin-top: 0;
+      margin-bottom: 0.8125rem;
+    }
+    &:before {
+      @media (min-width: 48rem) {
+        top: auto;
+        bottom: -0.875rem;
+        border-width: 0.875rem 0.75rem 0 0.75rem;
+        border-color: var(--n0) transparent transparent transparent;
+      }
+    }
+  }
+}
+.custom-autocomplete {
+  border-radius: 0.5rem;
+  padding-bottom: 0;
+
+  // @media (min-width: 48rem) {
+  //   margin-top: 0.8125rem;
+  // }
+  &:after {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(51, 55, 57, 0.75);
+    z-index: 1;
+
+    @media (min-width: 48rem) {
+      display: none;
+    }
+  }
+  &:before {
+    @media (min-width: 48rem) {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -0.8125rem;
+      right: 0.625rem;
+      width: 0;
+      height: 0;
+      z-index: 10;
+      border-style: solid;
+      border-width: 0 0.75rem 0.875rem 0.75rem;
+      border-color: transparent transparent var(--n0) transparent;
+    }
+  }
+  &.custom-mat-select-panel {
+    &:before {
+      display: none;
+    }
+  }
+  &.mat-menu-panel {
+    box-shadow: none;
+  }
+  .mat-menu-content {
+    z-index: 2;
+    position: relative;
+    background: var(--n0);
+    padding-bottom: 1.5rem;
+
+    .selected-items {
+      padding: 0 1rem;
+
+      @media (min-width: 48rem) {
+        padding-top: 1rem;
+      }
+
+      ul {
+        display: flex;
+        margin: 0;
+        flex-wrap: wrap;
+
+        @media (min-width: 48rem) {
+          border-bottom: 0.0625rem solid var(--n20);
+          padding-bottom: 0.875rem;
+        }
+
+        li {
+          background: var(--n5);
+          border-radius: 0.5rem;
+          margin-right: 0.75rem;
+          color: var(--n80);
+          font-size: 0.875rem;
+          line-height: 1.375rem;
+          text-align: center;
+          padding: 0.5rem 0.75rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .mat-option {
+    padding: 0 1rem;
+    height: auto;
+    white-space: normal;
+    line-height: normal;
+    font-size: 0.875rem;
+    color: var(--n80);
+
+    &.mat-selected {
+      color: var(--n0) !important;
+      background: var(--r100) !important;
+      font-weight: var(--bold);
+
+      span {
+        border-bottom-color: transparent;
+      }
+      &:hover {
+        background: var(--r100) !important;
+      }
+    }
+    &:hover {
+      background: var(--r60) !important;
+    }
+    span {
+      padding: 1rem 0;
+      line-height: normal;
+      height: auto;
+      border-bottom: 0.0625rem solid var(--n20);
+
+      @media (min-width: 48rem) {
+        padding: 0.5rem 0;
+      }
+    }
+    &.in-active {
+      span {
+        &.mat-option-text {
+          color: var(--n20);
+          font-weight: var(--bold);
+        }
+      }
+      &:hover {
+        span {
+          color: var(--n0);
+        }
+      }
+    }
+  }
+  .mat-optgroup {
+    .mat-optgroup-label {
+      background: var(--n5);
+      font-weight: var(--bold);
+      color: var(--n80);
+      height: 3.25rem;
+      line-height: 3.25rem;
+
+      @media (min-width: 48rem) {
+        height: 2.25rem;
+        line-height: 2.25rem;
+      }
+    }
+    .mat-option {
+      &:not(.mat-option-multiple) {
+        padding:0 1rem;
+      }
+    }
+  }
+  &.filter-panel {
+    @media (min-width: 48rem) {
+      position: static;
+    }
+    .mat-option {
+      span {
+        padding: 0.625rem 0;
+
+        span {
+          border: none;
+        }
+      }
+      &:last-child {
+        span {
+          border: none;
+        }
+      }
+    }
+  }
+}
+.autocomplete-block {
+  position: relative;
+  height: 3rem;
+  max-width: 29.5rem;
+  overflow: hidden;
+
+  em {
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--n60);
+    cursor:pointer;
+
+    &.icon-arrow-up {
+      &:before {
+        content: '\e804';
+        display: inline-block;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  input {
+    height: 3rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding-right: 2.25rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor:pointer;
+
+    &::placeholder {
+      color: var(--n40);
+      opacity: 1;
+    }
+  }
+}
+
+.mint-office-auto-complete-dropdown {
+
+    .mat-form-field-flex > .mat-form-field-infix {
+        padding: 0.6em 0 !important;
+        min-height: 2.625rem;
+    }
+
+    &.mat-form-field-appearance-outline  {
+        .mat-form-field-prefix, .mat-form-field-suffix {
+            top: -0.8em !important;
+        }
+    }
+
+    .mat-select-arrow-wrapper {
+        border: 0 none;
+        background: none;
+        padding-right: 0.75rem;
+        display: table-cell;
+        vertical-align: middle;
+
+        &.arrow-up {
+            transform: rotate(180deg);
+            padding-left: 0.75rem;
+        }
+    }
+
+
+    .mat-select-arrow-wrapper:before {
+        content: '';
+        font-family: 'wealth', serif;
+        color: var(--n100);
+        font-size: 0.5625rem;
+    }
+
+    .mat-select-disabled {
+        .mat-select-value-text {
+            color: var(--n20);
+        }
+
+        .mat-select-arrow-wrapper {
+            opacity: 0;
+        }
+    }
+
+}
+
+.mint-office-auto-complete-panel {
+    transform: translateX(10px);
+    border-radius: 8px !important;
+    .mat-option {
+        height: 48px;
+        .mat-option-text {
+            border-bottom: 1px solid var(--n30);
+            font-size: 14px;
+            height: 100%;
+
+            .chip {
+                border: 1px solid var(--n60);
+                border-radius: 2rem;
+                padding: 0.2rem 0.8rem;
+                color: var(--n80);
+            }
+        }
+        &.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled),
+        &:hover {
+            background: var(--scarlet) !important;
+            color: var(--n0) !important;
+
+            .mat-option-text {
+                .chip {
+                    border-color: var(--n0);
+                    color: var(--n0);
+                }
+            }
+        }
+
+        &:last-child {
+            .mat-option-text {
+                border-width: 0 !important;
+            }
+        }
+    }
+}
